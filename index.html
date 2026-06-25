@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>环勃朗峰 TMB 徒步手册 · 2026年7月</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<style>
+:root{
+  --snow:#F5F9FA; --snow2:#EAF1F3; --ink:#1C2B26; --ink2:#48564F;
+  --pine:#2D5C3D; --pine-l:#3C7050; --ice:#4A8FC2; --ice-l:#7FB5DC;
+  --glacier:#DA291C; --gold:#C8A24B; --line:#D8E2DF;
+  --camp:#B8702A;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter','Noto Sans SC',sans-serif;
+  background:var(--snow); color:var(--ink);
+  line-height:1.75; font-size:16px;
+}
+/* ===== top nav ===== */
+.topnav{
+  position:sticky; top:0; z-index:100;
+  background:rgba(245,249,250,0.95); backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.topnav-inner{
+  max-width:980px; margin:0 auto; padding:0 24px;
+  display:flex; align-items:center; gap:4px; flex-wrap:wrap;
+  height:54px;
+}
+.topnav .brand{font-weight:700; color:var(--pine); margin-right:16px; font-size:0.95rem; white-space:nowrap}
+.topnav a{
+  color:var(--ink2); text-decoration:none; font-size:0.86rem;
+  padding:6px 11px; border-radius:7px; transition:.15s; white-space:nowrap;
+}
+.topnav a:hover{background:var(--snow2); color:var(--pine)}
+/* ===== hero ===== */
+.hero{
+  color:#fff; padding:96px 24px 54px; position:relative; overflow:hidden;
+  background:#1B3A6B;
+}
+.hero-bg{position:absolute; inset:0; z-index:0; background-image:url('hero-montblanc.jpg'); background-size:cover; background-position:center 40%;}
+.hero-mask{position:absolute; inset:0; z-index:1;
+  background:linear-gradient(180deg, rgba(20,40,60,0.28) 0%, rgba(20,40,60,0.12) 36%, rgba(18,38,58,0.60) 76%, rgba(15,32,50,0.88) 100%);
+}
+.hero-inner{max-width:980px; margin:0 auto; position:relative; z-index:2}
+.hero .kicker{font-size:0.82rem; letter-spacing:3px; text-transform:uppercase; color:#DCEAF2; margin-bottom:14px; text-shadow:0 1px 6px rgba(0,0,0,0.45)}
+.hero h1{
+  font-family:'Noto Serif SC','Inter',serif; font-weight:700;
+  font-size:3rem; line-height:1.2; margin-bottom:12px; letter-spacing:1px;
+  text-shadow:0 2px 18px rgba(0,0,0,0.5);
+}
+.hero .sub{font-size:1.05rem; color:#EAF2F6; margin-bottom:26px; max-width:660px; text-shadow:0 1px 10px rgba(0,0,0,0.55)}
+.hero-stats{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:24px; max-width:680px}
+.hstat{background:rgba(255,255,255,0.13); border:1px solid rgba(255,255,255,0.3); border-radius:12px; padding:14px 10px; text-align:center; backdrop-filter:blur(6px)}
+.hstat .n{font-size:1.4rem; font-weight:700; color:#fff; line-height:1.1}
+.hstat .n span{font-size:0.8rem; font-weight:500}
+.hstat .l{font-size:0.71rem; color:#DCEAF2; margin-top:4px; line-height:1.3}
+.hero .author{font-size:0.84rem; color:#DCEAF2; border-top:1px solid rgba(255,255,255,0.22); padding-top:14px; display:inline-block; text-shadow:0 1px 6px rgba(0,0,0,0.45)}
+/* ===== layout ===== */
+.container{max-width:980px; margin:0 auto; padding:0 24px}
+section{padding:46px 0 8px; border-bottom:1px solid var(--line)}
+section:last-child{border-bottom:none}
+h2{
+  font-family:'Noto Serif SC',serif; font-size:1.7rem; color:var(--pine);
+  display:flex; align-items:baseline; gap:12px; margin-bottom:6px;
+}
+h2 .num{
+  font-family:'Inter',sans-serif; font-size:0.95rem; font-weight:700;
+  color:#fff; background:var(--pine); border-radius:8px;
+  padding:3px 11px; line-height:1.4; flex-shrink:0;
+}
+h3{font-size:1.18rem; color:var(--ink); margin:26px 0 10px; font-weight:600}
+h4{font-size:1.02rem; color:var(--pine-l); margin:16px 0 6px; font-weight:600}
+p{margin-bottom:12px; color:var(--ink2)}
+/* sec-summary */
+.sec-summary{
+  background:#E4EFE8; border-left:4px solid var(--pine);
+  padding:13px 18px; border-radius:0 10px 10px 0; margin:14px 0 22px;
+  font-size:0.96rem; font-weight:500; color:var(--ink);
+}
+/* tables */
+.table-wrap{overflow-x:auto; margin:16px 0; border-radius:12px; border:1px solid var(--line)}
+table{width:100%; border-collapse:collapse; font-size:0.9rem; background:#fff; min-width:520px}
+th{background:var(--pine); color:#fff; text-align:left; padding:11px 14px; font-weight:600; font-size:0.85rem}
+td{padding:10px 14px; border-top:1px solid var(--line); color:var(--ink2)}
+tr:nth-child(even) td{background:#FAFCFC}
+td strong{color:var(--ink)}
+/* cards */
+.status-card{background:#fff; border:1px solid var(--line); border-radius:14px; padding:0; margin:16px 0; overflow:hidden}
+.card-header{background:var(--snow2); padding:13px 18px; border-bottom:1px solid var(--line); display:flex; align-items:center; gap:10px}
+.card-title{font-weight:700; color:var(--pine); font-size:1.02rem}
+.card-tag{margin-left:auto; font-size:0.74rem; background:var(--ice); color:#fff; padding:3px 10px; border-radius:20px; font-weight:500}
+.card-body{padding:16px 18px}
+.card-body .kv{display:flex; gap:10px; padding:5px 0; font-size:0.92rem}
+.card-body .kv .k{color:var(--ink2); min-width:84px; flex-shrink:0}
+.card-body .kv .v{color:var(--ink); font-weight:500}
+/* callout */
+.callout{border-radius:10px; padding:13px 16px; margin:14px 0; font-size:0.92rem; border-left:4px solid}
+.callout.blue{background:#E8F2F9; border-color:var(--ice)}
+.callout.red{background:#FBEAE8; border-color:var(--glacier)}
+.callout.green{background:#E4EFE8; border-color:var(--pine)}
+.callout.gold{background:#FAF3E2; border-color:var(--gold)}
+.callout strong{color:var(--ink)}
+/* info grid */
+.info-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:16px 0}
+.info-box{background:#fff; border:1px solid var(--line); border-radius:12px; padding:16px 18px}
+.info-box h4{margin-top:0}
+/* timeline */
+.timeline{margin:18px 0}
+.tl-item{background:#fff; border:1px solid var(--line); border-radius:14px; margin-bottom:16px; overflow:hidden}
+.tl-head{display:flex; align-items:center; gap:12px; padding:14px 18px; border-bottom:1px solid var(--line); flex-wrap:wrap}
+.tl-day{background:var(--pine); color:#fff; font-weight:700; font-size:0.82rem; padding:4px 12px; border-radius:8px}
+.tl-title{font-weight:700; color:var(--ink); font-size:1.08rem; font-family:'Noto Serif SC',serif}
+.tl-stay{margin-left:auto; font-size:0.8rem; padding:4px 12px; border-radius:20px; font-weight:600}
+.stay-camp{background:#F5E6D5; color:var(--camp)}
+.stay-hotel{background:#E0EFE6; color:var(--pine)}
+.tl-meta{display:flex; gap:18px; flex-wrap:wrap; padding:11px 18px; background:#FAFCFC; border-bottom:1px solid var(--line); font-size:0.84rem}
+.tl-meta span{color:var(--ink2)}
+.tl-meta b{color:var(--pine); font-weight:700}
+.tl-body{padding:14px 18px}
+.tl-body ol{margin:0 0 0 18px; padding:0}
+.tl-body li{margin-bottom:8px; color:var(--ink2); font-size:0.92rem; padding-left:4px}
+.tl-body li strong{color:var(--ink)}
+.egg{background:#FAF3E2; border-radius:8px; padding:10px 14px; margin-top:10px; font-size:0.88rem; border-left:3px solid var(--gold)}
+.egg .et{font-weight:700; color:var(--camp); display:block; margin-bottom:3px}
+.stay-box{margin-top:10px; padding:11px 14px; border-radius:8px; font-size:0.88rem; border-left:3px solid #2D5C3D; background:#EDF4EF}
+.stay-box.is-camp{border-left-color:#C46A2B; background:#FBF1E6}
+.stay-box .sb-t{font-weight:700; color:#1B3A2B; display:block; margin-bottom:3px}
+.stay-box.is-camp .sb-t{color:#9A4F12}
+.stay-box .sb-addr{color:var(--ink2); font-size:0.83rem; margin-top:2px}
+.stay-box .sb-status{display:inline-block; font-size:0.7rem; font-weight:600; padding:1px 8px; border-radius:10px; margin-left:6px; background:#D8E8DE; color:#2D6B47; vertical-align:middle}
+.stay-box.is-camp .sb-status{background:#F3E0CC; color:#9A4F12}
+/* footer */
+footer{background:#1B3A2B; color:#B9CFC4; padding:34px 24px; text-align:center; font-size:0.85rem}
+footer .ft-title{color:#fff; font-weight:700; font-size:1rem; margin-bottom:8px; font-family:'Noto Serif SC',serif}
+footer a{color:var(--ice-l)}
+.placeholder{background:#fff; border:2px dashed var(--line); border-radius:14px; padding:30px 20px; text-align:center; color:var(--ink2); margin:16px 0}
+.placeholder .pi{font-size:1.5rem; margin-bottom:8px}
+/* ===== route map (Leaflet) ===== */
+.map-wrap{display:grid; grid-template-columns:1fr 300px; gap:14px; margin:18px 0; align-items:start}
+.routemap{border:1px solid var(--line); border-radius:16px; overflow:hidden; position:relative}
+#tmb-map{width:100%; height:620px; background:#dfe8e4; z-index:1}
+.leaflet-container{font-family:'Inter','Noto Sans SC',sans-serif}
+.num-pin{display:flex; align-items:center; justify-content:center; width:28px; height:28px; border-radius:50%; border:2.5px solid #fff; box-shadow:0 2px 6px rgba(0,0,0,0.4); font-weight:700; color:#fff; font-size:14px; font-family:'Inter',sans-serif}
+.num-pin.camp{border-radius:50% 50% 50% 0; transform:rotate(-45deg)}
+.num-pin.camp span{transform:rotate(45deg)}
+.start-pin{width:32px; height:32px; background:#16241D; font-size:11px}
+.pass-dot{width:14px; height:14px; border-radius:50%; border:2px solid #fff; box-shadow:0 1px 4px rgba(0,0,0,0.45)}
+.pass-num{position:absolute; font-size:9px; font-weight:700; color:#fff}
+.leaflet-popup-content{margin:11px 14px; font-size:13px; line-height:1.5}
+.leaflet-popup-content b{color:#1B3A2B; font-size:14px}
+.pp-meta{color:#5F6E66; font-size:12px; margin-top:3px}
+.pp-stay{display:inline-block; margin-top:6px; padding:2px 9px; border-radius:20px; font-size:11px; font-weight:600}
+/* side list */
+.map-side{border:1px solid var(--line); border-radius:14px; background:#fff; overflow:hidden; max-height:620px; overflow-y:auto}
+.ms-head{font-size:0.82rem; font-weight:700; color:var(--pine); padding:11px 14px; border-bottom:1px solid var(--line); background:var(--snow2); position:sticky; top:0}
+.ms-item{display:flex; gap:10px; padding:9px 13px; border-bottom:1px solid #EEF2F0; align-items:flex-start}
+.ms-item:last-child{border-bottom:none}
+.ms-badge{flex-shrink:0; width:24px; height:24px; border-radius:50%; color:#fff; font-weight:700; font-size:12px; display:flex; align-items:center; justify-content:center; font-family:'Inter',sans-serif; margin-top:1px}
+.ms-badge.camp{border-radius:50% 50% 50% 0}
+.ms-body{min-width:0}
+.ms-name{font-weight:600; font-size:0.84rem; color:var(--ink); line-height:1.3}
+.ms-meta{font-size:0.74rem; color:var(--ink2); margin-top:1px}
+.ms-stay{display:inline-block; font-size:0.68rem; padding:1px 7px; border-radius:10px; margin-top:3px; font-weight:600}
+.map-legend{display:flex; flex-wrap:wrap; gap:12px 20px; padding:14px 18px; font-size:0.82rem; color:var(--ink2); background:#fff; border-top:1px solid var(--line)}
+.map-legend .lg{display:flex; align-items:center; gap:7px}
+.map-legend .dot{width:14px; height:14px; border-radius:50%; flex-shrink:0; border:1.5px solid #fff; box-shadow:0 0 0 1px rgba(0,0,0,0.12)}
+.map-hint{font-size:0.78rem; color:var(--ink2); padding:0 18px 12px; background:#fff; margin:0}
+@media(max-width:820px){.map-wrap{grid-template-columns:1fr}.map-side{max-height:none}}
+/* ===== supply ===== */
+.fuel-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:16px 0}
+.fuel-card{border-radius:12px; padding:14px 16px; border:1px solid var(--line)}
+.fuel-card .fc-name{font-weight:700; font-size:0.95rem; margin-bottom:3px}
+.fuel-card .fc-use{font-size:0.8rem; color:var(--ink2); margin-bottom:8px}
+.fuel-card .fc-tag{display:inline-block; font-size:0.72rem; font-weight:600; padding:2px 9px; border-radius:20px; color:#fff}
+.intensity{display:inline-block; padding:1px 8px; border-radius:5px; font-size:0.78rem; font-weight:600}
+.int-light{background:#EAF3DE; color:#3B6D11}
+.int-mid{background:#FAEEDA; color:#854F0B}
+.int-hard{background:#FCEBEB; color:#A32D2D}
+.supply-table td b{color:var(--ink)}
+.caf-note{background:#3C3489; color:#fff; font-size:0.7rem; padding:1px 7px; border-radius:10px; font-weight:600}
+/* knee tightness */
+.knee-table .kt-tight{background:#FCEBEB; color:#A32D2D; font-weight:600; padding:2px 8px; border-radius:5px; font-size:0.8rem}
+.knee-table .kt-loose{background:#EAF3DE; color:#3B6D11; font-weight:600; padding:2px 8px; border-radius:5px; font-size:0.8rem}
+.knee-table .kt-off{background:#F1EFE8; color:#5F5E5A; font-weight:600; padding:2px 8px; border-radius:5px; font-size:0.8rem}
+/* ===== gear ===== */
+.wt-summary{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:18px 0 8px}
+.wt-card{border-radius:14px; padding:18px 16px; text-align:center; border:1px solid var(--line); background:linear-gradient(160deg,#F3F8F5,#E9F1EC)}
+.wt-card.hl{background:linear-gradient(160deg,#E0EFE6,#CFE6D8); border-color:#9CC4AC}
+.wt-card .wn{font-size:1.9rem; font-weight:700; color:#1B3A2B; line-height:1.05; font-family:'Inter',sans-serif}
+.wt-card .wn span{font-size:0.95rem; font-weight:600}
+.wt-card .wl{font-size:0.8rem; color:var(--ink2); margin-top:5px}
+.wt-card .wd{font-size:0.7rem; color:#8DA89B; margin-top:3px}
+.gear-acc{border:1px solid var(--line); border-radius:12px; margin:10px 0; overflow:hidden; background:#fff}
+.gear-acc summary{list-style:none; cursor:pointer; padding:13px 16px; display:flex; align-items:center; gap:10px; font-weight:600; color:var(--ink); background:#F7FAF8; transition:background .15s}
+.gear-acc summary::-webkit-details-marker{display:none}
+.gear-acc summary:hover{background:#EFF5F1}
+.gear-acc summary .ga-ico{font-size:1.05rem}
+.gear-acc summary .ga-wt{margin-left:auto; font-size:0.82rem; color:#2D5C3D; font-weight:700; font-family:'Inter',sans-serif}
+.gear-acc summary .ga-arrow{transition:transform .2s; color:var(--ink2); font-size:0.8rem}
+.gear-acc[open] summary .ga-arrow{transform:rotate(90deg)}
+.gear-acc[open] summary{border-bottom:1px solid var(--line)}
+.gear-list{list-style:none; margin:0; padding:6px 16px 12px}
+.gear-list li{display:flex; align-items:baseline; gap:8px; padding:5px 0; font-size:0.86rem; color:var(--ink); border-bottom:1px dashed #ECEFEA}
+.gear-list li:last-child{border-bottom:none}
+.gear-list .gw{margin-left:auto; font-size:0.8rem; color:var(--ink2); font-family:'Inter',sans-serif; white-space:nowrap}
+.gear-list .gtag{font-size:0.68rem; padding:1px 6px; border-radius:9px; font-weight:600; white-space:nowrap}
+.gtag-wear{background:#E0EFE6; color:#2D5C3D}
+.gtag-buy{background:#FDEEDF; color:#B25E12}
+.gtag-cut{background:#F1EFE8; color:#9A948A; text-decoration:line-through}
+.gear-note{font-size:0.78rem; color:var(--ink2); padding:0 2px; margin:4px 0 0}
+/* 大类直接可点(无子分类时), 标题即手风琴 */
+.gear-cat{border:1px solid var(--line); border-radius:12px; margin:12px 0; overflow:hidden; background:#fff}
+.gear-cat>summary{list-style:none; cursor:pointer; padding:14px 16px; display:flex; align-items:center; gap:10px; font-weight:700; font-size:1.02rem; color:var(--ink); background:#F7FAF8; transition:background .15s}
+.gear-cat>summary::-webkit-details-marker{display:none}
+.gear-cat>summary:hover{background:#EFF5F1}
+.gear-cat>summary .gc-ico{font-size:1.15rem}
+.gear-cat>summary .gc-wt{margin-left:auto; font-size:0.85rem; color:#2D5C3D; font-weight:700; font-family:'Inter',sans-serif}
+.gear-cat>summary .gc-arrow{transition:transform .2s; color:var(--ink2); font-size:0.82rem}
+.gear-cat[open]>summary .gc-arrow{transform:rotate(90deg)}
+.gear-cat[open]>summary{border-bottom:1px solid var(--line)}
+/* 存储位置标签 */
+.loc{display:inline-block; font-size:0.71rem; font-weight:600; padding:1px 7px; border-radius:9px; margin-left:6px; white-space:nowrap; vertical-align:middle}
+.loc-top{background:#E8F2F9; color:#1C5C86}
+.loc-kangaroo{background:#F3ECFB; color:#6A3FB0}
+.loc-mainTop{background:#FCEFE2; color:#B25E12}
+.loc-mainBot{background:#E4EFE8; color:#2D6B47}
+.loc-mid{background:#FBEFEF; color:#A33B3B}
+.loc-side{background:#F1EFE8; color:#6E6A60}
+.gear-subhead{font-size:0.82rem; font-weight:700; color:#2D5C3D; margin:12px 16px 2px}
+.loc-legend{display:flex; flex-wrap:wrap; gap:7px 14px; margin:10px 0 2px; font-size:0.75rem; color:var(--ink2)}
+.loc-legend .ll{display:flex; align-items:center; gap:5px}
+/* ===== photo spots ===== */
+.photo-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin:18px 0}
+.photo-card{border:1px solid var(--line); border-radius:14px; overflow:hidden; background:#fff; display:flex; flex-direction:column}
+.photo-card .pc-top{padding:13px 16px 11px; border-left:5px solid #2D5C3D}
+.photo-card .pc-day{display:inline-block; font-size:0.7rem; font-weight:700; color:#fff; padding:1px 9px; border-radius:20px; margin-bottom:6px}
+.photo-card .pc-name{font-weight:700; font-size:1.02rem; color:var(--ink); line-height:1.3}
+.photo-card .pc-alt{font-size:0.76rem; color:var(--ink2); margin-top:2px}
+.photo-card .pc-body{padding:12px 16px 15px}
+.photo-card .pc-meta{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px}
+.pc-chip{font-size:0.72rem; font-weight:600; padding:2px 9px; border-radius:20px; background:#F1F5F2; color:#3F5B4C}
+.pc-chip.gold{background:#FAF3E2; color:#9A6B0E}
+.pc-chip.ice{background:#E8F2F9; color:#1C5C86}
+.photo-card .pc-how{font-size:0.86rem; color:var(--ink); line-height:1.62}
+.photo-card .pc-how b{color:#2D5C3D}
+.photo-hero{border-radius:14px; background:linear-gradient(135deg,#1B3A6B 0%,#2D5C3D 100%); color:#fff; padding:20px 22px; margin:16px 0}
+.photo-hero .ph-t{font-weight:700; font-size:1.05rem; margin-bottom:6px}
+.photo-hero .ph-s{font-size:0.9rem; color:#D6E6E0; line-height:1.65}
+.photo-tips{background:#E4EFE8; border-left:4px solid #2D5C3D; border-radius:10px; padding:14px 18px; margin:16px 0; font-size:0.88rem; line-height:1.75}
+.photo-tips b{color:var(--ink)}
+@media(max-width:640px){
+  .photo-grid{grid-template-columns:1fr}
+  .hero{padding:64px 20px 40px}
+  .hero h1{font-size:2rem}
+  .info-grid{grid-template-columns:1fr}
+  .fuel-grid{grid-template-columns:1fr}
+  .wt-summary{grid-template-columns:1fr; gap:10px}
+  h2{font-size:1.4rem}
+  .hero-stats{grid-template-columns:repeat(2,1fr); gap:8px}
+  .hstat{padding:10px 6px}
+  .hstat .n{font-size:1.2rem}
+}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <span class="brand">⛰ TMB 2026</span>
+    <a href="#overview">总览</a>
+    <a href="#tmb">TMB 路书</a>
+    <a href="#fitness">强度体力</a>
+    <a href="#supply">路餐补给</a>
+    <a href="#gear">装备</a>
+    <a href="#photo">拍照点</a>
+    <a href="#transport">往返大交通</a>
+    <a href="#milan">米兰观光</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-mask"></div>
+  <div class="hero-inner">
+    <div class="kicker">Tour du Mont Blanc · July 2026</div>
+    <h1>环勃朗峰徒步手册</h1>
+    <p class="sub">穿越法国、意大利、瑞士三国，环绕西欧之巅勃朗峰。7 天高山徒步，3 晚星空露营，最高翻越 2537m 大费雷垭口。</p>
+    <div class="hero-stats">
+      <div class="hstat"><div class="n">103<span>km</span></div><div class="l">总里程</div></div>
+      <div class="hstat"><div class="n">5200<span>m</span></div><div class="l">累计爬升</div></div>
+      <div class="hstat"><div class="n">2537<span>m</span></div><div class="l">最高垭口</div></div>
+      <div class="hstat"><div class="n">7<span>晚</span></div><div class="l">3露营·3酒店·1山屋</div></div>
+    </div>
+    <span class="author">Author: yirenguo · 行程 2026/7/2 – 7/13 · 6-7 人团队</span>
+  </div>
+</header>
+
+<div class="container">
+
+<section id="overview">
+  <h2><span class="num">00</span>行程总览</h2>
+  <div class="sec-summary">10 天行程 · 香港往返米兰 · 米兰进出做大本营 · 库马约尔为 TMB 起终点 · 顺时针环线</div>
+  <p>本次行程从香港直飞米兰进入欧洲，先在米兰停留观光一天，再乘巴士前往意大利山城库马约尔（Courmayeur）作为环勃朗峰徒步的起终点。TMB 采用顺时针走法，7 天内依次穿越意大利、法国、瑞士，最终回到库马约尔，再返回米兰离境。</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>日期</th><th>行程</th><th>住宿地</th><th>类型</th></tr></thead>
+      <tbody>
+        <tr><td>7/2 周四</td><td>深圳→香港，搭乘夜航</td><td>飞机上</td><td>—</td></tr>
+        <tr><td>7/3 周五</td><td>抵达米兰，<strong>大教堂观光</strong></td><td>米兰</td><td>🏨 城市</td></tr>
+        <tr><td>7/4 周六</td><td>米兰购物，午后巴士→库马约尔</td><td>库马约尔</td><td>🏨 城市</td></tr>
+        <tr><td>7/5–7/11</td><td><strong>TMB 徒步 7 天</strong>（详见专项章节）</td><td>山屋/露营</td><td>⛺ 山野</td></tr>
+        <tr><td>7/12 周六</td><td>库马约尔→米兰→香港</td><td>飞机上</td><td>—</td></tr>
+        <tr><td>7/13 周日</td><td>抵达香港，返深圳</td><td>到家</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="tmb">
+  <h2><span class="num">01</span>TMB 专项 · 七日路书</h2>
+  <div class="sec-summary">顺时针环线 · 露营 3 晚（7/6 · 7/9 · 7/10）+ 山屋/公寓 4 晚 · 多段缆车/巴士接驳护膝 · 最高点 Grand Col Ferret 2537m</div>
+
+  <p>以下路书基于实际规划版本（含露营安排与交通接驳），与签证用行程单不同。每日含路段、距离爬升、住宿类型，以及沿途值得停留的彩蛋拍照点。</p>
+
+  <h3>🗺️ 全程环线图</h3>
+  <div class="map-wrap">
+    <div class="routemap">
+      <div id="tmb-map"></div>
+    </div>
+    <div class="map-side" id="map-side">
+      <div class="ms-head">📍 沿途节点（编号对应地图）</div>
+      <div id="ms-list"></div>
+    </div>
+  </div>
+  <div class="routemap" style="border-radius:12px">
+    <div class="map-legend">
+      <span class="lg"><span class="dot" style="background:#16241D"></span>起/终点 库马约尔</span>
+      <span class="lg"><span class="dot" style="background:#2D8C57"></span>① 宿点（数字=第几晚）</span>
+      <span class="lg"><span class="dot" style="background:#888; border-radius:50% 50% 50% 0"></span>水滴 = 露营</span>
+      <span class="lg"><span class="dot" style="background:#888"></span>圆形 = 山屋/酒店</span>
+      <span class="lg"><span class="dot" style="background:#777; width:11px; height:11px"></span>⚑ 小点 = 垭口</span>
+    </div>
+    <p class="map-hint">地图上只放编号引脚保持清爽，右侧列表按编号列出每个点的名称/海拔/宿别。彩色路线按天区分走向；点击地图引脚也可看当日详情。地图可缩放拖动；底图 © Esri。坐标为沿线近似位置。</p>
+  </div>
+
+  <div class="callout green">
+    <strong>露营 3 晚：</strong>7/6 Les Chapieux · 7/9 切塞里湖(2200m,最冷) · 7/10 La Fouly &nbsp;|&nbsp; <strong>住宿 4 晚：</strong>7/5 山屋 · 7/7 公寓 · 7/8 酒店 · 7/11 库马约尔
+  </div>
+
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-head"><span class="tl-day">D1 · 7/5</span><span class="tl-title">库马约尔 → Col Checrouit</span><span class="tl-stay stay-hotel">🏠 山屋 Maison Vieille</span></div>
+      <div class="tl-meta"><span>📏 <b>7-12 km</b></span><span>⬆️ <b>+600m</b> ⬇️ -85m</span><span>🏔 海拔 ~1989m</span></div>
+      <div class="tl-body">
+        <ol>
+          <li>上午从 <strong>Courmayeur</strong>（Piazza Abbé Henry 教堂广场）出发，跨过波河进入 Dolonne 小镇。</li>
+          <li>扎入落叶松森林陡坡，一路拔高至 <strong>Plan Checrouit</strong>（1700m）。</li>
+          <li>缓坡向上抵达 Col de Checrouit 垭口，入住 <strong>Rifugio Maison Vieille</strong>，卸下大背包。</li>
+          <li>可选：轻装冲顶 <strong>Mont Chétif</strong>（2343m），山顶圣母像处 360° 俯瞰双峡谷与勃朗峰南壁，单程约 1 小时。</li>
+        </ol>
+        <div class="egg"><span class="et">📸 彩蛋 · Lago di Checrouit</span>黄昏从山屋步行 15 分钟到湖边，拍雪山倒影，再返回山屋享用特色晚餐。</div>
+        <div class="stay-box"><span class="sb-t">🏠 住宿 · Rifugio Maison Vieille<span class="sb-status">已预订</span></span><div class="sb-addr">Col Checrouit 垭口山屋 · 海拔 1989m · 含半膳（晚餐+早餐）· Courmayeur 上方</div></div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-head"><span class="tl-day">D2 · 7/6</span><span class="tl-title">Col de la Seigne → Les Chapieux</span><span class="tl-stay stay-camp">⛺ 露营 Camping des Chapieux</span></div>
+      <div class="tl-meta"><span>📏 <b>~19 km</b></span><span>⬆️ <b>+1000m</b> ⬇️ -1000m</span><span>🏔 海拔 ~1550m</span><span>⚠️ 路线长，必须轻装</span></div>
+      <div class="tl-body">
+        <ol>
+          <li>早晨离开山屋，走高位横切阳台路（Mont Favre 方向），右手边全程伴随 <strong>Miage 冰川</strong>。</li>
+          <li>经 Cabane du Combal，开始坚硬的碎石坡爬升。</li>
+          <li>途经废弃军营 La Casermetta（可上厕所、看沙盘），登顶法意边境线 <strong>Col de la Seigne</strong>（2516m）。</li>
+          <li>跨入法国，下降至高山牧场 <strong>La Ville des Glaciers</strong>，可买新鲜 Beaufort 奶酪。</li>
+          <li><strong>巴士接驳</strong>：在 La Ville des Glaciers 停止徒步，搭 Navette 接驳车 15 分钟直达 Les Chapieux，避开最后 5km 伤膝柏油路。</li>
+        </ol>
+        <div class="callout gold" style="margin:10px 0 0"><strong>🚌 接驳时刻：</strong>一般最晚 18:30，最好 17:30 前到达。前一晚需咨询具体时间表。山屋已满，全体露营。</div>
+        <div class="stay-box is-camp"><span class="sb-t">⛺ 露营 · Camping Municipal des Chapieux<span class="sb-status">市政营地</span></span><div class="sb-addr">Les Chapieux 村 · 海拔 ~1550m · 山屋已满转露营 · 备注：另订可取消酒店 Le Refuge Chez La Tante（4284 Route des Crêtes, 74170 Saint-Gervais-les-Bains）作签证用</div></div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-head"><span class="tl-day">D3 · 7/7</span><span class="tl-title">Col du Bonhomme → Les Contamines</span><span class="tl-stay stay-hotel">🏠 公寓</span></div>
+      <div class="tl-meta"><span>📏 <b>15.3 km</b></span><span>⬆️ <b>+935m</b> ⬇️ -1274m</span><span>🏔 海拔 ~1167m</span></div>
+      <div class="tl-body">
+        <ol>
+          <li>清晨从营地出发，5 公里内硬拔近 900 米，直达 <strong>Refuge de la Croix du Bonhomme</strong>。</li>
+          <li>翻越波诺姆垭口 <strong>Col du Bonhomme</strong>，开始漫长峡谷速降，午餐可在 Refuge de la Balme 解决。</li>
+          <li>进入著名的 <strong>"罗马古道" (Voie Romaine)</strong>，路面极其光滑，全员必须使用双杖。</li>
+          <li><strong>巴士接驳</strong>：下撤到 Notre-Dame de la Gorge 后结束徒步，搭门口免费穿梭巴士直达 Les Contamines 镇中心。</li>
+          <li>镇上休整，Carrefour 超市采购补给。</li>
+        </ol>
+        <div class="egg"><span class="et">📸 彩蛋 · 石桥与峡谷圣母教堂</span>罗马古道下山途中的古老石拱桥 <strong>Pont de la Ténarèze</strong>，桥下是湍急的冰川融水峡谷，压迫感十足；密林尽头的白色教堂 <strong>Notre-Dame de la Gorge</strong>，适合全队拍"安全下山"合影。</div>
+        <div class="stay-box"><span class="sb-t">🏠 住宿 · Les Contamines-Montjoie 公寓<span class="sb-status">已预订</span></span><div class="sb-addr">115 Route de Saint-Gervais Le Bionnassay, appartement 89/39, Les Contamines-Montjoie · 海拔 ~1167m · 镇上 Carrefour 可补给</div></div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-head"><span class="tl-day">D4 · 7/8</span><span class="tl-title">Col de Tricot → 霞慕尼 Chamonix</span><span class="tl-stay stay-hotel">🏠 酒店/公寓</span></div>
+      <div class="tl-meta"><span>📏 <b>~13 km</b></span><span>⬆️ <b>+1100m</b> ⬇️ -600m</span><span>🏔 海拔 ~1035m</span></div>
+      <div class="tl-body">
+        <ol>
+          <li>从镇上缓升至世外桃源般的 <strong>Chalets de Miage</strong>（推荐尝蓝莓派 Tarte aux Myrtilles）。</li>
+          <li>硬核拔高 600 米登顶全线最壮丽变体垭口 <strong>Col de Tricot</strong>（2120m）。</li>
+          <li>陡降穿过横跨冰川融水的喜马拉雅式悬索桥 <strong>Passerelle de Bionnassay</strong>。</li>
+          <li>小爬升 200 米到 <strong>Bellevue</strong> 大平台。</li>
+          <li><strong>缆车接驳</strong>：在 Bellevue 乘缆车直降 Les Houches，换乘 1 路公交直达霞慕尼镇中心。</li>
+          <li>洗衣物、逛顶级户外店 Snell Sports、补给晚饭。</li>
+        </ol>
+        <div class="callout red" style="margin:10px 0 0"><strong>⚠️ 时间关卡：</strong>这天爬升 +1100m，必须在 Bellevue 缆车站关闭前（通常 17:00-17:30）到达。建议 15:00 到缆车站，16:00 坐公交去霞慕尼。</div>
+        <div class="egg"><span class="et">📸 彩蛋 · 冰川悬索桥 & 登山小火车</span><strong>Passerelle de Bionnassay</strong> 横跨冰川河流的长悬索桥极适合拍照；下 Bellevue 前可绕道看 <strong>Tramway du Mont-Blanc</strong>（勃朗峰登山小火车）轨道。</div>
+        <div class="stay-box"><span class="sb-t">🏠 住宿 · 霞慕尼 Chamonix 酒店/公寓<span class="sb-status">候选中</span></span><div class="sb-addr">霞慕尼镇中心 · 海拔 ~1035m · 大镇住宿/餐饮选择多 · 候选：Chalet Le Petit Nicolas、Résidence La Cordée 5★、Casa Vacanze Chamonix（Booking，7/8–7/9，6 人）</div></div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-head"><span class="tl-day">D5 · 7/9</span><span class="tl-title">霞慕尼 → 切塞里湖 Lac Blanc</span><span class="tl-stay stay-camp">⛺ 露营 切塞里湖（最冷夜）</span></div>
+      <div class="tl-meta"><span>📏 <b>~14.9 km</b></span><span>⬆️ <b>+631m</b> ⬇️ -972m</span><span>🏔 海拔 ~2200m</span><span>❄️ 夜低温 -1~3°C</span></div>
+      <div class="tl-body">
+        <ol>
+          <li>为节省体力给湖区，上午在霞慕尼乘缆车至 <strong>Planpraz</strong>。</li>
+          <li>走南阳台路线 <strong>Grand Balcon Sud</strong> 往 La Flégère 方向。</li>
+          <li>一路上升至海拔 2352 米的 <strong>白湖 Lac Blanc</strong>。</li>
+          <li>下午 4 点游客散去后安顿；傍晚或次日清晨欣赏全线最完美的勃朗峰"日照金山"及湖面倒影。</li>
+        </ol>
+        <div class="callout gold" style="margin:10px 0 0"><strong>⛺ 露营规则：</strong>法国自然保护区规定 <strong>19:00 后准许扎营，次日 09:00 前必须拔营撤离</strong>。这是全程最冷一晚，注意保暖（详见装备章节）。</div>
+        <div class="stay-box is-camp"><span class="sb-t">⛺ 露营 · 切塞里湖 Lac de Chéserys 畔<span class="sb-status">野营·最冷夜</span></span><div class="sb-addr">白湖 Lac Blanc 区域 · 海拔 ~2200m · 夜低温 -1~3°C · 仅 19:00–09:00 可扎营 · 全线最佳倒影机位</div></div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-head"><span class="tl-day">D6 · 7/10</span><span class="tl-title">Col de Balme → 瑞士 La Fouly</span><span class="tl-stay stay-camp">⛺ 露营 Camping des Glaciers</span></div>
+      <div class="tl-meta"><span>📏 <b>12-18 km</b></span><span>⬆️ +450~900m ⬇️ -1250m</span><span>🏔 海拔 ~1600m</span><span>🇫🇷→🇨🇭 跨国</span></div>
+      <div class="tl-body">
+        <ol>
+          <li>07:00 前在切塞里湖拔营，拍勃朗峰群山与阿根蒂耶冰川倒影。</li>
+          <li>高位横切至交汇点 <strong>Tête aux Vents</strong>（2128m）—— 注意此段有暴露感石块/铁梯路段，需收杖双手抓铁梯。</li>
+          <li>无缝切上视觉王牌 <strong>Aiguillette des Posettes</strong>（2201m）狭窄天际线山脊，360° 回望阿根蒂耶冰川。</li>
+          <li>缓降微爬升抵达法瑞边境 <strong>Col de Balme</strong>（2191m），在石砌山屋前拍"一脚法国一脚瑞士"。</li>
+          <li><strong>缆车+巴士接驳</strong>：午餐后向 Le Tour 下切 15 分钟到 Autannes 缆车站，缆车直降 Le Tour 小镇；再转公交/火车经瑞士 Orsières 换 PostBus 215 直达 La Fouly。6-7 人也可提前预约 7-8 座 Van，1 小时直达。</li>
+        </ol>
+        <div class="egg"><span class="et">📸 彩蛋 · Posettes 天际线</span>顺时针回望勃朗峰与阿根蒂耶冰川在此达到最高潮，是全线最震撼的山脊行走段。</div>
+        <div class="stay-box is-camp"><span class="sb-t">⛺ 露营 · Camping des Glaciers<span class="sb-status">营地</span></span><div class="sb-addr">瑞士 La Fouly 村 · 海拔 ~1600m · 冰川旁，夜偏冷 2-7°C · 营地有小卖部</div></div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-head"><span class="tl-day">D7 · 7/11</span><span class="tl-title">Grand Col Ferret → 库马约尔（收官）</span><span class="tl-stay stay-hotel">🏠 库马约尔酒店</span></div>
+      <div class="tl-meta"><span>📏 河谷+大拔升</span><span>⬆️ <b>+500m</b>（牧场起）⬇️ -800m</span><span>🏔 最高 <b>2537m</b></span><span>🇨🇭→🇮🇹 收官</span></div>
+      <div class="tl-body">
+        <ol>
+          <li>07:30 在 Camping des Glaciers 冰川晨光中拔营，轻装沿 Ferret 溪流走出 La Fouly。</li>
+          <li>沿河谷平缓 4 公里，经 Ferret 村落（全线最后瑞士小木屋咖啡馆），抵达 <strong>Alpage de la Peule</strong>（2071m）牧场。</li>
+          <li>面对无遮挡之字坡硬拔近 500 米，登顶 <strong>Grand Col Ferret</strong>（2537m）—— 瑞意国境线，全线最高点。</li>
+          <li>跨过国境重返意大利，在垭口或 Refuge Elena 观景台享用最后一顿高山路粮，合影庆祝。</li>
+          <li>陡降意大利峡谷至后勤枢纽 <strong>Arnouvaz</strong>（1766m）。</li>
+          <li><strong>巴士接驳</strong>：在 Arnouvaz 搭意大利绿色高山公交（Arriva），穿过 Val Ferret 峡谷约 30 分钟回到库马约尔。</li>
+          <li>步行至 D1 寄存行李的酒店，办理入住，取回寄存 7 天的行李。</li>
+        </ol>
+        <div class="egg"><span class="et">📸 彩蛋 · Grand Col Ferret 双面峡谷</span>站在最高点：瑞士一侧是温柔翠绿牧场，意大利一侧是刀劈斧凿的 Val Ferret 巨幕，大乔拉斯峰黑岩巨壁与多浪特峰如墙耸立。</div>
+        <div class="stay-box"><span class="sb-t">🏠 住宿 · 库马约尔 Courmayeur 酒店<span class="sb-status">收官</span></span><div class="sb-addr">库马约尔镇中心 · 海拔 ~1224m · D1 寄存行李的同一酒店，取回行李箱办理入住 · 庆功晚餐</div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <h3>🛏️ TMB 住宿一览</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>日</th><th>住宿点</th><th>类型</th><th>海拔</th><th>夜间低温</th></tr></thead>
+      <tbody>
+        <tr><td>D1 7/5</td><td>Rifugio Maison Vieille</td><td>🏠 山屋（已订）</td><td>1989m</td><td>5-10°C</td></tr>
+        <tr><td>D2 7/6</td><td>Camping des Chapieux</td><td>⛺ 露营</td><td>1550m</td><td>2-7°C</td></tr>
+        <tr><td>D3 7/7</td><td>Les Contamines 公寓</td><td>🏠 公寓</td><td>1167m</td><td>6-10°C</td></tr>
+        <tr><td>D4 7/8</td><td>Chamonix 酒店/公寓</td><td>🏠 酒店</td><td>1035m</td><td>6-10°C</td></tr>
+        <tr><td>D5 7/9</td><td>切塞里湖 Lac Blanc</td><td>⛺ 露营（最冷）</td><td>2200m</td><td><strong>-1~3°C</strong></td></tr>
+        <tr><td>D6 7/10</td><td>Camping des Glaciers, La Fouly</td><td>⛺ 露营</td><td>1600m</td><td>2-7°C</td></tr>
+        <tr><td>D7 7/11</td><td>库马约尔酒店</td><td>🏠 酒店</td><td>1224m</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout blue"><strong>地图说明：</strong>计划阶段用 outdooractive 地图；出发前会在 YAMAP（群里会员最多）添加完整登山路线。里程数中直线为交通工具线路，会导致总里程虚高，优先看按天划分的路线。</div>
+</section>
+
+<section id="fitness">
+  <h2><span class="num">02</span>强度与体力分配</h2>
+  <div class="sec-summary">7 天 4 重 2 中 1 轻 · 累计下降比爬升更伤膝 · 护膝 5 天全戴(D1试戴/D5看状态) · 多段缆车巴士接驳主动护膝</div>
+
+  <h3>📊 每日强度总览</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>日</th><th>距离</th><th>爬升</th><th>下降</th><th>强度</th><th>关键挑战</th></tr></thead>
+      <tbody>
+        <tr><td><b>D1</b> 7/5</td><td>7-12km</td><td>+600m</td><td>-85m</td><td><span class="intensity int-light">轻</span></td><td>纯上坡热身，膝盖几乎无冲击</td></tr>
+        <tr><td><b>D2</b> 7/6</td><td>19km</td><td>+1000m</td><td><b>-1000m</b></td><td><span class="intensity int-hard">重</span></td><td>全程最长 + 碎石坡 + 大下降</td></tr>
+        <tr><td><b>D3</b> 7/7</td><td>15.3km</td><td>+935m</td><td><b>-1274m</b></td><td><span class="intensity int-hard">重</span></td><td>5km 硬拔 900m + 罗马古道湿滑长降（降幅全程最大）</td></tr>
+        <tr><td><b>D4</b> 7/8</td><td>13km</td><td>+1100m</td><td>-600m</td><td><span class="intensity int-hard">重</span></td><td>Col de Tricot 后急陡降，时间关卡赶缆车</td></tr>
+        <tr><td><b>D5</b> 7/9</td><td>14.9km</td><td>+631m</td><td>-972m</td><td><span class="intensity int-mid">中</span></td><td>缆车省上坡，下午仍有较长下降</td></tr>
+        <tr><td><b>D6</b> 7/10</td><td>12-18km</td><td>+450~900m</td><td><b>-1250m</b></td><td><span class="intensity int-hard">重</span></td><td>铁梯暴露段 + 大下降到瑞士</td></tr>
+        <tr><td><b>D7</b> 7/11</td><td>河谷+大拔</td><td>+500m</td><td>-800m</td><td><span class="intensity int-mid">中</span></td><td>冲全程最高 2537m + 碎石陡降，收官累计疲劳最重</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>📈 7 日强度曲线（爬升 vs 下降）</h3>
+  <div style="background:#fff; border:1px solid var(--line); border-radius:14px; padding:16px 18px; margin:14px 0;">
+    <div style="display:flex; gap:18px; margin-bottom:14px; font-size:12px; color:var(--ink2);">
+      <span style="display:flex; align-items:center; gap:6px;"><span style="width:12px; height:12px; border-radius:3px; background:#639922;"></span>当日爬升</span>
+      <span style="display:flex; align-items:center; gap:6px;"><span style="width:12px; height:12px; border-radius:3px; background:#D85A30;"></span>当日下降（伤膝主因）</span>
+    </div>
+    <div style="position:relative; width:100%; height:300px;">
+      <canvas id="climbChart" role="img" aria-label="TMB七天每日爬升与下降柱状对比图">D2/D3/D6 下降均超千米，膝盖冲击最大。</canvas>
+    </div>
+  </div>
+
+  <h3>🦵 护膝佩戴策略</h3>
+  <p>髂胫束疼痛（ITBS）只在<strong>下坡</strong>发作，所以护膝按"<strong>当日下降量</strong>"决定，不跟里程走。你的羊毛压缩护膝连戴数天不会削弱肌肉，唯一代价是闷汗——所以把唯一纯上坡的 D1 留给膝盖透气。</p>
+  <div class="table-wrap">
+    <table class="knee-table">
+      <thead><tr><th>日</th><th>下降</th><th>佩戴</th><th>松紧调节建议（短裤贴肤时可调）</th></tr></thead>
+      <tbody>
+        <tr><td><b>D1</b></td><td>-85m</td><td><span class="kt-off">不戴</span></td><td>纯上坡，膝盖放松透气；作为<strong>试戴观察日</strong>，若下坡有异样改全程戴</td></tr>
+        <tr><td><b>D2</b></td><td>-1000m</td><td><span class="kt-tight">戴</span></td><td>上午横切阳台路<b>放松</b>；过 Col de la Seigne 进入下降段<b>调紧</b></td></tr>
+        <tr><td><b>D3</b></td><td>-1274m</td><td><span class="kt-tight">戴</span></td><td>晨起硬拔段<b>放松</b>；翻 Col du Bonhomme 后进罗马古道长降全程<b>调到最紧</b>（降幅最大日）</td></tr>
+        <tr><td><b>D4</b></td><td>-600m</td><td><span class="kt-tight">戴</span></td><td>登 Col de Tricot 前<b>放松</b>；垭口后急陡降<b>调紧</b>，到 Bellevue 转缆车即可松开</td></tr>
+        <tr><td><b>D5</b></td><td>-972m</td><td><span class="kt-loose">看状态</span></td><td>缆车上山几乎无爬升；若 D2-D4 膝盖有酸胀<b>就戴并在下午下降段调紧</b>，否则可不戴</td></tr>
+        <tr><td><b>D6</b></td><td>-1250m</td><td><span class="kt-tight">戴</span></td><td>山脊/铁梯段<b>中等</b>（要灵活屈膝）；下撤瑞士的大降段<b>调紧</b></td></tr>
+        <tr><td><b>D7</b></td><td>-800m</td><td><span class="kt-tight">戴</span></td><td>冲 Grand Col Ferret 上坡<b>放松</b>；垭口后碎石陡降<b>调到最紧</b>（疲劳累积，最易出事）</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout blue"><strong>👖 关于穿长裤能否调松紧：</strong>你的方案是白天短裤、早晚/垭口加长裤。<strong>真正需要调紧的下坡段白天都穿短裤</strong>，护膝贴肤随时可调；套长裤的时段（早晚凉/垭口风）通常是上坡或平路，本来就该放松，不冲突。所以护膝<strong>贴肤穿在短裤下</strong>即可，无需穿长裤外面。</div>
+  <div class="callout gold"><strong>🧼 羊毛护膝保养：</strong>每晚住宿/露营脱下后<strong>务必晾干</strong>（露营潮，可别针挂背包外边走边晾），避免次日戴湿的闷汗起疹。</div>
+
+  <h3>🚡 缆车 / 巴士接驳 —— 主动护膝</h3>
+  <p>路书在多个长陡下降段安排了交通接驳，<strong>核心目的就是保护膝盖</strong>，坚决不徒步硬降。务必执行：</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>日</th><th>接驳点</th><th>方式</th><th>省掉的伤膝路段</th></tr></thead>
+      <tbody>
+        <tr><td><b>D2</b></td><td>La Ville des Glaciers → Les Chapieux</td><td>🚌 Navette 接驳车</td><td>最后 5km 柏油路硬降</td></tr>
+        <tr><td><b>D3</b></td><td>Notre-Dame de la Gorge → Les Contamines</td><td>🚌 免费穿梭巴士</td><td>峡谷到镇中心的乏味下降</td></tr>
+        <tr><td><b>D4</b></td><td>Bellevue → Les Houches</td><td>🚡 缆车 + 1 路公交</td><td>800m 林间枯燥陡降</td></tr>
+        <tr><td><b>D6</b></td><td>Autannes → Le Tour</td><td>🚡 缆车 + 巴士/火车</td><td>900m 枯燥林道急降</td></tr>
+        <tr><td><b>D7</b></td><td>Arnouvaz → Courmayeur</td><td>🚌 绿色高山公交</td><td>Val Ferret 峡谷长距离下降</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout red"><strong>⚠️ 时间关卡：</strong>D4 必须在 Bellevue 缆车站关闭前（约 17:00-17:30）赶到，建议 15:00 到站。错过缆车=被迫硬降 800m，膝盖代价很大。</div>
+
+  <h3>⚡ 体能节奏要点</h3>
+  <div class="info-grid">
+    <div class="info-box">
+      <h4>下坡技术（护膝核心）</h4>
+      <p style="font-size:0.9rem">下坡<strong>步幅放小、步频加快</strong>，别大跨步砸膝；落地用前脚掌缓冲，避免脚跟硬墩。这比护膝本身更能防 ITBS。</p>
+    </div>
+    <div class="info-box">
+      <h4>双杖调节</h4>
+      <p style="font-size:0.9rem">陡降时<strong>双杖调长</strong>主动分担重量；上坡调短。碎石/铁梯段（D6）收杖挂包腾出双手。全程双杖是你护膝的第一道防线。</p>
+    </div>
+    <div class="info-box">
+      <h4>苗头即处理</h4>
+      <p style="font-size:0.9rem">膝盖外侧一旦有<strong>"摩擦灼热感"</strong>，当天立刻缩短步幅 + 加重双杖依赖 + 当晚冰敷/拉伸，别硬撑到第二天累积成伤。</p>
+    </div>
+    <div class="info-box">
+      <h4>节奏分配</h4>
+      <p style="font-size:0.9rem">重日（D2/D3/D6）早出发留足下降时间；缓坡匀速、垭口前留力。D7 收官疲劳最重，下降段尤其放慢。</p>
+    </div>
+  </div>
+</section>
+
+<section id="supply">
+  <h2><span class="num">03</span>路餐与补给</h2>
+  <div class="sec-summary">策略：正餐尽量当地买（肉类入境受限）· 早餐住宿地或前夜买面包饼干 · 白天路餐从国内带 · 每日按强度配比，冲顶段补含咖啡因能量胶</div>
+
+  <h3>🧭 补给总策略</h3>
+  <div class="info-grid">
+    <div class="info-box">
+      <h4>🏠 早 & 晚餐 — 当地解决</h4>
+      <p style="font-size:0.9rem">住宿 4 晚（山屋/公寓/酒店）正餐由住宿地或镇上餐厅、超市解决。<strong>露营 3 晚</strong>晚餐在库马约尔/霞慕尼超市买即食意面饭、奶酪、火腿；<strong>露营早餐</strong>就近买<strong>麦片 / 饼干 / 面包</strong>（前一天备好）。不从国内背正餐。</p>
+    </div>
+    <div class="info-box">
+      <h4>🎒 白天路餐 — 国内带</h4>
+      <p style="font-size:0.9rem">能量棒（主力）+ 坚果棒 + 蛋白棒 + <strong>含咖啡因能量胶</strong> + 电解质泡腾片，全部从国内备好带过去（当地贵、口味不一定吃得惯）。<strong>肉干 / 咸饼干</strong>当地超市买，平衡甜腻、补充咸口与蛋白。</p>
+    </div>
+  </div>
+
+  <h3>📊 每日路餐配比（按强度）</h3>
+  <div class="table-wrap">
+    <table class="supply-table">
+      <thead><tr><th>日</th><th>强度</th><th>能量棒</th><th>坚果棒</th><th>能量胶 ☕</th><th>电解质</th><th>冲顶段</th></tr></thead>
+      <tbody>
+        <tr><td><b>D1</b> 7/5</td><td><span class="intensity int-light">轻 +600m</span></td><td>2</td><td>1</td><td>—</td><td>2</td><td>无</td></tr>
+        <tr><td><b>D2</b> 7/6</td><td><span class="intensity int-hard">重 19km/+1000m</span></td><td><b>3</b></td><td>1</td><td>1</td><td>3</td><td>Col de la Seigne 2516m</td></tr>
+        <tr><td><b>D3</b> 7/7</td><td><span class="intensity int-hard">重 +935m 硬拔</span></td><td><b>3</b></td><td>1</td><td>1</td><td>3</td><td>Col du Bonhomme 2329m</td></tr>
+        <tr><td><b>D4</b> 7/8</td><td><span class="intensity int-mid">中 +1100m</span></td><td>2</td><td>1</td><td>1</td><td>2</td><td>Col de Tricot 2120m</td></tr>
+        <tr><td><b>D5</b> 7/9</td><td><span class="intensity int-light">轻（缆车助）</span></td><td>2</td><td>1</td><td>—</td><td>2</td><td>无</td></tr>
+        <tr><td><b>D6</b> 7/10</td><td><span class="intensity int-hard">重 山脊+铁梯</span></td><td><b>3</b></td><td>1</td><td>1 备</td><td>3</td><td>Col de Balme 2191m</td></tr>
+        <tr><td><b>D7</b> 7/11</td><td><span class="intensity int-hard">重 冲最高点</span></td><td><b>3</b></td><td>1</td><td><b>1</b></td><td>3</td><td><b>Grand Col Ferret 2537m ★</b></td></tr>
+        <tr style="background:#E4EFE8; font-weight:700;"><td colspan="2">7 天合计（实吃）</td><td>18</td><td>7</td><td>5</td><td>18</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout blue"><strong>☕ 能量胶全部为含咖啡因版本</strong>（冲顶提神）。注意：避免在 D5/D6 傍晚临睡前使用，以免影响高海拔露营的睡眠；主要留给上午到午后的冲顶段。</div>
+
+  <h3>🍽️ 逐日吃法</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>日</th><th>早餐</th><th>行进路上</th><th>午休</th><th>晚餐</th></tr></thead>
+      <tbody>
+        <tr><td><b>D1</b></td><td>库马约尔酒店 / 出发前超市</td><td>能量棒 ×2（每 1.5h 一根）</td><td>山屋到得早，Maison Vieille 吃</td><td>🏠 山屋餐</td></tr>
+        <tr><td><b>D2</b></td><td>山屋早餐</td><td><b>能量棒 ×3</b>（19km 最长）</td><td>坚果棒 ×1 + 面包奶酪</td><td>⛺ 超市即食意面/饭</td></tr>
+        <tr><td><b>D3</b></td><td>露营：当地买的麦片/饼干/面包</td><td>能量棒 ×3（5km 硬拔 900m）</td><td>Refuge de la Balme 热食 或坚果棒</td><td>🏠 Les Contamines 镇上吃</td></tr>
+        <tr><td><b>D4</b></td><td>公寓 / 超市</td><td>能量棒 ×2</td><td>Chalets de Miage 蓝莓派 ☕</td><td>🏠 霞慕尼餐厅（补给日）</td></tr>
+        <tr><td><b>D5</b></td><td>霞慕尼买面包带走</td><td>能量棒 ×2（缆车省力）</td><td>湖边坚果棒 ×1</td><td>⛺ 霞慕尼买的冻干/即食</td></tr>
+        <tr><td><b>D6</b></td><td>露营：麦片/饼干/面包</td><td>能量棒 ×3</td><td>Col de Balme 垭口坚果棒 ×1</td><td>⛺ 冻干/即食</td></tr>
+        <tr><td><b>D7</b></td><td>露营：麦片/饼干/面包</td><td>能量棒 ×3</td><td>垭口顶 / Refuge Elena 路粮</td><td>🏠 库马约尔餐厅庆功</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>⛰️ 冲顶段 — 含咖啡因能量胶用在哪</h3>
+  <p>能量胶只在<strong>长陡拔升的最后冲刺</strong>用，挤一支顶住血糖、提神：</p>
+  <div class="fuel-grid">
+    <div class="fuel-card" style="background:#FCEBEB; border-color:#E24B4A">
+      <div class="fc-name">D7 · Grand Col Ferret ★</div>
+      <div class="fc-use">牧场→垭口硬拔 500m · 全程最高 2537m</div>
+      <span class="fc-tag" style="background:#D8392C">必用一支</span>
+    </div>
+    <div class="fuel-card" style="background:#FAECE7; border-color:#993C1D">
+      <div class="fc-name">D3 · Col du Bonhomme</div>
+      <div class="fc-use">出营 5km 硬拔 900m，一早易撞墙</div>
+      <span class="fc-tag" style="background:#D85A30">建议用</span>
+    </div>
+    <div class="fuel-card" style="background:#FAECE7; border-color:#993C1D">
+      <div class="fc-name">D2 · Col de la Seigne</div>
+      <div class="fc-use">19km 最长 + 碎石拔升，后半救急</div>
+      <span class="fc-tag" style="background:#D85A30">建议用</span>
+    </div>
+  </div>
+  <div class="callout gold" style="margin-top:10px"><strong>用法：</strong>在腿发空、还差最后 100-200m 升高时挤一支，配两口水。<strong>不渴也要补水</strong>。D4、D6 各备一支机动，没劲再用。</div>
+
+  <h3>📦 总采购量</h3>
+  <div class="info-grid">
+    <div class="info-box">
+      <h4>🎒 从国内带（含 ~15% 余量）</h4>
+      <ul style="margin:6px 0 0 18px; font-size:0.9rem; color:var(--ink2); line-height:1.9">
+        <li>能量棒 <strong>21 根</strong>（吃 18 + 备 3）</li>
+        <li>坚果棒 <strong>8 根</strong></li>
+        <li>蛋白棒 <strong>3 根</strong>（营地恢复用）</li>
+        <li>含咖啡因能量胶 <strong>6 支</strong> <span class="caf-note">☕ 咖啡因</span></li>
+        <li>电解质泡腾片 <strong>20 片（一管）</strong></li>
+      </ul>
+    </div>
+    <div class="info-box">
+      <h4>🛒 当地买</h4>
+      <ul style="margin:6px 0 0 18px; font-size:0.9rem; color:var(--ink2); line-height:1.9">
+        <li>露营晚餐 ×3（即食意面饭/奶酪/火腿）</li>
+        <li>露营早餐（麦片/饼干/面包）</li>
+        <li>冻干正餐（霞慕尼 Snell Sports/迪卡侬，按需）</li>
+        <li>肉干 / 咸饼干（超市，选无肉/植物蛋白）</li>
+        <li>气罐 EN417、2×1L 矿泉水</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout green"><strong>当地采购点：</strong>库马约尔户外店 4810 Shopping（Via Roma 106）/ La Sportiva（Via Roma 33）；霞慕尼 Snell Sports、迪卡侬（D4 补给日最齐全）；超市买正餐与水。</div>
+</section>
+
+<section id="gear">
+  <h2><span class="num">04</span>装备清单</h2>
+  <div class="sec-summary">按身上/行进备用/夜间/换用分层 · 含逐项重量、背负估算与背包内存储位置 · 点击各模块展开细项</div>
+
+  <h3>⚖️ 重量速览</h3>
+  <div class="wt-summary">
+    <div class="wt-card hl"><div class="wn">9.03<span> kg</span></div><div class="wl">基础重量 Base Weight</div><div class="wd">去除食物与饮水，纯装备</div></div>
+    <div class="wt-card"><div class="wn">14.2<span> kg</span></div><div class="wl">满载总背负</div><div class="wd">基础 + 全食物 + 2L 水（峰值）</div></div>
+    <div class="wt-card"><div class="wn">~12.0<span> kg</span></div><div class="wl">典型每日背负</div><div class="wd">基础 + 当日约⅓食物 + 2L 水</div></div>
+  </div>
+  <p class="gear-note">另：身上穿着 + 手持登山杖约 <b>1.93 kg</b>（不计入背包负重）。基础重量 9.03 kg 对「自带双人帐单人用 + 全套睡眠系统」的配置属于很健康的轻量化水平；Exos Pro 55L 舒适负重上限约 14–16 kg，满载 14.2 kg 在范围内，且随吃喝递减。</p>
+
+  <div class="loc-legend">
+    <span class="ll"><span class="loc loc-mid">中段贴背</span>重物，靠脊柱稳重心</span>
+    <span class="ll"><span class="loc loc-mainTop">主仓靠上·防水层外</span></span>
+    <span class="ll"><span class="loc loc-mainBot">主仓底·防水层内</span>营地才用</span>
+    <span class="ll"><span class="loc loc-top">顶仓/脑袋仓</span>急用轻物</span>
+    <span class="ll"><span class="loc loc-kangaroo">袋鼠仓</span>前置弹力网袋</span>
+    <span class="ll"><span class="loc loc-side">侧袋/腰带/手持</span></span>
+  </div>
+  <p class="gear-note" style="margin-bottom:6px">重量标注 <b>*</b>=实测 / <b>~</b>=型号估值。打包遵循「重物贴背居中、轻软压底、急用置顶」的重装徒步标准装法。</p>
+
+  <h3>👕 衣物大类</h3>
+
+  <details class="gear-cat" open>
+    <summary><span class="gc-ico">🥾</span>身上衣物（出发即穿戴）<span class="gc-wt">≈ 1.57 kg</span><span class="gc-arrow">›</span></summary>
+    <ul class="gear-list">
+      <li>长袖速干上衣（Pata C1 Sun，连帽防晒）<span class="gw">150g ~</span></li>
+      <li>山与道五袋短裤 <span class="gw">150g ~</span></li>
+      <li>双护膝（保尔范羊毛，一对）<span class="gw">200g ~</span></li>
+      <li>羊毛徒步袜 ×1 <span class="gw">60g ~</span></li>
+      <li>Salomon Ultra X4 GTX Mid 登山鞋 <span class="gw">850g *</span></li>
+      <li>墨镜 / 防晒帽 / 头巾 Buff / 防晒手套 <span class="gw">155g ~</span></li>
+      <li>Black Diamond Distance 登山杖（一对）<span class="loc loc-side">手持</span><span class="gw">368g *</span></li>
+    </ul>
+    <p class="gear-note">穿在身上 / 握在手上，<b>不计入背包负重</b>（含杖共约 1.93 kg）。</p>
+  </details>
+
+  <details class="gear-cat">
+    <summary><span class="gc-ico">🧥</span>行进备用衣物<span class="gc-wt">≈ 1.20 kg</span><span class="gc-arrow">›</span></summary>
+    <ul class="gear-list">
+      <li>Houdini 风壳 <span class="gw">105g *</span></li>
+      <li>始祖鸟 Beta AR 硬壳外套 <span class="gw">461g *</span></li>
+      <li>BD Stormline 硬壳裤 <span class="gw">277g *</span></li>
+      <li>始祖鸟 Gamma 软壳裤 <span class="gw">355g *</span></li>
+    </ul>
+    <p class="gear-note"><span class="loc loc-kangaroo">袋鼠仓</span>整组放前置弹力网袋，随手可取——午后雷暴/垭口大风/早晚转凉时不卸包就能抓出来加穿。晴天微凉穿风壳，雨/强风套 Beta AR，下半身降雨穿硬壳裤，早晚凉穿 Gamma。</p>
+  </details>
+
+  <details class="gear-cat">
+    <summary><span class="gc-ico">🌙</span>夜间备用衣物<span class="gc-wt">≈ 0.78 kg</span><span class="gc-arrow">›</span></summary>
+    <ul class="gear-list">
+      <li>Rab Mythic Alpine 羽绒服 <span class="gw">313g *</span></li>
+      <li>山与道 Active Insulation pullover <span class="gw">166g *</span></li>
+      <li>保暖羊毛裤（打底）<span class="gw">180g ~</span></li>
+      <li>冷帽（暖帽）<span class="gw">70g *</span></li>
+      <li>Zpacks 拖鞋（营地换穿/解放双脚）<span class="gw">52g *</span></li>
+    </ul>
+    <p class="gear-note"><span class="loc loc-mainBot">主仓底·防水层内</span>白天用不到，压在底部当软垫。羽绒服 = 营地静态保暖 + 睡袋增温核心（尤其 D5 切塞里湖 2200m 最冷夜，穿羽绒+羊毛层钻睡袋补温）。Zpacks 拖鞋仅 52g，到营地脱下登山鞋换穿，让脚透气恢复。</p>
+  </details>
+
+  <details class="gear-cat">
+    <summary><span class="gc-ico">🩲</span>换用衣物<span class="gc-wt">≈ 0.69 kg</span><span class="gc-arrow">›</span></summary>
+    <ul class="gear-list">
+      <li>长袖速干上衣 ×2（始祖鸟 Cormac + BD Alpine Pro 全拉链）<span class="gw">370g ~</span></li>
+      <li>羊毛徒步袜 ×2 <span class="gw">120g ~</span></li>
+      <li>美利奴内裤 ×3（Icebreaker 125 ZoneKnit）<span class="gw">195g ~</span></li>
+      <li>速干内裤 ×1（非 TMB 穿）<span class="gw">40g ~</span></li>
+    </ul>
+    <p class="gear-note"><span class="loc loc-mainBot">主仓底·防水层内</span>装进衣物压缩袋压底。速干上衣共 3 件（身上 1 + 换 2），袜共 3 双，美利奴内裤 ×3 全程穿（防臭可连穿少洗）。</p>
+  </details>
+
+  <details class="gear-cat">
+    <summary><span class="gc-ico">🎒</span>背包与收纳<span class="gc-wt">≈ 1.48 kg</span><span class="gc-arrow">›</span></summary>
+    <ul class="gear-list">
+      <li>Osprey Exos Pro 55L 背包（本体）<span class="gw">980g *</span></li>
+      <li>大内衬防水袋（pack liner，主仓内衬）<span class="gw">90g ~</span></li>
+      <li>食物防水袋 8L <span class="loc loc-mid">中段贴背</span><span class="gw">70g *</span></li>
+      <li>炊具防水袋 5L <span class="loc loc-mid">中段贴背</span><span class="gw">55g *</span></li>
+      <li>衣物压缩袋 <span class="loc loc-mainBot">主仓底</span><span class="gw">50g ~</span></li>
+      <li>电器防水袋 3L <span class="loc loc-top">顶仓</span><span class="gw">40g *</span></li>
+      <li>垃圾袋 + 密封袋 ×3-4（PE 自封袋，装用过厕纸/垃圾）<span class="gw">40g ~</span></li>
+      <li>帆布手提袋（小，城镇/补给用）<span class="gw">150g ~</span></li>
+    </ul>
+    <p class="gear-note">大内衬防水袋当 pack liner（整个主仓内衬一层），比外置防雨罩更可靠，<b>不另带防雨罩</b>；各分装袋按上表对应位置归位。</p>
+  </details>
+
+  <h3>🛏️ 睡眠 / 炊具 / 杂项</h3>
+
+  <details class="gear-cat">
+    <summary><span class="gc-ico">🛏️</span>睡眠系统（全带）<span class="gc-wt">≈ 2.83 kg</span><span class="gc-arrow">›</span></summary>
+    <ul class="gear-list">
+      <li>STS Telos TR2 Plus 帐篷（含原配地布）<span class="loc loc-mainTop">主仓靠上·防水层外</span><span class="gw">1531g *</span></li>
+      <li>STS Spark 睡袋（舒适 4°C）<span class="loc loc-mainBot">主仓底·防水层内</span><span class="gw">493g *</span></li>
+      <li>Ether Light XT 睡垫（R 值 3.2）<span class="loc loc-mainBot">主仓底·防水层内</span><span class="gw">490g *</span></li>
+      <li>STS 丝绸内胆（加温 +2-3°C）<span class="loc loc-mainBot">主仓底</span><span class="gw">140g *</span></li>
+      <li>特卫强 Tyvek 地布（额外底布保护）<span class="loc loc-mainBot">主仓底</span><span class="gw">106g *</span></li>
+      <li>STS 羽绒枕 <span class="loc loc-mainBot">主仓底</span><span class="gw">70g *</span></li>
+    </ul>
+    <p class="gear-note"><b>帐篷</b>放主仓靠上、<b>防水层外</b>——到营地最先取、淋湿也不影响层内干燥装备；睡袋/睡垫/内胆/枕等营地用品压在防水层内底部（与夜间衣物同区）。</p>
+  </details>
+
+  <details class="gear-cat">
+    <summary><span class="gc-ico">🍳</span>炊具（气罐/点火当地买）<span class="gc-wt">≈ 0.30 kg</span><span class="gc-arrow">›</span></summary>
+    <ul class="gear-list">
+      <li>SOTO 风神炉头（自带）<span class="gw">90g ~</span></li>
+      <li>钛锅 / 钛杯 / 钛勺 <span class="gw">210g ~</span></li>
+      <li>气罐 EN417 <span class="gtag gtag-buy">当地买</span><span class="gw">—</span></li>
+      <li>点火器 + 备用打火机 <span class="gtag gtag-buy">当地买</span><span class="gw">—</span></li>
+    </ul>
+    <p class="gear-note"><span class="loc loc-mid">中段贴背</span>装炊具防水袋放中段（重物靠背稳重心）。炉头自带；气罐/点火器/打火机不能上飞机，到库马约尔/霞慕尼买，团队可共享。</p>
+  </details>
+
+  <details class="gear-cat">
+    <summary><span class="gc-ico">🔌</span>个人杂项 · 电器<span class="gc-wt">≈ 0.88 kg</span><span class="gc-arrow">›</span></summary>
+    <ul class="gear-list">
+      <li>充电宝 <span class="gw">350g ~</span></li>
+      <li>Osmo Action 6 + 配件 <span class="gw">250g ~</span></li>
+      <li>线材 + 充电头 + 转换插头 <span class="gw">200g ~</span></li>
+      <li>BD Cosmo 350lm 头灯 <span class="gw">80g *</span></li>
+    </ul>
+    <p class="gear-note"><span class="loc loc-top">顶仓</span>装电器防水袋放顶仓——充电宝/相机随时取，头灯露营+早出发（7/10 07:00 前拔营）急用。</p>
+  </details>
+
+  <details class="gear-cat">
+    <summary><span class="gc-ico">📑</span>个人杂项 · 文件钱包<span class="gc-wt">≈ 0.25 kg</span><span class="gc-arrow">›</span></summary>
+    <ul class="gear-list">
+      <li>护照 / 纸质文件票据 / SIM 卡 <span class="gw">—</span></li>
+      <li>钱包 / 信用卡 / 现金 €500 <span class="gw">—</span></li>
+    </ul>
+    <p class="gear-note"><span class="loc loc-top">顶仓</span>装文件防水袋放顶仓，过关/补给/付款随手取，贵重不离身。现金 €500（瑞士段 D6 尽量刷卡，不带瑞郎）。</p>
+  </details>
+
+  <details class="gear-cat">
+    <summary><span class="gc-ico">🧴</span>个人杂项 · 盥洗袋<span class="gc-wt">≈ 0.60 kg</span><span class="gc-arrow">›</span></summary>
+    <ul class="gear-list">
+      <li>药品盒（乙酰唑胺数片、少量保健品/止痛药）<span class="gw">120g ~</span></li>
+      <li>防晒霜 <span class="gw">100g ~</span></li>
+      <li>创可贴 + 水泡贴 + 湿厕纸 + 纸巾 <span class="gw">100g ~</span></li>
+      <li>速干毛巾 <span class="gw">80g ~</span></li>
+      <li>便携便后冲洗器 <span class="gw">80g ~</span></li>
+      <li>一次性擦身手套巾 ×3（3 个露营晚）<span class="gw">60g ~</span></li>
+      <li>牙刷 + 小牙膏 <span class="gw">40g ~</span></li>
+      <li>防晒唇膏（SPF）<span class="gtag gtag-buy">需采购</span><span class="loc loc-side">腰带袋</span><span class="gw">15g ~</span></li>
+    </ul>
+    <p class="gear-note"><span class="loc loc-mainBot">主仓</span>盥洗袋归主仓（营地/休息时用）；防晒霜、唇膏这类高频小件可放<b>腰带袋/侧袋</b>随手补。水泡贴、防晒唇膏需采购。</p>
+  </details>
+
+  <h3>🛒 当地采购清单</h3>
+  <div class="callout gold" style="margin-top:10px">
+    到欧洲后购置（不能上飞机 / 当地更划算 / 真实食材）：
+    <ul style="margin:8px 0 0; padding-left:20px; line-height:1.9">
+      <li><b>气罐 EN417</b> ×1 + <b>点火器</b> + <b>备用打火机</b> — 库马约尔/霞慕尼户外店</li>
+      <li><b>露营晚餐 ×3</b>（即食意面/饭、奶酪、火腿）+ <b>肉干/咸饼干</b> — 超市；冻干餐可在霞慕尼 D4 补</li>
+      <li><b>2 × 1L 矿泉水</b>（空瓶全程复用）<span class="loc loc-side">侧袋</span></li>
+      <li><b>驱蚊用品</b>（小支，营地/湖边/牧场段防蚊虫）</li>
+      <li><b>防晒唇膏、水泡贴（Compeed）</b> — 出发前国内采购或当地补</li>
+    </ul>
+  </div>
+</section>
+
+<section id="photo">
+  <h2><span class="num">05</span>拍照点合集</h2>
+  <div class="sec-summary">从每日路书抽取的精华机位 · 标注最佳时段与拍法 · 按 D1–D7 顺序排列</div>
+
+  <div class="photo-hero">
+    <div class="ph-t">📸 全线拍摄逻辑</div>
+    <div class="ph-s">勃朗峰是「日照金山」的经典舞台——晨昏的低角度光线把雪峰染成金色，而正午顶光最平。本线最大优势是<strong>三个露营晚（D2/D5/D6）</strong>能拍到一般游客拍不到的清晨与夜景；其中 <strong>D5 切塞里湖</strong>是全程王牌机位，务必留足时间。</div>
+  </div>
+
+  <div class="photo-grid">
+
+    <div class="photo-card">
+      <div class="pc-top" style="border-left-color:#1B3A2B">
+        <span class="pc-day" style="background:#1B3A2B">D1 · 7/5</span>
+        <div class="pc-name">Mont Chétif 360° 视野</div>
+        <div class="pc-alt">2343m · 山顶圣母雕像 · 可选轻装冲顶</div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-meta"><span class="pc-chip gold">☀️ 午后</span><span class="pc-chip">轻装单程约 1h</span><span class="pc-chip">俯瞰</span></div>
+        <div class="pc-how">从 Maison Vieille 山屋<b>轻装冲顶</b>，圣母雕像处可 360° 无死角俯瞰两大峡谷与<b>勃朗峰南壁</b>。体力允许才去，是 D1 的奖励视角。</div>
+      </div>
+    </div>
+
+    <div class="photo-card">
+      <div class="pc-top" style="border-left-color:#1B3A2B">
+        <span class="pc-day" style="background:#1B3A2B">D1 · 7/5 黄昏</span>
+        <div class="pc-name">Lago di Checrouit 雪山倒影</div>
+        <div class="pc-alt">山屋步行 15 分钟 · 露营前的黄金时刻</div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-meta"><span class="pc-chip gold">🌅 黄昏</span><span class="pc-chip ice">倒影</span><span class="pc-chip">易达</span></div>
+        <div class="pc-how">黄昏从山屋步行 15 分钟到湖边，<b>无风时拍雪山镜面倒影</b>，再返回山屋享用特色晚餐。低强度高回报。</div>
+      </div>
+    </div>
+
+    <div class="photo-card">
+      <div class="pc-top" style="border-left-color:#C46A2B">
+        <span class="pc-day" style="background:#C46A2B">D2 · 7/6</span>
+        <div class="pc-name">石桥 Pont de la Ténarèze</div>
+        <div class="pc-alt">罗马古道下山途中 · 古老石拱桥</div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-meta"><span class="pc-chip">🎬 短视频</span><span class="pc-chip ice">峡谷</span><span class="pc-chip">动感</span></div>
+        <div class="pc-how">桥下是湍急的<b>冰川融水峡谷</b>，站桥上俯拍压迫感十足，是绝佳的<b>短视频机位</b>。注意湿滑、扶稳。</div>
+      </div>
+    </div>
+
+    <div class="photo-card">
+      <div class="pc-top" style="border-left-color:#C46A2B">
+        <span class="pc-day" style="background:#C46A2B">D2 · 7/6</span>
+        <div class="pc-name">峡谷圣母教堂</div>
+        <div class="pc-alt">Notre-Dame de la Gorge · 密林尽头白色教堂</div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-meta"><span class="pc-chip">👥 合影</span><span class="pc-chip">人文</span></div>
+        <div class="pc-how">密林尽头的白色小教堂，历代朝圣者在此祈求平安。适合全队拍一张<b>「安全下山」合影</b>，随后搭免费巴士进 Les Contamines。</div>
+      </div>
+    </div>
+
+    <div class="photo-card">
+      <div class="pc-top" style="border-left-color:#D6A11E">
+        <span class="pc-day" style="background:#D6A11E">D4 · 7/8</span>
+        <div class="pc-name">Bionnassay 冰川悬索桥</div>
+        <div class="pc-alt">Passerelle de Bionnassay · 喜马拉雅式长吊桥</div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-meta"><span class="pc-chip">🌉 吊桥</span><span class="pc-chip ice">冰川河</span><span class="pc-chip">动感</span></div>
+        <div class="pc-how">横跨冰川融水河的长悬索桥，<b>桥身晃动 + 脚下激流</b>极适合拍照与短视频。下 Bellevue 前可绕道看一眼<b>勃朗峰登山小火车 (TMB) 轨道</b>。</div>
+      </div>
+    </div>
+
+    <div class="photo-card" style="grid-column:1/-1">
+      <div class="pc-top" style="border-left-color:#2E8FC9; background:linear-gradient(100deg,#E8F2F9,#fff 80%)">
+        <span class="pc-day" style="background:#2E8FC9">D5 · 7/9 ★ 王牌机位</span>
+        <div class="pc-name">切塞里湖 Lac de Chéserys / 白湖 Lac Blanc</div>
+        <div class="pc-alt">2200–2352m · 全线最完美的勃朗峰倒影点 · 当晚露营</div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-meta"><span class="pc-chip gold">🌅 清晨为王</span><span class="pc-chip gold">🌇 黄昏次之</span><span class="pc-chip ice">湖面倒影</span><span class="pc-chip">日照金山</span><span class="pc-chip">独享静谧</span></div>
+        <div class="pc-how">全程<b>最值得守候</b>的机位，也是手册 Hero 那张照片的同款场景。<b>下午 4 点游客散去后</b>安顿扎营；<b>傍晚或次日清晨无风时</b>，拍全线最完美的<b>勃朗峰「日照金山」+ 阿根蒂耶冰川湖面倒影</b>。清晨大批一日游游客尚未上山，全队<b>独享高山静谧</b>——这是露营才能拥有的特权。⚠️ 这也是全程最冷一夜，拍完日出记得保暖。</div>
+      </div>
+    </div>
+
+    <div class="photo-card">
+      <div class="pc-top" style="border-left-color:#8159C6">
+        <span class="pc-day" style="background:#8159C6">D6 · 7/10 清晨</span>
+        <div class="pc-name">Posettes 天际线山脊</div>
+        <div class="pc-alt">Tête aux Vents 2128m 一带 · 狭窄天际线</div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-meta"><span class="pc-chip gold">🌄 清晨拔营后</span><span class="pc-chip">山脊行走</span><span class="pc-chip">震撼</span></div>
+        <div class="pc-how">07:00 前从切塞里湖拔营出发，走在<b>两侧 360° 无遮挡的狭窄天际线</b>上，顺时针回望<b>勃朗峰与阿根蒂耶冰川</b>在此达到最高潮——全线最震撼的山脊行走段，拍人物剪影/行走背影绝佳。</div>
+      </div>
+    </div>
+
+    <div class="photo-card">
+      <div class="pc-top" style="border-left-color:#8159C6">
+        <span class="pc-day" style="background:#8159C6">D6 · 7/10</span>
+        <div class="pc-name">Col de Balme 法瑞跨国打卡</div>
+        <div class="pc-alt">2191m · 石砌山屋 Refuge du Col de Balme</div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-meta"><span class="pc-chip">🇫🇷🇨🇭 跨国</span><span class="pc-chip">👥 合影</span></div>
+        <div class="pc-how">在标志性石砌山屋前拍<b>「一脚法国、一脚瑞士」</b>的跨国合影，此处避风草坪也适合解决路粮午餐。</div>
+      </div>
+    </div>
+
+    <div class="photo-card" style="grid-column:1/-1">
+      <div class="pc-top" style="border-left-color:#D8392C">
+        <span class="pc-day" style="background:#D8392C">D7 · 7/11 ★ 收官</span>
+        <div class="pc-name">Grand Col Ferret 双面峡谷</div>
+        <div class="pc-alt">2537m · 全程最高点 · 瑞→意国境线</div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-meta"><span class="pc-chip">🏔 全程最高</span><span class="pc-chip">双面对比</span><span class="pc-chip">👥 庆功合影</span></div>
+        <div class="pc-how">站在最高点：<b>瑞士一侧</b>是温柔翠绿的牧场，<b>意大利一侧</b>是刀劈斧凿的 Val Ferret 巨幕——<b>大乔拉斯峰 (Grandes Jorasses) 黑岩巨壁</b>与多浪特峰如墙耸立。跨过国境到废弃的 Refuge Elena 观景台，全队享用最后一顿高山路粮、<b>合影庆祝</b>。下撤段右手伴随近在咫尺的<b>巨型冰川舌</b>，视野极好。</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="photo-tips">
+    <b>📷 拍摄小贴士</b><br>
+    · <b>黄金时段</b>：日出后 / 日落前 1 小时光线最佳，正午顶光最平，尽量把王牌机位安排在晨昏。<br>
+    · <b>倒影要无风</b>：湖面镜像只在清晨无风时出现（D1 Checrouit、D5 切塞里湖），起风就散，宜早不宜迟。<br>
+    · <b>露营是特权</b>：D2/D5/D6 三个露营晚能拍到游客拍不到的清晨与星空，相机/手机电量留足，充电宝带够。<br>
+    · <b>安全第一</b>：吊桥、石桥、天际线、碎石陡降处拍摄务必先站稳、收好双杖，别为取景退到边缘。<br>
+    · <b>设备</b>：Osmo Action 6 适合吊桥/天际线的动态运镜；广角更能容纳雪峰全景与峡谷纵深。
+  </div>
+</section>
+
+<section id="transport">
+  <h2><span class="num">06</span>往返大交通</h2>
+  <div class="sec-summary">国际段：国泰 CX233/CX234 香港往返米兰 · 城际段：FlixBus 米兰↔库马约尔（回程 7/12 已更新为 04:50 发车）</div>
+
+  <h3>✈️ 国际航班（香港 ⇄ 米兰）</h3>
+  <div class="info-grid">
+    <div class="status-card">
+      <div class="card-header"><span class="card-title">去程 CX233</span><span class="card-tag">7/2–7/3</span></div>
+      <div class="card-body">
+        <div class="kv"><span class="k">出发</span><span class="v">香港 HKG T1 · 00:50</span></div>
+        <div class="kv"><span class="k">到达</span><span class="v">米兰 Malpensa T1 · 08:00</span></div>
+        <div class="kv"><span class="k">备注</span><span class="v">夜航，落地即入申根</span></div>
+      </div>
+    </div>
+    <div class="status-card">
+      <div class="card-header"><span class="card-title">回程 CX234</span><span class="card-tag">7/12–7/13</span></div>
+      <div class="card-body">
+        <div class="kv"><span class="k">出发</span><span class="v">米兰 Malpensa T1 · 12:45</span></div>
+        <div class="kv"><span class="k">到达</span><span class="v">香港 HKG T1 · 06:15 (+1)</span></div>
+        <div class="kv"><span class="k">备注</span><span class="v">回港后乘巴士返深圳</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h3>🚌 城际巴士（米兰 ⇄ 库马约尔）</h3>
+  <div class="info-grid">
+    <div class="status-card">
+      <div class="card-header"><span class="card-title">去程 FlixBus</span><span class="card-tag">7/4</span></div>
+      <div class="card-body">
+        <div class="kv"><span class="k">出发</span><span class="v">米兰 · 16:35</span></div>
+        <div class="kv"><span class="k">到达</span><span class="v">库马约尔 · 20:00</span></div>
+        <div class="kv"><span class="k">时长</span><span class="v">约 3.5 小时</span></div>
+      </div>
+    </div>
+    <div class="status-card">
+      <div class="card-header"><span class="card-title">回程 FlixBus</span><span class="card-tag">7/12</span></div>
+      <div class="card-body">
+        <div class="kv"><span class="k">出发</span><span class="v">库马约尔 · <strong>04:50</strong></span></div>
+        <div class="kv"><span class="k">到达</span><span class="v">米兰 Lampugnano · <strong>07:40</strong></span></div>
+        <div class="kv"><span class="k">时长</span><span class="v">约 3 小时</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout red">
+    <strong>⚠️ 回程关键衔接：</strong>FlixBus 到的是 <strong>Lampugnano 巴士站</strong>，不是机场！需自行从巴士站打车到 Malpensa 机场（约 30 分钟，€90-100）。07:40 到站 → 约 08:15 到机场 → 12:45 起飞，约有 2.5 小时缓冲，比较从容。
+  </div>
+</section>
+
+<section id="milan">
+  <h2><span class="num">07</span>米兰观光</h2>
+  <div class="sec-summary">7/3 抵达当天游览米兰大教堂（Fast-Track 13:00 登露台）· 7/4 上午 Galleria 购物街 · 世界级哥特建筑 + 拱廊街</div>
+
+  <h3>⛪ 米兰大教堂 Duomo di Milano</h3>
+  <div class="status-card">
+    <div class="card-header"><span class="card-title">Fast-Track Pass 票务</span><span class="card-tag">已预订</span></div>
+    <div class="card-body">
+      <div class="kv"><span class="k">日期时间</span><span class="v"><strong>2026/7/3 · 13:00</strong></span></div>
+      <div class="kv"><span class="k">票种</span><span class="v">Intero FT PASS NEW · €32.00</span></div>
+      <div class="kv"><span class="k">入口</span><span class="v"><strong>GATE 3 GREEN</strong></span></div>
+      <div class="kv"><span class="k">预约号</span><span class="v">OFD3746491</span></div>
+      <div class="kv"><span class="k">登露台</span><span class="v">走 SOUTH LIFT 南侧电梯（面向王宫与大主教府）</span></div>
+    </div>
+  </div>
+
+  <div class="callout red">
+    <strong>⚠️ 重要：13:00 是登露台（Terraces）的入场时间，不是大教堂入场时间。</strong>必须 13:00 准时到 <strong>Gate 3 Green</strong> 开始安检，走 South Lift 优先电梯上露台。优先通道仅限电梯入口；<strong>下露台只能走楼梯</strong>。Fast-Track 电梯服务每天 10:00–16:00（最后入场 16:10）。
+  </div>
+
+  <h4>🎫 参观顺序建议</h4>
+  <ol style="margin:8px 0 14px 20px; color:var(--ink2)">
+    <li><strong>13:00 准时到 Gate 3 Green</strong> → 安检 → South Lift 电梯上屋顶露台。</li>
+    <li><strong>屋顶露台（Terraces）</strong>：在哥特尖塔森林间漫步，近距离看 135 座尖塔、3400 余尊雕像，天气好可远眺阿尔卑斯。这是大教堂的精华，慢慢拍。</li>
+    <li><strong>走楼梯下露台</strong>，进入教堂内部。</li>
+    <li><strong>教堂内部（Cathedral）</strong>：52 根巨柱撑起的中殿、彩色玫瑰花窗、圣巴塞洛缪剥皮雕像（解剖学名作）。</li>
+    <li>时间充裕可看地下考古区与博物馆（票含两日内各一次进入）。</li>
+  </ol>
+
+  <h4>🏛️ 看点与历史文化</h4>
+  <div class="info-grid">
+    <div class="info-box">
+      <h4>建造跨越六个世纪</h4>
+      <p style="font-size:0.9rem">大教堂始建于 <strong>1386 年</strong>，直到 <strong>1965 年</strong>最后一道门才完工，前后近 600 年。它是世界第三大教堂、最大的哥特式大理石教堂，全部用 Candoglia 粉白大理石建成。</p>
+    </div>
+    <div class="info-box">
+      <h4>金色圣母 Madonnina</h4>
+      <p style="font-size:0.9rem">主尖塔顶端 108.5 米处的镀金圣母像（1774 年）是米兰象征。曾有传统：城中任何建筑不得高过她——后来的高楼都在顶部放一尊小 Madonnina 复制像致敬。</p>
+    </div>
+    <div class="info-box">
+      <h4>135 尖塔与 3400 雕像</h4>
+      <p style="font-size:0.9rem">屋顶露台是全球唯一可漫步其间的哥特尖塔群，密布飞扶壁、怪兽滴水嘴与圣徒雕像，被誉为"大理石的森林"。</p>
+    </div>
+    <div class="info-box">
+      <h4>圣巴塞洛缪雕像</h4>
+      <p style="font-size:0.9rem">教堂内 Marco d'Agrate 的《被剥皮的圣巴塞洛缪》（1562）——圣人把自己的皮像披肩般搭在肩上，肌肉解剖精准，是文艺复兴雕塑名作。</p>
+    </div>
+  </div>
+
+  <div class="callout gold"><strong>👔 着装要求：</strong>作为宗教场所，<strong>禁止穿短裤、背心、露肩装</strong>进入。7 月天热也需备一件可遮肩膀和膝盖的衣物，否则可能被拒入。</div>
+
+  <h3>🛍️ Galleria Vittorio Emanuele II</h3>
+  <p>就在大教堂旁，<strong>世界最古老的购物中心之一</strong>（1877 年落成），玻璃穹顶拱廊街，云集 Prada、LV 等顶级品牌与历史咖啡馆。7/4 上午安排在此逛街拍照，传统是用脚后跟在地面"金牛马赛克"上转圈求好运。随后午餐，下午乘巴士前往库马约尔。</p>
+</section>
+
+</div>
+
+<footer>
+  <div class="ft-title">⛰ 环勃朗峰 TMB 徒步手册</div>
+  <p>Author: yirenguo · v15 · 2026-06-25</p>
+  <p style="margin-top:6px; font-size:0.8rem; color:#8DA89B">数据源：腾讯文档路书 + AccuWeather 2026年7月预报 + 大教堂 Fast-Track 票务 · 价格/时刻查询于 2026-06，如有变动以官方为准</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+(function(){
+  if(typeof Chart==='undefined'){return;}
+  var el=document.getElementById('climbChart');
+  if(!el){return;}
+  new Chart(el,{
+    type:'bar',
+    data:{
+      labels:['D1','D2','D3','D4','D5','D6','D7'],
+      datasets:[
+        {label:'爬升',data:[600,1000,935,1100,631,900,500],backgroundColor:'#639922',borderRadius:4},
+        {label:'下降',data:[85,1000,1274,600,972,1250,800],backgroundColor:'#D85A30',borderRadius:4}
+      ]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},
+        tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+c.parsed.y+'m';}}}},
+      scales:{
+        y:{title:{display:true,text:'米'},grid:{color:'rgba(128,128,128,0.12)'},ticks:{callback:function(v){return v+'m';}}},
+        x:{grid:{display:false}}
+      }
+    }
+  });
+})();
+</script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(function(){
+  if(typeof L==='undefined'){return;}
+  var dayColors={0:'#16241D',1:'#1B3A2B',2:'#C46A2B',3:'#2D8C57',4:'#D6A11E',5:'#2E8FC9',6:'#8159C6',7:'#D8392C'};
+  // 宿点：dir = 标签贴在标记的哪个方向（leaflet tooltip direction）
+  var stops=[
+    {d:1,name:'Rifugio Maison Vieille',ll:[45.7780,6.9430],type:'hotel',short:'D1 山屋',alt:'1989m',dir:'bottom',meta:'D1 山屋 · 1989m',note:'Col Checrouit 垭口山屋，可轻装冲顶 Mont Chétif 2343m'},
+    {d:2,name:'Les Chapieux',ll:[45.6750,6.7860],type:'camp',short:'D2 露营',alt:'1550m',dir:'bottom',meta:'D2 露营 · 1550m',note:'翻 Col de la Seigne 2516m 进入法国，巴士接驳避开柏油路'},
+    {d:3,name:'Les Contamines-Montjoie',ll:[45.8210,6.7270],type:'hotel',short:'D3 公寓',alt:'1167m',dir:'left',meta:'D3 公寓 · 1167m',note:'翻 Col du Bonhomme 2329m，走罗马古道，免费巴士进镇'},
+    {d:4,name:'霞慕尼 Chamonix',ll:[45.9237,6.8694],type:'hotel',short:'D4 酒店',alt:'1035m',dir:'left',meta:'D4 酒店 · 1035m',note:'翻 Col de Tricot 2120m，过 Bionnassay 悬索桥，Bellevue 缆车下撤'},
+    {d:5,name:'切塞里湖 Lac Blanc',ll:[45.9760,6.8990],type:'camp',short:'D5 露营·最冷',alt:'2200m',dir:'top',meta:'D5 露营 · 2200m · 最冷',note:'缆车上 Planpraz 走南阳台路，白湖畔露营（19:00后扎营09:00前撤）'},
+    {d:6,name:'La Fouly 瑞士',ll:[45.9340,7.0960],type:'camp',short:'D6 露营',alt:'1600m',dir:'right',meta:'D6 露营 · 1600m',note:'翻 Col de Balme 2191m 入瑞士，缆车+巴士接驳到 Camping des Glaciers'},
+    {d:0,name:'库马约尔 Courmayeur',ll:[45.7906,6.9694],type:'startfinish',short:'起 / 终点',alt:'1224m',dir:'right',meta:'D1 起点 / D7 终点 · 1224m',note:'D1 从此出发；D7 翻全程最高 Grand Col Ferret 2537m 返意收官，取回寄存行李'}
+  ];
+  var passes=[
+    {name:'Col de la Seigne',ll:[45.7660,6.8050],alt:'2516m',c:'#C46A2B',dir:'top'},
+    {name:'Col du Bonhomme',ll:[45.7340,6.7170],alt:'2329m',c:'#2D8C57',dir:'left'},
+    {name:'Col de Tricot',ll:[45.8590,6.7860],alt:'2120m',c:'#D6A11E',dir:'top'},
+    {name:'Col de Balme',ll:[46.0330,6.9450],alt:'2191m',c:'#8159C6',dir:'top'},
+    {name:'Grand Col Ferret ★最高',ll:[45.8870,7.1000],alt:'2537m',c:'#D8392C',dir:'right'}
+  ];
+  var legInfo={
+    1:{ll:[45.7850,6.9560],txt:'D1 · 7-12km · +600m',dir:'right'},
+    2:{ll:[45.7250,6.8000],txt:'D2 · 19km · +1000m',dir:'bottom'},
+    3:{ll:[45.7770,6.7000],txt:'D3 · 15km · +935m',dir:'left'},
+    4:{ll:[45.8950,6.8000],txt:'D4 · 13km · +1100m',dir:'left'},
+    5:{ll:[45.9620,6.8840],txt:'D5 · 15km · +631m',dir:'left'},
+    6:{ll:[46.0080,7.0250],txt:'D6 · 12-18km',dir:'top'},
+    7:{ll:[45.8450,7.0600],txt:'D7 · +500m → 最高',dir:'right'}
+  };
+  var legs={
+    1:[[45.7906,6.9694],[45.7820,6.9550],[45.7780,6.9430]],
+    2:[[45.7780,6.9430],[45.7700,6.8600],[45.7660,6.8050],[45.7300,6.7900],[45.6750,6.7860]],
+    3:[[45.6750,6.7860],[45.7340,6.7170],[45.7800,6.7150],[45.8210,6.7270]],
+    4:[[45.8210,6.7270],[45.8590,6.7860],[45.8950,6.8200],[45.9237,6.8694]],
+    5:[[45.9237,6.8694],[45.9480,6.8800],[45.9760,6.8990]],
+    6:[[45.9760,6.8990],[46.0100,6.9200],[46.0330,6.9450],[45.9700,7.0400],[45.9340,7.0960]],
+    7:[[45.9340,7.0960],[45.9100,7.0980],[45.8870,7.1000],[45.8400,7.0500],[45.7906,6.9694]]
+  };
+
+  var map=L.map('tmb-map',{scrollWheelZoom:false,zoomControl:true});
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',{
+    maxZoom:17,attribution:'Tiles © Esri'
+  }).addTo(map);
+
+  // 路线（按天分段配色）
+  var allpts=[];
+  Object.keys(legs).forEach(function(d){
+    var col=dayColors[d];
+    L.polyline(legs[d],{color:'#fff',weight:8,opacity:0.7}).addTo(map);
+    L.polyline(legs[d],{color:col,weight:4.5,opacity:0.95}).addTo(map);
+    legs[d].forEach(function(p){allpts.push(p);});
+  });
+
+  var markerRefs={};
+
+  // 垭口：地图上只放小圆点（点击看名称），不放文字标签
+  passes.forEach(function(p,i){
+    var mk=L.marker(p.ll,{icon:L.divIcon({className:'',html:'<div class="pass-dot" style="background:'+p.c+'"></div>',iconSize:[14,14],iconAnchor:[7,7]})})
+     .addTo(map)
+     .bindPopup('<b>⚑ '+p.name+'</b><div class="pp-meta">垭口 · '+p.alt+'</div>');
+    markerRefs['pass'+i]=mk;
+  });
+
+  // 宿点：地图上只放编号引脚
+  stops.forEach(function(s){
+    var col=dayColors[s.d];
+    var cls='num-pin', label=(s.type==='startfinish'?'⛰':s.d);
+    if(s.type==='startfinish'){cls+=' start-pin';}
+    else if(s.type==='camp'){cls+=' camp';}
+    var inner=(s.type==='camp')?'<span>'+label+'</span>':label;
+    var anc=(s.type==='camp')?[14,28]:[14,14];
+    var mk=L.marker(s.ll,{icon:L.divIcon({className:'',html:'<div class="'+cls+'" style="background:'+col+'">'+inner+'</div>',iconSize:[28,28],iconAnchor:anc}),zIndexOffset:200})
+     .addTo(map)
+     .bindPopup('<b>'+s.name+'</b><div class="pp-meta">'+s.meta+'</div><div class="pp-meta">'+s.note+'</div>');
+    markerRefs['stop'+s.d]=mk;
+  });
+
+  map.fitBounds(L.latLngBounds(allpts).pad(0.12));
+
+  // ===== 右侧节点列表 =====
+  var list=document.getElementById('ms-list');
+  if(list){
+    var rows='';
+    // 起点
+    var sf=stops.filter(function(s){return s.type==='startfinish';})[0];
+    function row(badge,badgeCls,badgeColor,name,meta,stay,stayBg,stayColor,key){
+      return '<div class="ms-item" data-key="'+key+'">'
+        +'<div class="ms-badge '+badgeCls+'" style="background:'+badgeColor+'">'+badge+'</div>'
+        +'<div class="ms-body"><div class="ms-name">'+name+'</div>'
+        +'<div class="ms-meta">'+meta+'</div>'
+        +(stay?'<span class="ms-stay" style="background:'+stayBg+';color:'+stayColor+'">'+stay+'</span>':'')
+        +'</div></div>';
+    }
+    if(sf){rows+=row('⛰','',dayColors[0],sf.name,'起点 / 终点 · 1224m','🏠 D1出发 / D7收官','#E0EFE6','#2D5C3D','stop0');}
+    stops.filter(function(s){return s.type!=='startfinish';}).sort(function(a,b){return a.d-b.d;}).forEach(function(s){
+      var stay=s.type==='camp'?'⛺ 露营':'🏠 山屋/酒店';
+      var sb=s.type==='camp'?'#F5E6D5':'#E0EFE6', sc=s.type==='camp'?'#B8702A':'#2D5C3D';
+      rows+=row(s.d,(s.type==='camp'?'camp':''),dayColors[s.d],s.name,'D'+s.d+' · '+s.alt+' · '+(s.type==='camp'?'露营':(s.d===3?'公寓':(s.d===1?'山屋':'酒店'))),stay,sb,sc,'stop'+s.d);
+    });
+    // 垭口分组
+    rows+='<div class="ms-item" style="background:#FAFCFC"><div class="ms-body"><div class="ms-name" style="color:#5F6E66;font-size:0.78rem">⚑ 沿途垭口（最高点）</div></div></div>';
+    passes.forEach(function(p,i){
+      rows+=row('⚑','',p.c,p.name,'垭口 · '+p.alt,'','','','pass'+i);
+    });
+    list.innerHTML=rows;
+    // hover/click 联动：点列表项 → 地图弹窗
+    list.querySelectorAll('.ms-item').forEach(function(el){
+      var k=el.getAttribute('data-key');
+      if(k&&markerRefs[k]){
+        el.style.cursor='pointer';
+        el.addEventListener('click',function(){
+          map.setView(markerRefs[k].getLatLng(),map.getZoom());
+          markerRefs[k].openPopup();
+        });
+      }
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
