@@ -153,6 +153,8 @@ footer a{color:var(--ice-l)}
 .start-pin{width:32px; height:32px; background:#16241D; font-size:11px}
 .pass-dot{width:14px; height:14px; border-radius:50%; border:2px solid #fff; box-shadow:0 1px 4px rgba(0,0,0,0.45)}
 .pass-num{position:absolute; font-size:9px; font-weight:700; color:#fff}
+.transfer-tip{background:rgba(90,138,130,0.92); color:#fff; border:none; border-radius:10px; padding:1px 8px; font-size:10px; font-weight:600; box-shadow:0 1px 4px rgba(0,0,0,0.3)}
+.transfer-tip:before{display:none}
 .leaflet-popup-content{margin:11px 14px; font-size:13px; line-height:1.5}
 .leaflet-popup-content b{color:#1B3A2B; font-size:14px}
 .pp-meta{color:#5F6E66; font-size:12px; margin-top:3px}
@@ -293,8 +295,8 @@ footer a{color:var(--ice-l)}
     <h1>环勃朗峰徒步手册</h1>
     <p class="sub">穿越法国、意大利、瑞士三国，环绕西欧之巅勃朗峰。7 天高山徒步，3 晚星空露营，最高翻越 2537m 大费雷垭口。</p>
     <div class="hero-stats">
-      <div class="hstat"><div class="n">103<span>km</span></div><div class="l">总里程</div></div>
-      <div class="hstat"><div class="n">5200<span>m</span></div><div class="l">累计爬升</div></div>
+      <div class="hstat"><div class="n">99.6<span>km</span></div><div class="l">总里程</div></div>
+      <div class="hstat"><div class="n">7110<span>m</span></div><div class="l">累计爬升</div></div>
       <div class="hstat"><div class="n">2537<span>m</span></div><div class="l">最高垭口</div></div>
       <div class="hstat"><div class="n">7<span>晚</span></div><div class="l">3露营·3酒店·1山屋</div></div>
     </div>
@@ -325,9 +327,9 @@ footer a{color:var(--ice-l)}
 
 <section id="tmb">
   <h2><span class="num">01</span>TMB 专项 · 七日路书</h2>
-  <div class="sec-summary">顺时针环线 · 露营 3 晚（7/6 · 7/9 · 7/10）+ 山屋/公寓 4 晚 · 多段缆车/巴士接驳护膝 · 最高点 Grand Col Ferret 2537m</div>
+  <div class="sec-summary">顺时针环线 · 总里程 99.6km / 累计爬升 7110m · 露营 3 晚（7/6 · 7/9 · 7/10）+ 山屋/公寓/酒店 4 晚 · 多段缆车/巴士接驳护膝 · 最高点 Grand Col Ferret 2537m</div>
 
-  <p>以下路书基于实际规划版本（含露营安排与交通接驳），与签证用行程单不同。每日含路段、距离爬升、住宿类型，以及沿途值得停留的彩蛋拍照点。</p>
+  <p>路书数据基于队友提供的最新 GPX 轨迹实测（距离/爬升/下降均按 GPX 计算），含每日路段、住宿明细地址、交通接驳班次与沿途彩蛋拍照点。</p>
 
   <h3>🗺️ 全程环线图</h3>
   <div class="map-wrap">
@@ -346,127 +348,129 @@ footer a{color:var(--ice-l)}
       <span class="lg"><span class="dot" style="background:#888; border-radius:50% 50% 50% 0"></span>水滴 = 露营</span>
       <span class="lg"><span class="dot" style="background:#888"></span>圆形 = 山屋/酒店</span>
       <span class="lg"><span class="dot" style="background:#777; width:11px; height:11px"></span>⚑ 小点 = 垭口</span>
+      <span class="lg"><span style="display:inline-block;width:18px;border-top:2.5px dashed #7A8A82"></span>虚线 = 交通接驳</span>
     </div>
-    <p class="map-hint">地图上只放编号引脚保持清爽，右侧列表按编号列出每个点的名称/海拔/宿别。彩色路线按天区分走向；点击地图引脚也可看当日详情。地图可缩放拖动；底图 © Esri。坐标为沿线近似位置。</p>
+    <p class="map-hint">路线为队友 GPX 轨迹实测绘制（实线=徒步段，虚线=接驳段）。地图只放编号引脚保持清爽，右侧列表按编号列出名称/海拔/宿别；点击引脚看当日详情。地图可缩放拖动；底图 © Esri。</p>
   </div>
 
   <div class="callout green">
-    <strong>露营 3 晚：</strong>7/6 Les Chapieux · 7/9 切塞里湖(2200m,最冷) · 7/10 La Fouly &nbsp;|&nbsp; <strong>住宿 4 晚：</strong>7/5 山屋 · 7/7 公寓 · 7/8 酒店 · 7/11 库马约尔
+    <strong>露营 3 晚：</strong>7/6 Chéserys/Les Chapieux · 7/9 Chéserys(2200m,最冷) · 7/10 La Fouly &nbsp;|&nbsp; <strong>住宿 4 晚：</strong>7/5 山屋 · 7/7 公寓 · 7/8 霞慕尼 Airbnb · 7/11 ih hotel Courmayeur
   </div>
 
   <div class="timeline">
 
     <div class="tl-item">
-      <div class="tl-head"><span class="tl-day">D1 · 7/5</span><span class="tl-title">库马约尔 → Col Checrouit</span><span class="tl-stay stay-hotel">🏠 山屋 Maison Vieille</span></div>
-      <div class="tl-meta"><span>📏 <b>7-12 km</b></span><span>⬆️ <b>+600m</b> ⬇️ -85m</span><span>🏔 海拔 ~1989m</span></div>
+      <div class="tl-head"><span class="tl-day">D1 · 7/5</span><span class="tl-title">Courmayeur → Rifugio Maison Vieille</span><span class="tl-stay stay-hotel">🏠 山屋 Maison Vieille</span></div>
+      <div class="tl-meta"><span>📏 <b>12.2 km</b></span><span>⬆️ <b>+1410m</b> ⬇️ -650m</span><span>🏔 最高 2250m</span><span>⏱ ~6h40</span><span>⚠️ 爬升大</span></div>
       <div class="tl-body">
         <ol>
-          <li>上午从 <strong>Courmayeur</strong>（Piazza Abbé Henry 教堂广场）出发，跨过波河进入 Dolonne 小镇。</li>
-          <li>扎入落叶松森林陡坡，一路拔高至 <strong>Plan Checrouit</strong>（1700m）。</li>
-          <li>缓坡向上抵达 Col de Checrouit 垭口，入住 <strong>Rifugio Maison Vieille</strong>，卸下大背包。</li>
-          <li>可选：轻装冲顶 <strong>Mont Chétif</strong>（2343m），山顶圣母像处 360° 俯瞰双峡谷与勃朗峰南壁，单程约 1 小时。</li>
+          <li>上午从 <strong>Courmayeur</strong>（1180m）出发，跨过波河进入 Dolonne 小镇。</li>
+          <li>扎入落叶松森林陡坡，<strong>全天硬拔 1410m</strong> 至 Col de Checrouit 一带。</li>
+          <li>抵达 <strong>Rifugio Maison Vieille</strong>（山间小屋，有音乐美酒，宿舍床位），卸下大背包。</li>
+          <li>可选：轻装冲顶 <strong>Mont Chétif</strong>（2343m），单程约 1 小时，山顶圣母像 360° 俯瞰双峡谷与勃朗峰南壁。</li>
         </ol>
+        <div class="callout red" style="margin:10px 0 0"><strong>⚠️ 强度提醒：</strong>D1 爬升达 <strong>+1410m</strong>（旧规划严重低估），是开局重头戏。Mont Chétif 从 Courmayeur 侧攀登经岩石地形、最大坡度约 24%、需手脚并用（Komoot 标危险警告），冲顶量力而行。</div>
         <div class="egg"><span class="et">📸 彩蛋 · Lago di Checrouit</span>黄昏从山屋步行 15 分钟到湖边，拍雪山倒影，再返回山屋享用特色晚餐。</div>
         <div class="stay-box"><span class="sb-t">🏠 住宿 · Rifugio Maison Vieille<span class="sb-status">已预订</span></span><div class="sb-addr">Col Checrouit 垭口山屋 · 海拔 1989m · 含半膳（晚餐+早餐）· Courmayeur 上方</div></div>
       </div>
     </div>
 
     <div class="tl-item">
-      <div class="tl-head"><span class="tl-day">D2 · 7/6</span><span class="tl-title">Col de la Seigne → Les Chapieux</span><span class="tl-stay stay-camp">⛺ 露营 Camping des Chapieux</span></div>
-      <div class="tl-meta"><span>📏 <b>~19 km</b></span><span>⬆️ <b>+1000m</b> ⬇️ -1000m</span><span>🏔 海拔 ~1550m</span><span>⚠️ 路线长，必须轻装</span></div>
+      <div class="tl-head"><span class="tl-day">D2 · 7/6</span><span class="tl-title">Rifugio Monte Bianco → Les Chapieux</span><span class="tl-stay stay-camp">⛺ 露营 Bivouac des Chapieux</span></div>
+      <div class="tl-meta"><span>📏 <b>19.1 km</b></span><span>⬆️ <b>+1000m</b> ⬇️ -1180m</span><span>🏔 最高 2496m</span><span>⏱ ~7h56</span><span>⚠️ 全程最长</span></div>
       <div class="tl-body">
         <ol>
           <li>早晨离开山屋，走高位横切阳台路（Mont Favre 方向），右手边全程伴随 <strong>Miage 冰川</strong>。</li>
-          <li>经 Cabane du Combal，开始坚硬的碎石坡爬升。</li>
-          <li>途经废弃军营 La Casermetta（可上厕所、看沙盘），登顶法意边境线 <strong>Col de la Seigne</strong>（2516m）。</li>
-          <li>跨入法国，下降至高山牧场 <strong>La Ville des Glaciers</strong>，可买新鲜 Beaufort 奶酪。</li>
-          <li><strong>巴士接驳</strong>：在 La Ville des Glaciers 停止徒步，搭 Navette 接驳车 15 分钟直达 Les Chapieux，避开最后 5km 伤膝柏油路。</li>
+          <li>经 Lac Combal（冰川湖）、Lac des Vesses，开始坚硬的碎石坡爬升。</li>
+          <li>途经废弃军营 La Casermetta，登顶法意边境线 <strong>Col de la Seigne</strong>（2516m）。</li>
+          <li>跨入法国，下降至高山牧场 <strong>La Ville des Glaciers</strong>。</li>
+          <li><strong>接驳车</strong>：在 La Ville des Glaciers 停止徒步，搭付费 Navette 直达 Les Chapieux，避开最后伤膝柏油路。</li>
         </ol>
-        <div class="callout gold" style="margin:10px 0 0"><strong>🚌 接驳时刻：</strong>一般最晚 18:30，最好 17:30 前到达。前一晚需咨询具体时间表。山屋已满，全体露营。</div>
-        <div class="stay-box is-camp"><span class="sb-t">⛺ 露营 · Camping Municipal des Chapieux<span class="sb-status">市政营地</span></span><div class="sb-addr">Les Chapieux 村 · 海拔 ~1550m · 山屋已满转露营 · 备注：另订可取消酒店 Le Refuge Chez La Tante（4284 Route des Crêtes, 74170 Saint-Gervais-les-Bains）作签证用</div></div>
+        <div class="callout gold" style="margin:10px 0 0"><strong>🚌 D2 接驳车（Vallée des Glaciers 线，6/22–8/30 每日）：</strong>La Ville des Glaciers → Les Chapieux 频繁发车，下午班次约每 30 分一班，<strong>末班 ~18:20</strong>。建议 17:30 前到 La Ville des Glaciers 候车。⚠️ Les Chapieux 一带大概率无手机信号，重要联络提前安排。</div>
+        <div class="callout blue" style="margin:8px 0 0"><strong>🍕 补给：</strong>Les Chapieux 很小，仅一家 <strong>Le Relais Montagnard</strong>（有披萨/三明治）。D2 沿途及 D3 补给有限，<strong>请在 Courmayeur 提前买好</strong>。</div>
+        <div class="stay-box is-camp"><span class="sb-t">⛺ 露营 · Aire de bivouac des Chapieux<span class="sb-status">指定野营点</span></span><div class="sb-addr">Les Chapieux 村（GoogleMap 搜 Bivouac des Chapieux）· 海拔 ~1550m · 山屋已满转露营 · 备注：另订可取消酒店 Le Refuge Chez La Tante（4284 Route des Crêtes, 74170 Saint-Gervais-les-Bains）仅作签证用</div></div>
       </div>
     </div>
 
     <div class="tl-item">
-      <div class="tl-head"><span class="tl-day">D3 · 7/7</span><span class="tl-title">Col du Bonhomme → Les Contamines</span><span class="tl-stay stay-hotel">🏠 公寓</span></div>
-      <div class="tl-meta"><span>📏 <b>15.3 km</b></span><span>⬆️ <b>+935m</b> ⬇️ -1274m</span><span>🏔 海拔 ~1167m</span></div>
+      <div class="tl-head"><span class="tl-day">D3 · 7/7</span><span class="tl-title">Les Chapieux → Notre-Dame de la Gorge</span><span class="tl-stay stay-hotel">🏠 公寓 Les Contamines</span></div>
+      <div class="tl-meta"><span>📏 <b>16.8 km</b></span><span>⬆️ <b>+990m</b> ⬇️ <b>-1320m</b></span><span>🏔 最高 2470m</span><span>⏱ ~7h20</span><span>⚠️ 下降最大</span></div>
       <div class="tl-body">
         <ol>
-          <li>清晨从营地出发，5 公里内硬拔近 900 米，直达 <strong>Refuge de la Croix du Bonhomme</strong>。</li>
-          <li>翻越波诺姆垭口 <strong>Col du Bonhomme</strong>，开始漫长峡谷速降，午餐可在 Refuge de la Balme 解决。</li>
-          <li>进入著名的 <strong>"罗马古道" (Voie Romaine)</strong>，路面极其光滑，全员必须使用双杖。</li>
-          <li><strong>巴士接驳</strong>：下撤到 Notre-Dame de la Gorge 后结束徒步，搭门口免费穿梭巴士直达 Les Contamines 镇中心。</li>
-          <li>镇上休整，Carrefour 超市采购补给。</li>
+          <li>清晨从营地出发，硬拔近 900 米翻越 <strong>Col du Bonhomme</strong>（2329m，连接 Val Montjoie 与 Beaufortain，视野极佳）。</li>
+          <li>经新建山屋 Le Refuge des Prés（1933m）、19 世纪农舍 <strong>Nant Borrant</strong>（TMB 经典打卡），开始漫长峡谷速降。</li>
+          <li>进入著名 <strong>"罗马古道" (Voie Romaine)</strong>，路面极其光滑，全员必须用双杖。⚠️ 经过 Réserve naturelle des Contamines-Montjoie 自然保护区，留意法规。</li>
+          <li><strong>巴士接驳</strong>：抵达 <strong>Notre-Dame de la Gorge</strong> 后结束徒步，从 Parking ND de la Gorge 站乘巴士到镇中心 Chef Lieu（约 15 分钟）。</li>
         </ol>
-        <div class="egg"><span class="et">📸 彩蛋 · 石桥与峡谷圣母教堂</span>罗马古道下山途中的古老石拱桥 <strong>Pont de la Ténarèze</strong>，桥下是湍急的冰川融水峡谷，压迫感十足；密林尽头的白色教堂 <strong>Notre-Dame de la Gorge</strong>，适合全队拍"安全下山"合影。</div>
-        <div class="stay-box"><span class="sb-t">🏠 住宿 · Les Contamines-Montjoie 公寓<span class="sb-status">已预订</span></span><div class="sb-addr">115 Route de Saint-Gervais Le Bionnassay, appartement 89/39, Les Contamines-Montjoie · 海拔 ~1167m · 镇上 Carrefour 可补给</div></div>
+        <div class="callout gold" style="margin:10px 0 0"><strong>🚌 D3 巴士（ND de la Gorge → Chef Lieu）：</strong>夏季时刻表截至 6 月底仍未发布，<strong>先参考冬季班次</strong>（约每 20–30 分一班，末班 ~18:40）。实在赶不上，<strong>步行约 50 分钟</strong>也能到镇中心。</div>
+        <div class="egg"><span class="et">📸 彩蛋 · 石桥与峡谷圣母教堂</span>罗马古道下山的古老石拱桥 <strong>Pont de la Ténarèze</strong>，桥下湍急冰川融水峡谷，压迫感十足；密林尽头 13 世纪粉色小教堂 <strong>Notre-Dame de la Gorge</strong>，适合全队拍"安全下山"合影。</div>
+        <div class="stay-box"><span class="sb-t">🏠 住宿 · Les Contamines-Montjoie Airbnb<span class="sb-status">已预订</span></span><div class="sb-addr">115 Route de Saint-Gervais Le Bionnassay, appartement 89/39, Les Contamines-Montjoie · 海拔 ~1167m · 住镇中心，附近餐厅多、可补给休整</div></div>
       </div>
     </div>
 
     <div class="tl-item">
-      <div class="tl-head"><span class="tl-day">D4 · 7/8</span><span class="tl-title">Col de Tricot → 霞慕尼 Chamonix</span><span class="tl-stay stay-hotel">🏠 酒店/公寓</span></div>
-      <div class="tl-meta"><span>📏 <b>~13 km</b></span><span>⬆️ <b>+1100m</b> ⬇️ -600m</span><span>🏔 海拔 ~1035m</span></div>
+      <div class="tl-head"><span class="tl-day">D4 · 7/8</span><span class="tl-title">Les Contamines → Bellevue → Chamonix</span><span class="tl-stay stay-hotel">🏠 Airbnb 霞慕尼</span></div>
+      <div class="tl-meta"><span>📏 <b>11.7 km</b></span><span>⬆️ <b>+1270m</b> ⬇️ -640m</span><span>🏔 最高 2101m</span><span>⏱ ~6h10</span><span>🕒 缆车关卡</span></div>
       <div class="tl-body">
         <ol>
           <li>从镇上缓升至世外桃源般的 <strong>Chalets de Miage</strong>（推荐尝蓝莓派 Tarte aux Myrtilles）。</li>
-          <li>硬核拔高 600 米登顶全线最壮丽变体垭口 <strong>Col de Tricot</strong>（2120m）。</li>
-          <li>陡降穿过横跨冰川融水的喜马拉雅式悬索桥 <strong>Passerelle de Bionnassay</strong>。</li>
-          <li>小爬升 200 米到 <strong>Bellevue</strong> 大平台。</li>
-          <li><strong>缆车接驳</strong>：在 Bellevue 乘缆车直降 Les Houches，换乘 1 路公交直达霞慕尼镇中心。</li>
+          <li>硬核拔高登顶全线最壮丽变体垭口 <strong>Col de Tricot</strong>，俯瞰 Miage 牧场与深谷。</li>
+          <li>陡降穿过横跨冰川融水的喜马拉雅式悬索桥 <strong>Passerelle de Bionnassay</strong>，小爬升到 <strong>Bellevue</strong> 大平台。</li>
+          <li><strong>缆车接驳</strong>：在 Bellevue 买票乘缆车直降 Les Houches（省去 800m 林间陡降），在 Les Houches TMB 起点大门打卡；再换 1 路公交直达霞慕尼镇中心。</li>
           <li>洗衣物、逛顶级户外店 Snell Sports、补给晚饭。</li>
         </ol>
-        <div class="callout red" style="margin:10px 0 0"><strong>⚠️ 时间关卡：</strong>这天爬升 +1100m，必须在 Bellevue 缆车站关闭前（通常 17:00-17:30）到达。建议 15:00 到缆车站，16:00 坐公交去霞慕尼。</div>
+        <div class="callout red" style="margin:10px 0 0"><strong>⚠️ 时间关卡：</strong>这天爬升 +1270m，<strong>必须 15:00 前抵达 Bellevue 缆车站</strong>（关闭时间约 17:00–17:30）。建议 15:00 到站，16:00 坐公交去霞慕尼。</div>
         <div class="egg"><span class="et">📸 彩蛋 · 冰川悬索桥 & 登山小火车</span><strong>Passerelle de Bionnassay</strong> 横跨冰川河流的长悬索桥极适合拍照；下 Bellevue 前可绕道看 <strong>Tramway du Mont-Blanc</strong>（勃朗峰登山小火车）轨道。</div>
-        <div class="stay-box"><span class="sb-t">🏠 住宿 · 霞慕尼 Chamonix 酒店/公寓<span class="sb-status">候选中</span></span><div class="sb-addr">霞慕尼镇中心 · 海拔 ~1035m · 大镇住宿/餐饮选择多 · 候选：Chalet Le Petit Nicolas、Résidence La Cordée 5★、Casa Vacanze Chamonix（Booking，7/8–7/9，6 人）</div></div>
+        <div class="stay-box"><span class="sb-t">🏠 住宿 · 霞慕尼 Chamonix Airbnb<span class="sb-status">已预订</span></span><div class="sb-addr">260 Rue Joseph Vallot, Le Bellevue, Chamonix, Auvergne-Rhône-Alpes · 海拔 ~1035m · 大镇住宿/餐饮多 · ⚠️ 补给重点日：D5/D6 连续两晚露营，务必在霞慕尼备足食物</div></div>
       </div>
     </div>
 
     <div class="tl-item">
-      <div class="tl-head"><span class="tl-day">D5 · 7/9</span><span class="tl-title">霞慕尼 → 切塞里湖 Lac Blanc</span><span class="tl-stay stay-camp">⛺ 露营 切塞里湖（最冷夜）</span></div>
-      <div class="tl-meta"><span>📏 <b>~14.9 km</b></span><span>⬆️ <b>+631m</b> ⬇️ -972m</span><span>🏔 海拔 ~2200m</span><span>❄️ 夜低温 -1~3°C</span></div>
+      <div class="tl-head"><span class="tl-day">D5 · 7/9</span><span class="tl-title">Le Brévent → Lacs de Chéserys</span><span class="tl-stay stay-camp">⛺ 露营 Chéserys（最冷夜）</span></div>
+      <div class="tl-meta"><span>📏 <b>12.4 km</b></span><span>⬆️ <b>+510m</b> ⬇️ -750m</span><span>🏔 最高 2460m</span><span>⏱ ~5h02</span><span>❄️ 夜低温 -1~3°C</span></div>
       <div class="tl-body">
         <ol>
-          <li>为节省体力给湖区，上午在霞慕尼乘缆车至 <strong>Planpraz</strong>。</li>
-          <li>走南阳台路线 <strong>Grand Balcon Sud</strong> 往 La Flégère 方向。</li>
-          <li>一路上升至海拔 2352 米的 <strong>白湖 Lac Blanc</strong>。</li>
-          <li>下午 4 点游客散去后安顿；傍晚或次日清晨欣赏全线最完美的勃朗峰"日照金山"及湖面倒影。</li>
+          <li>为节省体力给湖区，上午在霞慕尼<strong>乘缆车上 Le Brévent</strong> 出发（注意：新规划起点是 Brévent，不是 Planpraz）。</li>
+          <li>沿高位路线经途中观景小屋（必停喝一杯）、<strong>La Tête aux Vents</strong> 山脊，俯瞰整个霞慕尼山谷。</li>
+          <li>经 Lac Blanc 下方瀑布与木桥，抵达 <strong>Lacs des Chéserys</strong> 高山湖群——正面直对勃朗峰，倒影绝美。</li>
+          <li>下午游客散去后安顿；傍晚或次日清晨欣赏全线最完美的勃朗峰"日照金山"及湖面倒影。</li>
         </ol>
-        <div class="callout gold" style="margin:10px 0 0"><strong>⛺ 露营规则：</strong>法国自然保护区规定 <strong>19:00 后准许扎营，次日 09:00 前必须拔营撤离</strong>。这是全程最冷一晚，注意保暖（详见装备章节）。</div>
-        <div class="stay-box is-camp"><span class="sb-t">⛺ 露营 · 切塞里湖 Lac de Chéserys 畔<span class="sb-status">野营·最冷夜</span></span><div class="sb-addr">白湖 Lac Blanc 区域 · 海拔 ~2200m · 夜低温 -1~3°C · 仅 19:00–09:00 可扎营 · 全线最佳倒影机位</div></div>
+        <div class="callout gold" style="margin:10px 0 0"><strong>⛺ Chéserys 露营规定（自然保护区，严格）：</strong>仅可过夜一晚，<strong>19:00 后扎营、次日 9:00 前离开</strong>；严禁生火 / 音箱 / 湖中游泳（含 Lac Blanc）；垃圾含厕纸全部带走；不可在山屋旁扎营。这是全程最冷一晚，注意保暖（见装备章节）。</div>
+        <div class="stay-box is-camp"><span class="sb-t">⛺ 露营 · Lacs de Chéserys 湖边<span class="sb-status">野营·最冷夜</span></span><div class="sb-addr">Lac Blanc 下方湖群 · 海拔 ~2200m · 夜低温 -1~3°C · 仅 19:00–09:00 可扎营 · 全线最佳倒影机位</div></div>
       </div>
     </div>
 
     <div class="tl-item">
-      <div class="tl-head"><span class="tl-day">D6 · 7/10</span><span class="tl-title">Col de Balme → 瑞士 La Fouly</span><span class="tl-stay stay-camp">⛺ 露营 Camping des Glaciers</span></div>
-      <div class="tl-meta"><span>📏 <b>12-18 km</b></span><span>⬆️ +450~900m ⬇️ -1250m</span><span>🏔 海拔 ~1600m</span><span>🇫🇷→🇨🇭 跨国</span></div>
+      <div class="tl-head"><span class="tl-day">D6 · 7/10</span><span class="tl-title">Chéserys → Col de Balme → La Fouly</span><span class="tl-stay stay-camp">⛺ 露营 Camping des Glaciers</span></div>
+      <div class="tl-meta"><span>📏 <b>12.8 km</b>（步行段）</span><span>⬆️ <b>+950m</b> ⬇️ -970m</span><span>🏔 最高 2210m</span><span>⏱ ~6h19</span><span>🇫🇷→🇨🇭 跨国</span></div>
       <div class="tl-body">
         <ol>
-          <li>07:00 前在切塞里湖拔营，拍勃朗峰群山与阿根蒂耶冰川倒影。</li>
-          <li>高位横切至交汇点 <strong>Tête aux Vents</strong>（2128m）—— 注意此段有暴露感石块/铁梯路段，需收杖双手抓铁梯。</li>
-          <li>无缝切上视觉王牌 <strong>Aiguillette des Posettes</strong>（2201m）狭窄天际线山脊，360° 回望阿根蒂耶冰川。</li>
-          <li>缓降微爬升抵达法瑞边境 <strong>Col de Balme</strong>（2191m），在石砌山屋前拍"一脚法国一脚瑞士"。</li>
-          <li><strong>缆车+巴士接驳</strong>：午餐后向 Le Tour 下切 15 分钟到 Autannes 缆车站，缆车直降 Le Tour 小镇；再转公交/火车经瑞士 Orsières 换 PostBus 215 直达 La Fouly。6-7 人也可提前预约 7-8 座 Van，1 小时直达。</li>
+          <li>07:00 前在 Chéserys 拔营，清晨无风时拍勃朗峰与阿根蒂耶冰川倒影，游客未至。</li>
+          <li>切上视觉王牌 <strong>Aiguillette des Posettes</strong> 狭窄天际线山脊，两侧 360° 无遮挡，回望勃朗峰与阿根蒂耶冰川冲击力最强；经 Col des Posettes（UTMB 经典缓降）。</li>
+          <li>抵达法瑞边境 <strong>Col de Balme</strong>（2191m），在 Refuge du Col de Balme 石砌山屋前拍跨国合影、草坪午餐。</li>
+          <li><strong>缆车+巴士接驳</strong>：从 Col de Balme 转法国侧下切约 15 分钟至 <strong>Autannes 缆车站</strong>，缆车直降 Le Tour（省陡坡护膝）。再到 La Fouly 有两种方式（见下）。</li>
         </ol>
+        <div class="callout gold" style="margin:10px 0 0"><strong>🚡 D6 接驳（Le Tour → La Fouly）二选一：</strong><br>① Le Tour 乘公交 Ligne 1 或区间火车至 Martigny / Orsières，转<strong>瑞士邮政巴士 215 路</strong>直达 La Fouly（215 路下午时刻表待补）。<br>② 提前预约 <strong>7–8 座高山 Van</strong>，Le Tour 缆车站接人，约 1 小时直达 La Fouly（6–7 人团队更省心）。</div>
         <div class="egg"><span class="et">📸 彩蛋 · Posettes 天际线</span>顺时针回望勃朗峰与阿根蒂耶冰川在此达到最高潮，是全线最震撼的山脊行走段。</div>
-        <div class="stay-box is-camp"><span class="sb-t">⛺ 露营 · Camping des Glaciers<span class="sb-status">营地</span></span><div class="sb-addr">瑞士 La Fouly 村 · 海拔 ~1600m · 冰川旁，夜偏冷 2-7°C · 营地有小卖部</div></div>
+        <div class="stay-box is-camp"><span class="sb-t">⛺ 露营 · Camping des Glaciers<span class="sb-status">营地</span></span><div class="sb-addr">瑞士 La Fouly 村 · 海拔 ~1600m · 冰川旁，夜偏冷 2-7°C · 营地有小卖部 · D5/D6 连续两露营，霞慕尼已备足补给</div></div>
       </div>
     </div>
 
     <div class="tl-item">
-      <div class="tl-head"><span class="tl-day">D7 · 7/11</span><span class="tl-title">Grand Col Ferret → 库马约尔（收官）</span><span class="tl-stay stay-hotel">🏠 库马约尔酒店</span></div>
-      <div class="tl-meta"><span>📏 河谷+大拔升</span><span>⬆️ <b>+500m</b>（牧场起）⬇️ -800m</span><span>🏔 最高 <b>2537m</b></span><span>🇨🇭→🇮🇹 收官</span></div>
+      <div class="tl-head"><span class="tl-day">D7 · 7/11</span><span class="tl-title">La Fouly → Grand Col Ferret → Courmayeur</span><span class="tl-stay stay-hotel">🏠 ih hotel Courmayeur</span></div>
+      <div class="tl-meta"><span>📏 <b>14.6 km</b></span><span>⬆️ <b>+980m</b> ⬇️ -810m</span><span>🏔 最高 <b>2537m</b></span><span>⏱ ~6h25</span><span>🇨🇭→🇮🇹 收官</span></div>
       <div class="tl-body">
         <ol>
-          <li>07:30 在 Camping des Glaciers 冰川晨光中拔营，轻装沿 Ferret 溪流走出 La Fouly。</li>
-          <li>沿河谷平缓 4 公里，经 Ferret 村落（全线最后瑞士小木屋咖啡馆），抵达 <strong>Alpage de la Peule</strong>（2071m）牧场。</li>
-          <li>面对无遮挡之字坡硬拔近 500 米，登顶 <strong>Grand Col Ferret</strong>（2537m）—— 瑞意国境线，全线最高点。</li>
-          <li>跨过国境重返意大利，在垭口或 Refuge Elena 观景台享用最后一顿高山路粮，合影庆祝。</li>
-          <li>陡降意大利峡谷至后勤枢纽 <strong>Arnouvaz</strong>（1766m）。</li>
-          <li><strong>巴士接驳</strong>：在 Arnouvaz 搭意大利绿色高山公交（Arriva），穿过 Val Ferret 峡谷约 30 分钟回到库马约尔。</li>
-          <li>步行至 D1 寄存行李的酒店，办理入住，取回寄存 7 天的行李。</li>
+          <li>在 Camping des Glaciers 晨光中拔营，沿 Ferret 溪流走出 La Fouly，经 <strong>Ferret 村小教堂</strong>（夏季邮政巴士终点，旁 Col-de-Fenêtre 小餐厅可补给）。</li>
+          <li>面对无遮挡之字坡<strong>硬拔近 980 米</strong>，登顶 <strong>Grand Col Ferret</strong>（2537m）—— 瑞意国境线，全线最高点，视野壮阔。</li>
+          <li>跨过国境重返意大利，在 <strong>Rifugio Elena</strong> 观景台享用最后一顿高山路粮，合影庆祝。</li>
+          <li>下降至 <strong>Arp Nouvaz Cap</strong> 巴士站（GoogleMap：Arp Nouvaz 29 capolinea）。</li>
+          <li><strong>巴士接驳</strong>：搭 Val Ferret 免费班车回库马约尔 Piazzale Monte Bianco。</li>
+          <li>步行至 D1 寄存行李的酒店，办理入住，取回寄存 7 天的行李箱。</li>
         </ol>
+        <div class="callout gold" style="margin:10px 0 0"><strong>🚌 D7 巴士（Val Ferret 线 · Arriva 免费班车）：</strong>⚠️ <strong>仅周六、周日运行</strong>（7/11 正好是周六 ✅，有效期 6/27–7/17）。Arp Nouvaz Cap → Piazzale Monte Bianco，<strong>每 20 分钟一班，末班 ~20:07</strong>，全程约 35 分钟。</div>
         <div class="egg"><span class="et">📸 彩蛋 · Grand Col Ferret 双面峡谷</span>站在最高点：瑞士一侧是温柔翠绿牧场，意大利一侧是刀劈斧凿的 Val Ferret 巨幕，大乔拉斯峰黑岩巨壁与多浪特峰如墙耸立。</div>
-        <div class="stay-box"><span class="sb-t">🏠 住宿 · 库马约尔 Courmayeur 酒店<span class="sb-status">收官</span></span><div class="sb-addr">库马约尔镇中心 · 海拔 ~1224m · D1 寄存行李的同一酒店，取回行李箱办理入住 · 庆功晚餐</div></div>
+        <div class="stay-box"><span class="sb-t">🏠 住宿 · ih hotel Courmayeur<span class="sb-status">收官·已定</span></span><div class="sb-addr">库马约尔镇中心 · 海拔 ~1224m · 行程收尾回到起点，取回 D1 寄存的行李箱办理入住 · 庆功晚餐</div></div>
       </div>
     </div>
 
@@ -478,37 +482,38 @@ footer a{color:var(--ice-l)}
       <thead><tr><th>日</th><th>住宿点</th><th>类型</th><th>海拔</th><th>夜间低温</th></tr></thead>
       <tbody>
         <tr><td>D1 7/5</td><td>Rifugio Maison Vieille</td><td>🏠 山屋（已订）</td><td>1989m</td><td>5-10°C</td></tr>
-        <tr><td>D2 7/6</td><td>Camping des Chapieux</td><td>⛺ 露营</td><td>1550m</td><td>2-7°C</td></tr>
-        <tr><td>D3 7/7</td><td>Les Contamines 公寓</td><td>🏠 公寓</td><td>1167m</td><td>6-10°C</td></tr>
-        <tr><td>D4 7/8</td><td>Chamonix 酒店/公寓</td><td>🏠 酒店</td><td>1035m</td><td>6-10°C</td></tr>
-        <tr><td>D5 7/9</td><td>切塞里湖 Lac Blanc</td><td>⛺ 露营（最冷）</td><td>2200m</td><td><strong>-1~3°C</strong></td></tr>
+        <tr><td>D2 7/6</td><td>Bivouac des Chapieux</td><td>⛺ 露营</td><td>1550m</td><td>2-7°C</td></tr>
+        <tr><td>D3 7/7</td><td>Les Contamines Airbnb</td><td>🏠 公寓（已订）</td><td>1167m</td><td>6-10°C</td></tr>
+        <tr><td>D4 7/8</td><td>Chamonix Airbnb（260 Rue Joseph Vallot）</td><td>🏠 Airbnb（已订）</td><td>1035m</td><td>6-10°C</td></tr>
+        <tr><td>D5 7/9</td><td>Lacs de Chéserys 湖边</td><td>⛺ 露营（最冷）</td><td>2200m</td><td><strong>-1~3°C</strong></td></tr>
         <tr><td>D6 7/10</td><td>Camping des Glaciers, La Fouly</td><td>⛺ 露营</td><td>1600m</td><td>2-7°C</td></tr>
-        <tr><td>D7 7/11</td><td>库马约尔酒店</td><td>🏠 酒店</td><td>1224m</td><td>—</td></tr>
+        <tr><td>D7 7/11</td><td>ih hotel Courmayeur</td><td>🏠 酒店（已订）</td><td>1224m</td><td>—</td></tr>
       </tbody>
     </table>
   </div>
-  <div class="callout blue"><strong>地图说明：</strong>计划阶段用 outdooractive 地图；出发前会在 YAMAP（群里会员最多）添加完整登山路线。里程数中直线为交通工具线路，会导致总里程虚高，优先看按天划分的路线。</div>
+  <div class="callout blue"><strong>📌 出行须知：</strong>① 补给——D2 沿途及 Les Chapieux 物资有限，在 Courmayeur 提前买好；D5/D6 连续两露营，在霞慕尼备足。② 信号——Les Chapieux 一带大概率无信号，重要联络提前安排。③ 接驳——D2/D3/D7 见上方各日时刻表；D6 瑞士邮政巴士 215 下午班次待补。④ 保护区——D3 经 Contamines-Montjoie 保护区、D5 Chéserys 露营有专门规定，务必遵守。</div>
 </section>
 
 <section id="fitness">
   <h2><span class="num">02</span>强度与体力分配</h2>
-  <div class="sec-summary">7 天 4 重 2 中 1 轻 · 累计下降比爬升更伤膝 · 护膝 5 天全戴(D1试戴/D5看状态) · 多段缆车巴士接驳主动护膝</div>
+  <div class="sec-summary">GPX 实测：总爬升 7110m（比旧版高 ~2000m）· 5 重 2 中 · D1 开局即大爬升、D3 下降最大、D7 冲最高点 · 护膝按下降量逐日调 · 多段缆车巴士接驳主动护膝</div>
 
-  <h3>📊 每日强度总览</h3>
+  <h3>📊 每日强度总览（GPX 实测）</h3>
   <div class="table-wrap">
     <table>
       <thead><tr><th>日</th><th>距离</th><th>爬升</th><th>下降</th><th>强度</th><th>关键挑战</th></tr></thead>
       <tbody>
-        <tr><td><b>D1</b> 7/5</td><td>7-12km</td><td>+600m</td><td>-85m</td><td><span class="intensity int-light">轻</span></td><td>纯上坡热身，膝盖几乎无冲击</td></tr>
-        <tr><td><b>D2</b> 7/6</td><td>19km</td><td>+1000m</td><td><b>-1000m</b></td><td><span class="intensity int-hard">重</span></td><td>全程最长 + 碎石坡 + 大下降</td></tr>
-        <tr><td><b>D3</b> 7/7</td><td>15.3km</td><td>+935m</td><td><b>-1274m</b></td><td><span class="intensity int-hard">重</span></td><td>5km 硬拔 900m + 罗马古道湿滑长降（降幅全程最大）</td></tr>
-        <tr><td><b>D4</b> 7/8</td><td>13km</td><td>+1100m</td><td>-600m</td><td><span class="intensity int-hard">重</span></td><td>Col de Tricot 后急陡降，时间关卡赶缆车</td></tr>
-        <tr><td><b>D5</b> 7/9</td><td>14.9km</td><td>+631m</td><td>-972m</td><td><span class="intensity int-mid">中</span></td><td>缆车省上坡，下午仍有较长下降</td></tr>
-        <tr><td><b>D6</b> 7/10</td><td>12-18km</td><td>+450~900m</td><td><b>-1250m</b></td><td><span class="intensity int-hard">重</span></td><td>铁梯暴露段 + 大下降到瑞士</td></tr>
-        <tr><td><b>D7</b> 7/11</td><td>河谷+大拔</td><td>+500m</td><td>-800m</td><td><span class="intensity int-mid">中</span></td><td>冲全程最高 2537m + 碎石陡降，收官累计疲劳最重</td></tr>
+        <tr><td><b>D1</b> 7/5</td><td>12.2km</td><td><b>+1410m</b></td><td>-650m</td><td><span class="intensity int-hard">重</span></td><td>开局即硬拔 1410m（旧版严重低估）+ Mont Chétif 岩石陡坡 24%</td></tr>
+        <tr><td><b>D2</b> 7/6</td><td>19.1km</td><td>+1000m</td><td><b>-1180m</b></td><td><span class="intensity int-hard">重</span></td><td>全程最长 + 碎石坡 + 大下降</td></tr>
+        <tr><td><b>D3</b> 7/7</td><td>16.8km</td><td>+990m</td><td><b>-1320m</b></td><td><span class="intensity int-hard">重</span></td><td>硬拔 900m 翻 Bonhomme + 罗马古道湿滑长降（<b>降幅全程最大</b>）</td></tr>
+        <tr><td><b>D4</b> 7/8</td><td>11.7km</td><td><b>+1270m</b></td><td>-640m</td><td><span class="intensity int-hard">重</span></td><td>Col de Tricot 大爬升，时间关卡赶 Bellevue 缆车</td></tr>
+        <tr><td><b>D5</b> 7/9</td><td>12.4km</td><td>+510m</td><td>-750m</td><td><span class="intensity int-mid">中</span></td><td>缆车上 Brévent 省上坡，高位横切，最冷露营夜</td></tr>
+        <tr><td><b>D6</b> 7/10</td><td>12.8km</td><td>+950m</td><td>-970m</td><td><span class="intensity int-hard">重</span></td><td>Posettes 天际线 + 下降到 Col de Balme，接驳入瑞士</td></tr>
+        <tr><td><b>D7</b> 7/11</td><td>14.6km</td><td><b>+980m</b></td><td>-810m</td><td><span class="intensity int-hard">重</span></td><td>硬拔近千米冲全程最高 2537m + 碎石陡降，收官疲劳最重</td></tr>
       </tbody>
     </table>
   </div>
+  <div class="callout red"><strong>⚠️ 与旧规划的最大差异：</strong>新 GPX 显示 <strong>D1 爬升 +1410m</strong>（旧版只算 +600m）、<strong>D7 +980m</strong>（旧版 +500m）。<strong>D1 不再是轻松热身日</strong>——开局第一天就是重强度，需调整体能预期，别把力气留太多在后面。全程 7 天里有 <strong>5 个重强度日</strong>。</div>
 
   <h3>📈 7 日强度曲线（爬升 vs 下降）</h3>
   <div style="background:#fff; border:1px solid var(--line); border-radius:14px; padding:16px 18px; margin:14px 0;">
@@ -517,23 +522,23 @@ footer a{color:var(--ice-l)}
       <span style="display:flex; align-items:center; gap:6px;"><span style="width:12px; height:12px; border-radius:3px; background:#D85A30;"></span>当日下降（伤膝主因）</span>
     </div>
     <div style="position:relative; width:100%; height:300px;">
-      <canvas id="climbChart" role="img" aria-label="TMB七天每日爬升与下降柱状对比图">D2/D3/D6 下降均超千米，膝盖冲击最大。</canvas>
+      <canvas id="climbChart" role="img" aria-label="TMB七天每日爬升与下降柱状对比图">D1/D4 爬升最大（均超 1270m），D2/D3 下降超千米，膝盖冲击最大。</canvas>
     </div>
   </div>
 
   <h3>🦵 护膝佩戴策略</h3>
-  <p>髂胫束疼痛（ITBS）只在<strong>下坡</strong>发作，所以护膝按"<strong>当日下降量</strong>"决定，不跟里程走。你的羊毛压缩护膝连戴数天不会削弱肌肉，唯一代价是闷汗——所以把唯一纯上坡的 D1 留给膝盖透气。</p>
+  <p>髂胫束疼痛（ITBS）只在<strong>下坡</strong>发作，所以护膝按"<strong>当日下降量</strong>"决定，不跟里程走。你的羊毛压缩护膝连戴数天不会削弱肌肉，唯一代价是闷汗。<strong>新 GPX 显示 D1 也有 -650m 下降</strong>（旧版误以为纯上坡），所以 D1 起就建议戴——<strong>7 天全程都戴</strong>，没有可以省的纯上坡日了。</p>
   <div class="table-wrap">
     <table class="knee-table">
       <thead><tr><th>日</th><th>下降</th><th>佩戴</th><th>松紧调节建议（短裤贴肤时可调）</th></tr></thead>
       <tbody>
-        <tr><td><b>D1</b></td><td>-85m</td><td><span class="kt-off">不戴</span></td><td>纯上坡，膝盖放松透气；作为<strong>试戴观察日</strong>，若下坡有异样改全程戴</td></tr>
-        <tr><td><b>D2</b></td><td>-1000m</td><td><span class="kt-tight">戴</span></td><td>上午横切阳台路<b>放松</b>；过 Col de la Seigne 进入下降段<b>调紧</b></td></tr>
-        <tr><td><b>D3</b></td><td>-1274m</td><td><span class="kt-tight">戴</span></td><td>晨起硬拔段<b>放松</b>；翻 Col du Bonhomme 后进罗马古道长降全程<b>调到最紧</b>（降幅最大日）</td></tr>
-        <tr><td><b>D4</b></td><td>-600m</td><td><span class="kt-tight">戴</span></td><td>登 Col de Tricot 前<b>放松</b>；垭口后急陡降<b>调紧</b>，到 Bellevue 转缆车即可松开</td></tr>
-        <tr><td><b>D5</b></td><td>-972m</td><td><span class="kt-loose">看状态</span></td><td>缆车上山几乎无爬升；若 D2-D4 膝盖有酸胀<b>就戴并在下午下降段调紧</b>，否则可不戴</td></tr>
-        <tr><td><b>D6</b></td><td>-1250m</td><td><span class="kt-tight">戴</span></td><td>山脊/铁梯段<b>中等</b>（要灵活屈膝）；下撤瑞士的大降段<b>调紧</b></td></tr>
-        <tr><td><b>D7</b></td><td>-800m</td><td><span class="kt-tight">戴</span></td><td>冲 Grand Col Ferret 上坡<b>放松</b>；垭口后碎石陡降<b>调到最紧</b>（疲劳累积，最易出事）</td></tr>
+        <tr><td><b>D1</b></td><td>-650m</td><td><span class="kt-tight">戴</span></td><td>前段上坡冲顶 Maison Vieille <b>放松</b>；下午往山屋及冲 Mont Chétif 的下坡段<b>调紧</b>（GPX 实测有 650m 下降，开局别大意）</td></tr>
+        <tr><td><b>D2</b></td><td>-1180m</td><td><span class="kt-tight">戴</span></td><td>上午横切阳台路<b>放松</b>；过 Col de la Seigne 进入下降段<b>调紧</b></td></tr>
+        <tr><td><b>D3</b></td><td>-1320m</td><td><span class="kt-tight">戴</span></td><td>晨起硬拔段<b>放松</b>；翻 Col du Bonhomme 后进罗马古道长降全程<b>调到最紧</b>（<b>降幅最大日</b>）</td></tr>
+        <tr><td><b>D4</b></td><td>-640m</td><td><span class="kt-tight">戴</span></td><td>登 Col de Tricot 前<b>放松</b>；垭口后急陡降<b>调紧</b>，到 Bellevue 转缆车即可松开</td></tr>
+        <tr><td><b>D5</b></td><td>-750m</td><td><span class="kt-loose">看状态</span></td><td>缆车上 Brévent 几乎无爬升；若 D1-D4 膝盖有酸胀<b>就戴并在下降段调紧</b>，否则可放松</td></tr>
+        <tr><td><b>D6</b></td><td>-970m</td><td><span class="kt-tight">戴</span></td><td>Posettes 山脊段<b>中等</b>（要灵活屈膝）；下撤 Col de Balme 的大降段<b>调紧</b></td></tr>
+        <tr><td><b>D7</b></td><td>-810m</td><td><span class="kt-tight">戴</span></td><td>冲 Grand Col Ferret 上坡<b>放松</b>；垭口后碎石陡降<b>调到最紧</b>（疲劳累积，最易出事）</td></tr>
       </tbody>
     </table>
   </div>
@@ -546,15 +551,15 @@ footer a{color:var(--ice-l)}
     <table>
       <thead><tr><th>日</th><th>接驳点</th><th>方式</th><th>省掉的伤膝路段</th></tr></thead>
       <tbody>
-        <tr><td><b>D2</b></td><td>La Ville des Glaciers → Les Chapieux</td><td>🚌 Navette 接驳车</td><td>最后 5km 柏油路硬降</td></tr>
-        <tr><td><b>D3</b></td><td>Notre-Dame de la Gorge → Les Contamines</td><td>🚌 免费穿梭巴士</td><td>峡谷到镇中心的乏味下降</td></tr>
+        <tr><td><b>D2</b></td><td>La Ville des Glaciers → Les Chapieux</td><td>🚌 付费接驳车（末班~18:20）</td><td>最后伤膝柏油路</td></tr>
+        <tr><td><b>D3</b></td><td>ND de la Gorge → Chef Lieu 镇中心</td><td>🚌 巴士（夏季表待出/赶不上步行50min）</td><td>峡谷到镇中心的乏味下降</td></tr>
         <tr><td><b>D4</b></td><td>Bellevue → Les Houches</td><td>🚡 缆车 + 1 路公交</td><td>800m 林间枯燥陡降</td></tr>
-        <tr><td><b>D6</b></td><td>Autannes → Le Tour</td><td>🚡 缆车 + 巴士/火车</td><td>900m 枯燥林道急降</td></tr>
-        <tr><td><b>D7</b></td><td>Arnouvaz → Courmayeur</td><td>🚌 绿色高山公交</td><td>Val Ferret 峡谷长距离下降</td></tr>
+        <tr><td><b>D6</b></td><td>Autannes → Le Tour → La Fouly</td><td>🚡 缆车 + 邮政巴士215 / 预约Van</td><td>枯燥林道急降</td></tr>
+        <tr><td><b>D7</b></td><td>Arp Nouvaz → Courmayeur</td><td>🚌 Val Ferret 免费班车（仅周六日）</td><td>Val Ferret 峡谷长距离下降</td></tr>
       </tbody>
     </table>
   </div>
-  <div class="callout red"><strong>⚠️ 时间关卡：</strong>D4 必须在 Bellevue 缆车站关闭前（约 17:00-17:30）赶到，建议 15:00 到站。错过缆车=被迫硬降 800m，膝盖代价很大。</div>
+  <div class="callout red"><strong>⚠️ 两个关键关卡：</strong>① <strong>D4</strong> 必须在 Bellevue 缆车站关闭前（约 17:00–17:30）赶到，建议 15:00 到站，否则被迫硬降 800m。② <strong>D7</strong> Val Ferret 班车<strong>仅周六日运行</strong>，7/11 是周六（✅），末班 ~20:07，每 20 分一班。</div>
 
   <h3>⚡ 体能节奏要点</h3>
   <div class="info-grid">
@@ -579,7 +584,7 @@ footer a{color:var(--ice-l)}
 
 <section id="supply">
   <h2><span class="num">03</span>路餐与补给</h2>
-  <div class="sec-summary">策略：正餐尽量当地买（肉类入境受限）· 早餐住宿地或前夜买面包饼干 · 白天路餐从国内带 · 每日按强度配比，冲顶段补含咖啡因能量胶</div>
+  <div class="sec-summary">策略：正餐尽量当地买（肉类入境受限）· 早餐住宿地或前夜买面包饼干 · 白天路餐从国内带 · 按新 GPX 强度上调（5 重日）每日配比，冲顶段补含咖啡因能量胶</div>
 
   <h3>🧭 补给总策略</h3>
   <div class="info-grid">
@@ -598,14 +603,14 @@ footer a{color:var(--ice-l)}
     <table class="supply-table">
       <thead><tr><th>日</th><th>强度</th><th>能量棒</th><th>坚果棒</th><th>能量胶 ☕</th><th>电解质</th><th>冲顶段</th></tr></thead>
       <tbody>
-        <tr><td><b>D1</b> 7/5</td><td><span class="intensity int-light">轻 +600m</span></td><td>2</td><td>1</td><td>—</td><td>2</td><td>无</td></tr>
+        <tr><td><b>D1</b> 7/5</td><td><span class="intensity int-hard">重 +1410m</span></td><td><b>3</b></td><td>1</td><td>1</td><td>3</td><td>硬拔到 Maison Vieille / Mont Chétif</td></tr>
         <tr><td><b>D2</b> 7/6</td><td><span class="intensity int-hard">重 19km/+1000m</span></td><td><b>3</b></td><td>1</td><td>1</td><td>3</td><td>Col de la Seigne 2516m</td></tr>
-        <tr><td><b>D3</b> 7/7</td><td><span class="intensity int-hard">重 +935m 硬拔</span></td><td><b>3</b></td><td>1</td><td>1</td><td>3</td><td>Col du Bonhomme 2329m</td></tr>
-        <tr><td><b>D4</b> 7/8</td><td><span class="intensity int-mid">中 +1100m</span></td><td>2</td><td>1</td><td>1</td><td>2</td><td>Col de Tricot 2120m</td></tr>
-        <tr><td><b>D5</b> 7/9</td><td><span class="intensity int-light">轻（缆车助）</span></td><td>2</td><td>1</td><td>—</td><td>2</td><td>无</td></tr>
-        <tr><td><b>D6</b> 7/10</td><td><span class="intensity int-hard">重 山脊+铁梯</span></td><td><b>3</b></td><td>1</td><td>1 备</td><td>3</td><td>Col de Balme 2191m</td></tr>
+        <tr><td><b>D3</b> 7/7</td><td><span class="intensity int-hard">重 +990m 硬拔</span></td><td><b>3</b></td><td>1</td><td>1</td><td>3</td><td>Col du Bonhomme 2329m</td></tr>
+        <tr><td><b>D4</b> 7/8</td><td><span class="intensity int-hard">重 +1270m</span></td><td><b>3</b></td><td>1</td><td>1</td><td>3</td><td>Col de Tricot</td></tr>
+        <tr><td><b>D5</b> 7/9</td><td><span class="intensity int-mid">中（缆车助）</span></td><td>2</td><td>1</td><td>—</td><td>2</td><td>无</td></tr>
+        <tr><td><b>D6</b> 7/10</td><td><span class="intensity int-hard">重 山脊+大降</span></td><td><b>3</b></td><td>1</td><td>1 备</td><td>3</td><td>Col de Balme 2191m</td></tr>
         <tr><td><b>D7</b> 7/11</td><td><span class="intensity int-hard">重 冲最高点</span></td><td><b>3</b></td><td>1</td><td><b>1</b></td><td>3</td><td><b>Grand Col Ferret 2537m ★</b></td></tr>
-        <tr style="background:#E4EFE8; font-weight:700;"><td colspan="2">7 天合计（实吃）</td><td>18</td><td>7</td><td>5</td><td>18</td><td>—</td></tr>
+        <tr style="background:#E4EFE8; font-weight:700;"><td colspan="2">7 天合计（实吃）</td><td>20</td><td>7</td><td>6</td><td>20</td><td>—</td></tr>
       </tbody>
     </table>
   </div>
@@ -616,10 +621,10 @@ footer a{color:var(--ice-l)}
     <table>
       <thead><tr><th>日</th><th>早餐</th><th>行进路上</th><th>午休</th><th>晚餐</th></tr></thead>
       <tbody>
-        <tr><td><b>D1</b></td><td>库马约尔酒店 / 出发前超市</td><td>能量棒 ×2（每 1.5h 一根）</td><td>山屋到得早，Maison Vieille 吃</td><td>🏠 山屋餐</td></tr>
+        <tr><td><b>D1</b></td><td>库马约尔酒店 / 出发前超市</td><td><b>能量棒 ×3</b>（开局硬拔 1410m）</td><td>到山屋早，Maison Vieille 吃</td><td>🏠 山屋餐</td></tr>
         <tr><td><b>D2</b></td><td>山屋早餐</td><td><b>能量棒 ×3</b>（19km 最长）</td><td>坚果棒 ×1 + 面包奶酪</td><td>⛺ 超市即食意面/饭</td></tr>
-        <tr><td><b>D3</b></td><td>露营：当地买的麦片/饼干/面包</td><td>能量棒 ×3（5km 硬拔 900m）</td><td>Refuge de la Balme 热食 或坚果棒</td><td>🏠 Les Contamines 镇上吃</td></tr>
-        <tr><td><b>D4</b></td><td>公寓 / 超市</td><td>能量棒 ×2</td><td>Chalets de Miage 蓝莓派 ☕</td><td>🏠 霞慕尼餐厅（补给日）</td></tr>
+        <tr><td><b>D3</b></td><td>露营：当地买的麦片/饼干/面包</td><td>能量棒 ×3（硬拔 900m）</td><td>Refuge de la Balme 热食 或坚果棒</td><td>🏠 Les Contamines 镇上吃</td></tr>
+        <tr><td><b>D4</b></td><td>公寓 / 超市</td><td><b>能量棒 ×3</b>（+1270m）</td><td>Chalets de Miage 蓝莓派 ☕</td><td>🏠 霞慕尼餐厅（补给日）</td></tr>
         <tr><td><b>D5</b></td><td>霞慕尼买面包带走</td><td>能量棒 ×2（缆车省力）</td><td>湖边坚果棒 ×1</td><td>⛺ 霞慕尼买的冻干/即食</td></tr>
         <tr><td><b>D6</b></td><td>露营：麦片/饼干/面包</td><td>能量棒 ×3</td><td>Col de Balme 垭口坚果棒 ×1</td><td>⛺ 冻干/即食</td></tr>
         <tr><td><b>D7</b></td><td>露营：麦片/饼干/面包</td><td>能量棒 ×3</td><td>垭口顶 / Refuge Elena 路粮</td><td>🏠 库马约尔餐厅庆功</td></tr>
@@ -645,18 +650,28 @@ footer a{color:var(--ice-l)}
       <div class="fc-use">19km 最长 + 碎石拔升，后半救急</div>
       <span class="fc-tag" style="background:#D85A30">建议用</span>
     </div>
+    <div class="fuel-card" style="background:#FAECE7; border-color:#993C1D">
+      <div class="fc-name">D1 · 开局硬拔</div>
+      <div class="fc-use">第一天即 +1410m（新 GPX），后段乏力可补</div>
+      <span class="fc-tag" style="background:#D85A30">建议用</span>
+    </div>
+    <div class="fuel-card" style="background:#FAECE7; border-color:#993C1D">
+      <div class="fc-name">D4 · Col de Tricot</div>
+      <div class="fc-use">+1270m 大爬升，赶缆车前提神</div>
+      <span class="fc-tag" style="background:#D85A30">建议用</span>
+    </div>
   </div>
-  <div class="callout gold" style="margin-top:10px"><strong>用法：</strong>在腿发空、还差最后 100-200m 升高时挤一支，配两口水。<strong>不渴也要补水</strong>。D4、D6 各备一支机动，没劲再用。</div>
+  <div class="callout gold" style="margin-top:10px"><strong>用法：</strong>在腿发空、还差最后 100-200m 升高时挤一支，配两口水。<strong>不渴也要补水</strong>。D6 备一支机动，没劲再用。</div>
 
   <h3>📦 总采购量</h3>
   <div class="info-grid">
     <div class="info-box">
       <h4>🎒 从国内带（含 ~15% 余量）</h4>
       <ul style="margin:6px 0 0 18px; font-size:0.9rem; color:var(--ink2); line-height:1.9">
-        <li>能量棒 <strong>21 根</strong>（吃 18 + 备 3）</li>
+        <li>能量棒 <strong>23 根</strong>（吃 20 + 备 3）</li>
         <li>坚果棒 <strong>8 根</strong></li>
         <li>蛋白棒 <strong>3 根</strong>（营地恢复用）</li>
-        <li>含咖啡因能量胶 <strong>6 支</strong> <span class="caf-note">☕ 咖啡因</span></li>
+        <li>含咖啡因能量胶 <strong>7 支</strong>（用 6 + 备 1）<span class="caf-note">☕ 咖啡因</span></li>
         <li>电解质泡腾片 <strong>20 片（一管）</strong></li>
       </ul>
     </div>
@@ -709,7 +724,7 @@ footer a{color:var(--ice-l)}
       <li>墨镜 / 防晒帽 / 头巾 Buff / 防晒手套 <span class="gw">155g ~</span></li>
       <li>Black Diamond Distance 登山杖（一对）<span class="loc loc-side">手持</span><span class="gw">368g *</span></li>
     </ul>
-    <p class="gear-note">穿在身上 / 握在手上，<b>不计入背包负重</b>（含杖共约 1.93 kg）。</p>
+    <p class="gear-note">穿在身上 / 握在手上，<b>不计入背包负重</b>（含杖共约 1.93 kg）。⚠️ D1 Mont Chétif 从 Courmayeur 侧攀登有岩石地形（坡度 ~24%、需手脚并用），中帮 GTX 鞋 + 双杖正好应对；遇手脚并用路段收杖挂包。装备无需额外增减。</p>
   </details>
 
   <details class="gear-cat">
@@ -1075,7 +1090,7 @@ footer a{color:var(--ice-l)}
 
 <footer>
   <div class="ft-title">⛰ 环勃朗峰 TMB 徒步手册</div>
-  <p>Author: yirenguo · v16 · 2026-06-25</p>
+  <p>Author: yirenguo · v17 · 2026-06-26</p>
   <p style="margin-top:6px; font-size:0.8rem; color:#8DA89B">数据源：腾讯文档路书 + AccuWeather 2026年7月预报 + 大教堂 Fast-Track 票务 · 价格/时刻查询于 2026-06，如有变动以官方为准</p>
 </footer>
 
@@ -1090,8 +1105,8 @@ footer a{color:var(--ice-l)}
     data:{
       labels:['D1','D2','D3','D4','D5','D6','D7'],
       datasets:[
-        {label:'爬升',data:[600,1000,935,1100,631,900,500],backgroundColor:'#639922',borderRadius:4},
-        {label:'下降',data:[85,1000,1274,600,972,1250,800],backgroundColor:'#D85A30',borderRadius:4}
+        {label:'爬升',data:[1410,1000,990,1270,510,950,980],backgroundColor:'#639922',borderRadius:4},
+        {label:'下降',data:[650,1180,1320,640,750,970,810],backgroundColor:'#D85A30',borderRadius:4}
       ]
     },
     options:{
@@ -1113,52 +1128,53 @@ footer a{color:var(--ice-l)}
   var dayColors={0:'#16241D',1:'#1B3A2B',2:'#C46A2B',3:'#2D8C57',4:'#D6A11E',5:'#2E8FC9',6:'#8159C6',7:'#D8392C'};
   // 宿点：dir = 标签贴在标记的哪个方向（leaflet tooltip direction）
   var stops=[
-    {d:1,name:'Rifugio Maison Vieille',ll:[45.7780,6.9430],type:'hotel',short:'D1 山屋',alt:'1989m',dir:'bottom',meta:'D1 山屋 · 1989m',note:'Col Checrouit 垭口山屋，可轻装冲顶 Mont Chétif 2343m'},
-    {d:2,name:'Les Chapieux',ll:[45.6750,6.7860],type:'camp',short:'D2 露营',alt:'1550m',dir:'bottom',meta:'D2 露营 · 1550m',note:'翻 Col de la Seigne 2516m 进入法国，巴士接驳避开柏油路'},
-    {d:3,name:'Les Contamines-Montjoie',ll:[45.8210,6.7270],type:'hotel',short:'D3 公寓',alt:'1167m',dir:'left',meta:'D3 公寓 · 1167m',note:'翻 Col du Bonhomme 2329m，走罗马古道，免费巴士进镇'},
-    {d:4,name:'霞慕尼 Chamonix',ll:[45.9237,6.8694],type:'hotel',short:'D4 酒店',alt:'1035m',dir:'left',meta:'D4 酒店 · 1035m',note:'翻 Col de Tricot 2120m，过 Bionnassay 悬索桥，Bellevue 缆车下撤'},
-    {d:5,name:'切塞里湖 Lac Blanc',ll:[45.9760,6.8990],type:'camp',short:'D5 露营·最冷',alt:'2200m',dir:'top',meta:'D5 露营 · 2200m · 最冷',note:'缆车上 Planpraz 走南阳台路，白湖畔露营（19:00后扎营09:00前撤）'},
-    {d:6,name:'La Fouly 瑞士',ll:[45.9340,7.0960],type:'camp',short:'D6 露营',alt:'1600m',dir:'right',meta:'D6 露营 · 1600m',note:'翻 Col de Balme 2191m 入瑞士，缆车+巴士接驳到 Camping des Glaciers'},
-    {d:0,name:'库马约尔 Courmayeur',ll:[45.7906,6.9694],type:'startfinish',short:'起 / 终点',alt:'1224m',dir:'right',meta:'D1 起点 / D7 终点 · 1224m',note:'D1 从此出发；D7 翻全程最高 Grand Col Ferret 2537m 返意收官，取回寄存行李'}
+    {d:1,name:'Rifugio Maison Vieille',ll:[45.79074,6.93119],type:'hotel',short:'D1 山屋',alt:'1989m',dir:'bottom',meta:'D1 山屋 · 1989m',note:'Courmayeur 上方 Col Checrouit；D1 爬升 +1410m，可轻装冲顶 Mont Chétif 2343m'},
+    {d:2,name:'Bivouac des Chapieux',ll:[45.7274,6.7675],type:'camp',short:'D2 露营',alt:'1550m',dir:'bottom',meta:'D2 露营 · 1550m',note:'翻 Col de la Seigne 2516m 进入法国，La Ville des Glaciers 接驳车到 Les Chapieux'},
+    {d:3,name:'Les Contamines-Montjoie',ll:[45.8222,6.72695],type:'hotel',short:'D3 公寓',alt:'1167m',dir:'left',meta:'D3 公寓 · 1167m',note:'翻 Col du Bonhomme 2329m，走罗马古道，ND de la Gorge 巴士进镇'},
+    {d:4,name:'霞慕尼 Chamonix',ll:[45.9237,6.8694],type:'hotel',short:'D4 Airbnb',alt:'1035m',dir:'left',meta:'D4 Airbnb · 1035m',note:'翻 Col de Tricot，过 Bionnassay 悬索桥，Bellevue 缆车下 Les Houches 转公交进城'},
+    {d:5,name:'Lacs de Chéserys',ll:[45.98253,6.89773],type:'camp',short:'D5 露营·最冷',alt:'2200m',dir:'top',meta:'D5 露营 · 2200m · 最冷',note:'缆车上 Le Brévent，经 Tête aux Vents 到白湖群露营（19:00后扎营09:00前撤）'},
+    {d:6,name:'La Fouly 瑞士',ll:[45.93438,7.09532],type:'camp',short:'D6 露营',alt:'1600m',dir:'right',meta:'D6 露营 · 1600m',note:'翻 Col de Balme 2191m 入瑞士，Autannes 缆车+邮政巴士215/Van 到 Camping des Glaciers'},
+    {d:0,name:'库马约尔 Courmayeur',ll:[45.79216,6.96934],type:'startfinish',short:'起 / 终点',alt:'1224m',dir:'right',meta:'D1 起点 / D7 终点 · 1224m',note:'D1 从此出发；D7 翻全程最高 Grand Col Ferret 2537m 返意收官，住 ih hotel'}
   ];
   var passes=[
-    {name:'Col de la Seigne',ll:[45.7660,6.8050],alt:'2516m',c:'#C46A2B',dir:'top'},
-    {name:'Col du Bonhomme',ll:[45.7340,6.7170],alt:'2329m',c:'#2D8C57',dir:'left'},
-    {name:'Col de Tricot',ll:[45.8590,6.7860],alt:'2120m',c:'#D6A11E',dir:'top'},
-    {name:'Col de Balme',ll:[46.0330,6.9450],alt:'2191m',c:'#8159C6',dir:'top'},
-    {name:'Grand Col Ferret ★最高',ll:[45.8870,7.1000],alt:'2537m',c:'#D8392C',dir:'right'}
+    {name:'Col de la Seigne',ll:[45.7873,6.8030],alt:'2516m',c:'#C46A2B',dir:'top'},
+    {name:'Col du Bonhomme',ll:[45.7330,6.7080],alt:'2329m',c:'#2D8C57',dir:'left'},
+    {name:'Col de Tricot',ll:[45.8430,6.7660],alt:'~2100m',c:'#D6A11E',dir:'left'},
+    {name:'Col de Balme',ll:[46.0204,6.9705],alt:'2191m',c:'#8159C6',dir:'top'},
+    {name:'Grand Col Ferret ★最高',ll:[45.8930,7.0930],alt:'2537m',c:'#D8392C',dir:'right'}
   ];
   var legInfo={
-    1:{ll:[45.7850,6.9560],txt:'D1 · 7-12km · +600m',dir:'right'},
-    2:{ll:[45.7250,6.8000],txt:'D2 · 19km · +1000m',dir:'bottom'},
-    3:{ll:[45.7770,6.7000],txt:'D3 · 15km · +935m',dir:'left'},
-    4:{ll:[45.8950,6.8000],txt:'D4 · 13km · +1100m',dir:'left'},
-    5:{ll:[45.9620,6.8840],txt:'D5 · 15km · +631m',dir:'left'},
-    6:{ll:[46.0080,7.0250],txt:'D6 · 12-18km',dir:'top'},
-    7:{ll:[45.8450,7.0600],txt:'D7 · +500m → 最高',dir:'right'}
+    1:{ll:[45.7890,6.9450],txt:'D1 · 12.2km · +1410m',dir:'top'},
+    2:{ll:[45.7560,6.8550],txt:'D2 · 19.1km · +1000m',dir:'left'},
+    3:{ll:[45.7300,6.7150],txt:'D3 · 16.8km · +990m',dir:'bottom'},
+    4:{ll:[45.8480,6.7560],txt:'D4 · 11.7km · +1270m',dir:'left'},
+    5:{ll:[45.9620,6.8700],txt:'D5 · 12.4km · +510m',dir:'left'},
+    6:{ll:[46.0080,6.9300],txt:'D6 · 12.8km · +950m',dir:'top'},
+    7:{ll:[45.8950,7.0850],txt:'D7 · 14.6km · +980m',dir:'right'}
   };
-  var legs={
-    1:[[45.7906,6.9694],[45.7820,6.9550],[45.7780,6.9430]],
-    2:[[45.7780,6.9430],[45.7700,6.8600],[45.7660,6.8050],[45.7300,6.7900],[45.6750,6.7860]],
-    3:[[45.6750,6.7860],[45.7340,6.7170],[45.7800,6.7150],[45.8210,6.7270]],
-    4:[[45.8210,6.7270],[45.8590,6.7860],[45.8950,6.8200],[45.9237,6.8694]],
-    5:[[45.9237,6.8694],[45.9480,6.8800],[45.9760,6.8990]],
-    6:[[45.9760,6.8990],[46.0100,6.9200],[46.0330,6.9450],[45.9700,7.0400],[45.9340,7.0960]],
-    7:[[45.9340,7.0960],[45.9100,7.0980],[45.8870,7.1000],[45.8400,7.0500],[45.7906,6.9694]]
-  };
+  // GPX 实测轨迹（实线徒步段）
+  var legs={1:[[45.79216,6.96934],[45.79143,6.96978],[45.79205,6.96881],[45.7928,6.96752],[45.79216,6.96537],[45.79078,6.96583],[45.79071,6.96485],[45.78995,6.96429],[45.78938,6.96296],[45.78881,6.96133],[45.78867,6.9596],[45.78946,6.95901],[45.7905,6.95846],[45.79092,6.95747],[45.79104,6.95651],[45.79158,6.95559],[45.79044,6.95493],[45.79106,6.95396],[45.79154,6.95299],[45.79185,6.95098],[45.7918,6.94934],[45.79206,6.94889],[45.79233,6.94783],[45.79229,6.94631],[45.7921,6.94393],[45.79201,6.94228],[45.79192,6.94053],[45.79231,6.93861],[45.79282,6.93887],[45.79378,6.93821],[45.79329,6.9367],[45.79223,6.93593],[45.79137,6.9345],[45.79108,6.93272],[45.79084,6.93127],[45.79108,6.93272],[45.79137,6.9345],[45.79223,6.93593],[45.79329,6.9367],[45.79383,6.93801],[45.79389,6.93922],[45.79417,6.94092],[45.79445,6.94203],[45.7953,6.94208],[45.79626,6.94201],[45.79695,6.94296],[45.79786,6.94254],[45.79876,6.94322],[45.79876,6.94468],[45.79882,6.94575],[45.79935,6.94686],[45.7996,6.94812],[45.79953,6.94803],[45.79919,6.94691],[45.79874,6.94569],[45.79878,6.94459],[45.79872,6.94302],[45.79775,6.94249],[45.79694,6.94287],[45.79593,6.94153],[45.79499,6.94242],[45.79459,6.94169],[45.79409,6.94041],[45.79349,6.93908],[45.79358,6.93718],[45.79252,6.93604],[45.79158,6.93527],[45.79119,6.93313],[45.79087,6.93125],[45.79012,6.93024],[45.78949,6.92828],[45.78876,6.92702],[45.78793,6.9257],[45.78732,6.92448],[45.78634,6.92274],[45.78586,6.92118],[45.78502,6.92009],[45.78411,6.9187],[45.78475,6.91954],[45.78544,6.92074],[45.78616,6.92232],[45.78699,6.92398],[45.78764,6.92526],[45.78872,6.92681],[45.78949,6.92828],[45.79001,6.92983],[45.79074,6.93119]],2:[[45.79074,6.93119],[45.79008,6.93001],[45.78949,6.92828],[45.78876,6.92702],[45.78793,6.9257],[45.78732,6.92448],[45.78634,6.92274],[45.78586,6.92118],[45.78502,6.92009],[45.78411,6.9187],[45.78355,6.91687],[45.78279,6.91554],[45.78179,6.91475],[45.7811,6.9135],[45.78098,6.91193],[45.7801,6.91109],[45.77996,6.90969],[45.77925,6.90806],[45.77844,6.90667],[45.77736,6.90607],[45.77629,6.90549],[45.77522,6.90516],[45.77483,6.90368],[45.77378,6.90318],[45.77276,6.90218],[45.77223,6.90089],[45.77146,6.89992],[45.77098,6.89819],[45.77038,6.89675],[45.7704,6.89503],[45.77064,6.89351],[45.77121,6.89221],[45.77216,6.89112],[45.77213,6.89048],[45.77151,6.88933],[45.77042,6.88852],[45.76959,6.88742],[45.76861,6.88677],[45.76766,6.88666],[45.7683,6.88544],[45.76888,6.88375],[45.76953,6.88318],[45.77044,6.88223],[45.77142,6.88152],[45.77212,6.88067],[45.77298,6.87967],[45.77335,6.87823],[45.77411,6.87739],[45.77488,6.877],[45.77463,6.8756],[45.77483,6.87373],[45.77513,6.87218],[45.7754,6.87033],[45.77491,6.86847],[45.77417,6.86711],[45.77339,6.86609],[45.77309,6.86453],[45.77252,6.8631],[45.7725,6.86137],[45.77164,6.85933],[45.77098,6.85757],[45.77027,6.85507],[45.7695,6.85222],[45.76838,6.84817],[45.76839,6.84652],[45.7682,6.84476],[45.76757,6.84351],[45.76727,6.84223],[45.7663,6.84168],[45.76608,6.84036],[45.76639,6.83879],[45.76526,6.83823],[45.76412,6.83704],[45.76296,6.83601],[45.76208,6.83482],[45.76085,6.83365],[45.75986,6.83204],[45.75917,6.83061],[45.75831,6.82873],[45.75759,6.82752],[45.75641,6.82596],[45.75546,6.82405],[45.7548,6.82253],[45.75437,6.82109],[45.75428,6.81951],[45.75351,6.81831],[45.7526,6.81738],[45.75248,6.8158],[45.7519,6.8144],[45.75153,6.81241],[45.75159,6.81082],[45.75128,6.80933],[45.75094,6.80782],[45.75136,6.8062],[45.7507,6.80468],[45.74995,6.80319],[45.74944,6.8017],[45.74904,6.80021],[45.7485,6.79833],[45.7477,6.79706],[45.74715,6.79558],[45.74656,6.79398],[45.74608,6.79257],[45.74548,6.79142],[45.74439,6.79181],[45.7437,6.79297],[45.74293,6.79292],[45.74194,6.7921],[45.74153,6.79062],[45.74098,6.78927],[45.7398,6.78944],[45.73935,6.78799],[45.73879,6.78653],[45.73779,6.78572],[45.73687,6.78487],[45.73579,6.78423],[45.73509,6.7829],[45.73483,6.78251],[45.73514,6.78207],[45.73562,6.78183],[45.73555,6.78127],[45.73662,6.78139],[45.73598,6.78013],[45.73583,6.7793],[45.73583,6.77836],[45.73501,6.77803],[45.73382,6.77725],[45.73281,6.77616],[45.73211,6.77499],[45.73083,6.77352],[45.73003,6.77235],[45.72962,6.77097],[45.72879,6.76991],[45.72771,6.76932],[45.72745,6.76779],[45.7274,6.7675]],3:[[45.69542,6.73441],[45.69585,6.73382],[45.69642,6.73305],[45.69699,6.73285],[45.69697,6.73182],[45.69719,6.73102],[45.69725,6.72974],[45.69783,6.72839],[45.69846,6.72804],[45.69851,6.72748],[45.69964,6.72748],[45.70021,6.72801],[45.70102,6.72917],[45.70226,6.72985],[45.7034,6.7302],[45.70451,6.73008],[45.70527,6.72914],[45.70598,6.72974],[45.7068,6.73001],[45.70729,6.72856],[45.70804,6.72859],[45.70918,6.72814],[45.71039,6.72725],[45.71133,6.72595],[45.712,6.72524],[45.71265,6.72452],[45.71338,6.72477],[45.714,6.7252],[45.71484,6.72544],[45.71569,6.72541],[45.7166,6.72574],[45.71752,6.72595],[45.71841,6.72544],[45.71901,6.72391],[45.71977,6.72287],[45.72029,6.72171],[45.72099,6.72071],[45.72143,6.71982],[45.72214,6.71873],[45.72246,6.71732],[45.72354,6.71707],[45.72476,6.71668],[45.72553,6.71574],[45.72554,6.71397],[45.72616,6.71259],[45.72697,6.71149],[45.72792,6.71083],[45.72888,6.71022],[45.72988,6.70941],[45.73078,6.70886],[45.73166,6.70836],[45.73286,6.70845],[45.7339,6.7084],[45.73472,6.70703],[45.73575,6.70702],[45.73701,6.7077],[45.73786,6.70828],[45.7378,6.70924],[45.7386,6.71052],[45.73936,6.7119],[45.74001,6.71279],[45.7409,6.71371],[45.74195,6.7145],[45.74289,6.71547],[45.74418,6.71597],[45.74508,6.71669],[45.74615,6.71756],[45.74658,6.71759],[45.74692,6.71621],[45.7476,6.71502],[45.74854,6.71422],[45.7494,6.7128],[45.75009,6.71144],[45.75088,6.71023],[45.75208,6.70866],[45.75281,6.70674],[45.7535,6.70535],[45.75373,6.70373],[45.7544,6.70309],[45.7552,6.70243],[45.75571,6.7016],[45.75637,6.70207],[45.75733,6.70159],[45.7584,6.70164],[45.75943,6.70195],[45.76061,6.70229],[45.76171,6.70169],[45.76278,6.70153],[45.7637,6.70076],[45.76482,6.70099],[45.76605,6.70099],[45.76673,6.70239],[45.76764,6.70339],[45.76724,6.70438],[45.76775,6.70571],[45.76863,6.70653],[45.76937,6.70664],[45.76984,6.70807],[45.7705,6.70894],[45.76944,6.70934],[45.77045,6.71014],[45.77045,6.71124],[45.77108,6.71174],[45.77164,6.71259],[45.77221,6.71448],[45.77304,6.71565],[45.7745,6.71582],[45.77558,6.71549],[45.77674,6.71491],[45.77788,6.71426],[45.77927,6.71491],[45.78055,6.71506],[45.78167,6.71544],[45.78277,6.71498],[45.78355,6.71356],[45.78446,6.71277],[45.78555,6.71275],[45.78677,6.71301],[45.78799,6.71372],[45.78911,6.71431],[45.79065,6.71534],[45.79164,6.71615],[45.79248,6.7159]],4:[[45.8222,6.72695],[45.82127,6.72744],[45.82148,6.72905],[45.82194,6.73022],[45.82222,6.73152],[45.82259,6.73316],[45.82283,6.73456],[45.82292,6.73633],[45.823,6.73852],[45.82346,6.74092],[45.8242,6.74304],[45.82498,6.74381],[45.82542,6.74198],[45.82571,6.74121],[45.82672,6.74126],[45.82758,6.74158],[45.82835,6.74244],[45.82925,6.74283],[45.82915,6.74377],[45.83005,6.74474],[45.8309,6.74571],[45.83253,6.74604],[45.83372,6.74636],[45.83474,6.74714],[45.83567,6.74823],[45.83609,6.74949],[45.83547,6.75086],[45.83597,6.75216],[45.83628,6.75343],[45.83625,6.75481],[45.83702,6.75552],[45.83822,6.75565],[45.83928,6.75587],[45.83899,6.75665],[45.83903,6.75751],[45.8389,6.75898],[45.83927,6.7602],[45.84045,6.76004],[45.8411,6.76132],[45.84155,6.76266],[45.84239,6.76355],[45.8433,6.7643],[45.84406,6.76461],[45.84496,6.76535],[45.84561,6.76619],[45.84648,6.76686],[45.84711,6.76733],[45.84766,6.76786],[45.84819,6.76819],[45.8486,6.76891],[45.84913,6.76911],[45.84968,6.76955],[45.85001,6.7702],[45.85088,6.77011],[45.8526,6.77101],[45.85388,6.7717],[45.85498,6.77209],[45.8561,6.77292],[45.85715,6.77359],[45.85797,6.77491],[45.85871,6.77609],[45.85753,6.77566],[45.85621,6.77556],[45.85699,6.77676],[45.85765,6.77802],[45.85844,6.77884],[45.85914,6.7799],[45.86011,6.7806],[45.8608,6.78149],[45.86159,6.78273],[45.86221,6.78285],[45.86293,6.7834],[45.86366,6.78439],[45.86387,6.78581],[45.86434,6.78703],[45.8652,6.78698],[45.86572,6.78566],[45.86656,6.78528],[45.86766,6.78498],[45.86858,6.78442],[45.86945,6.78341],[45.87019,6.78227],[45.87155,6.78049],[45.87197,6.77859],[45.87274,6.77769],[45.87365,6.77893],[45.87363,6.77896]],5:[[45.93389,6.83788],[45.93359,6.8371],[45.9348,6.83734],[45.93591,6.83727],[45.93675,6.83757],[45.93729,6.8371],[45.93832,6.83745],[45.93929,6.8382],[45.93995,6.83917],[45.94048,6.84036],[45.94094,6.84165],[45.94129,6.84311],[45.94084,6.84447],[45.94086,6.84519],[45.94082,6.84556],[45.94062,6.84586],[45.94156,6.84611],[45.94204,6.84675],[45.94074,6.84743],[45.93939,6.84797],[45.93856,6.8487],[45.93888,6.84933],[45.94003,6.84917],[45.94135,6.84927],[45.94267,6.84971],[45.94375,6.85062],[45.94402,6.85194],[45.94453,6.85278],[45.94517,6.85436],[45.94591,6.856],[45.94643,6.85749],[45.9467,6.85946],[45.94678,6.86109],[45.94646,6.86293],[45.94696,6.86431],[45.94813,6.86488],[45.94917,6.86434],[45.9495,6.86518],[45.9507,6.86494],[45.95075,6.86658],[45.95118,6.86833],[45.95122,6.86992],[45.95138,6.87082],[45.95229,6.87094],[45.95329,6.87198],[45.95419,6.87244],[45.955,6.87336],[45.95603,6.87372],[45.95708,6.8741],[45.95818,6.87493],[45.95878,6.8761],[45.9586,6.87757],[45.95922,6.87862],[45.95873,6.88026],[45.95832,6.88178],[45.95872,6.88326],[45.95902,6.88476],[45.95969,6.88602],[45.95984,6.88732],[45.96083,6.88818],[45.96199,6.88744],[45.96297,6.88692],[45.96404,6.88781],[45.96494,6.88909],[45.9659,6.8897],[45.96678,6.89068],[45.9676,6.89186],[45.96871,6.89228],[45.96916,6.8938],[45.97015,6.89466],[45.97111,6.8954],[45.97194,6.89651],[45.97278,6.89755],[45.97396,6.89772],[45.97488,6.89839],[45.97592,6.89879],[45.97696,6.89916],[45.97789,6.89966],[45.97853,6.90115],[45.97868,6.90266],[45.97959,6.90351],[45.98019,6.9042],[45.98087,6.90454],[45.98151,6.9052],[45.98208,6.90612],[45.98231,6.90572],[45.98299,6.90494],[45.9832,6.9038],[45.98278,6.90234],[45.98264,6.90074],[45.98287,6.89931],[45.98234,6.89816],[45.98253,6.89773]],6:[[45.98253,6.89773],[45.98247,6.89818],[45.98294,6.89962],[45.98267,6.9009],[45.98287,6.9028],[45.98341,6.90432],[45.9827,6.9052],[45.98246,6.90656],[45.98255,6.9076],[45.98234,6.90836],[45.98276,6.90881],[45.98326,6.90986],[45.98402,6.91097],[45.98477,6.91201],[45.98542,6.91281],[45.98586,6.91368],[45.98684,6.91454],[45.98766,6.91565],[45.98838,6.91669],[45.9879,6.91726],[45.98783,6.91829],[45.98862,6.91921],[45.98938,6.92004],[45.99031,6.92068],[45.99112,6.92115],[45.99208,6.92161],[45.99267,6.92243],[45.99373,6.92311],[45.99438,6.92414],[45.99464,6.92528],[45.99538,6.92631],[45.99642,6.92616],[45.99743,6.92612],[45.99823,6.925],[45.99852,6.92572],[45.99867,6.92653],[45.99917,6.92787],[45.99945,6.92924],[45.99979,6.9297],[46.00064,6.92995],[46.00147,6.93059],[46.00225,6.93143],[46.00335,6.9321],[46.00433,6.93269],[46.00482,6.9329],[46.00551,6.93328],[46.00545,6.93233],[46.00516,6.93118],[46.00554,6.93073],[46.00635,6.93065],[46.00692,6.9315],[46.00778,6.93228],[46.00874,6.93348],[46.00969,6.93433],[46.01084,6.93508],[46.01184,6.93597],[46.0128,6.93686],[46.01397,6.93773],[46.01509,6.93839],[46.01622,6.9391],[46.01729,6.93965],[46.01816,6.94037],[46.01874,6.94168],[46.0198,6.94243],[46.02047,6.94344],[46.02139,6.94423],[46.02245,6.94498],[46.02337,6.94558],[46.02348,6.94672],[46.02343,6.94772],[46.02361,6.94927],[46.02427,6.95074],[46.0245,6.95231],[46.02485,6.95325],[46.02501,6.95389],[46.02501,6.955],[46.02605,6.95539],[46.02716,6.95544],[46.02777,6.95653],[46.02761,6.95772],[46.02893,6.95803],[46.02931,6.95833],[46.02964,6.9598],[46.02901,6.96104],[46.02891,6.96293],[46.02867,6.96468],[46.02889,6.96619],[46.02824,6.96746],[46.02783,6.96913],[46.02745,6.9704],[46.02645,6.9702],[46.0249,6.9704],[46.02378,6.97101],[46.02252,6.97126],[46.02122,6.97103],[46.02044,6.97051]],7:[[45.93438,7.09532],[45.93346,7.09535],[45.93187,7.09652],[45.93112,7.09743],[45.93003,7.0965],[45.92899,7.09548],[45.92803,7.09615],[45.92665,7.09671],[45.92563,7.09644],[45.92427,7.09761],[45.92315,7.09894],[45.92215,7.09994],[45.9208,7.10066],[45.91977,7.10156],[45.91937,7.10295],[45.91816,7.10313],[45.91729,7.10325],[45.91683,7.1046],[45.91569,7.10499],[45.91555,7.10386],[45.91549,7.10257],[45.91538,7.1014],[45.91493,7.1007],[45.91374,7.10028],[45.91282,7.09868],[45.91207,7.0971],[45.91129,7.09608],[45.91097,7.09734],[45.91132,7.09881],[45.91066,7.09977],[45.90962,7.09994],[45.90906,7.10127],[45.90838,7.10249],[45.90825,7.10404],[45.90789,7.1056],[45.90709,7.107],[45.9061,7.10755],[45.90576,7.10893],[45.90499,7.11034],[45.90393,7.11081],[45.90346,7.11181],[45.90262,7.1129],[45.90134,7.11309],[45.90024,7.11339],[45.89898,7.11269],[45.89992,7.11234],[45.89883,7.1117],[45.89783,7.11075],[45.89789,7.10992],[45.89708,7.10866],[45.89665,7.10715],[45.89629,7.10558],[45.89601,7.10403],[45.89554,7.10253],[45.89501,7.10096],[45.89426,7.09985],[45.89358,7.09845],[45.8928,7.09581],[45.89245,7.09447],[45.89207,7.09267],[45.89203,7.0909],[45.89196,7.08837],[45.89194,7.08679],[45.89139,7.08527],[45.89223,7.08413],[45.89214,7.08258],[45.89208,7.08115],[45.89154,7.0797],[45.89105,7.07856],[45.8897,7.07806],[45.88782,7.07777],[45.88663,7.07737],[45.88559,7.07601],[45.88502,7.07538],[45.88398,7.076],[45.88345,7.07538],[45.88264,7.07578],[45.88255,7.07454],[45.8828,7.07344],[45.88343,7.07227],[45.88348,7.07085],[45.88406,7.07003],[45.8834,7.0691],[45.88341,7.06839],[45.88418,7.0681],[45.88519,7.06736],[45.88505,7.0659],[45.8839,7.0654],[45.8827,7.06472],[45.88183,7.0644],[45.88065,7.06378],[45.87977,7.06302],[45.87891,7.06224],[45.87805,7.06147],[45.87717,7.06056],[45.87632,7.05961],[45.8754,7.05869],[45.87469,7.05763],[45.87378,7.0571],[45.87302,7.05619],[45.87256,7.055],[45.87205,7.05365],[45.87159,7.05206],[45.8709,7.05059],[45.87062,7.0498]]};
+  // 接驳段（虚线）：GPX 不连续处用接驳交通连接
+  var transfers=[{a:[45.7274,6.7675],b:[45.69542,6.73441],t:"D2 接驳车"},{a:[45.79248,6.7159],b:[45.8222,6.72695],t:"D3 巴士"},{a:[45.87363,6.77896],b:[45.93389,6.83788],t:"D4→D5 缆车/城镇"},{a:[46.02044,6.97051],b:[45.93438,7.09532],t:"D6 缆车+巴士"},{a:[45.87062,7.0498],b:[45.79216,6.96934],t:"D7 巴士回程"}];
 
   var map=L.map('tmb-map',{scrollWheelZoom:false,zoomControl:true});
   L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',{
     maxZoom:17,attribution:'Tiles © Esri'
   }).addTo(map);
 
-  // 路线（按天分段配色）
+  // 路线（GPX 实测轨迹，按天分段配色，实线=徒步）
   var allpts=[];
   Object.keys(legs).forEach(function(d){
     var col=dayColors[d];
-    L.polyline(legs[d],{color:'#fff',weight:8,opacity:0.7}).addTo(map);
-    L.polyline(legs[d],{color:col,weight:4.5,opacity:0.95}).addTo(map);
+    L.polyline(legs[d],{color:'#fff',weight:6,opacity:0.65}).addTo(map);
+    L.polyline(legs[d],{color:col,weight:3.5,opacity:0.95,lineJoin:'round',lineCap:'round'}).addTo(map);
     legs[d].forEach(function(p){allpts.push(p);});
+  });
+  // 接驳段（虚线，灰色）
+  transfers.forEach(function(t){
+    L.polyline([t.a,t.b],{color:'#7A8A82',weight:2.5,opacity:0.85,dashArray:'4,7'}).addTo(map)
+      .bindTooltip('🚌 '+t.t,{className:'transfer-tip',direction:'center',opacity:0.95});
+    allpts.push(t.a); allpts.push(t.b);
   });
 
   var markerRefs={};
@@ -1185,7 +1201,7 @@ footer a{color:var(--ice-l)}
     markerRefs['stop'+s.d]=mk;
   });
 
-  map.fitBounds(L.latLngBounds(allpts).pad(0.12));
+  map.fitBounds(L.latLngBounds(allpts).pad(0.08));
 
   // ===== 右侧节点列表 =====
   var list=document.getElementById('ms-list');
@@ -1205,7 +1221,8 @@ footer a{color:var(--ice-l)}
     stops.filter(function(s){return s.type!=='startfinish';}).sort(function(a,b){return a.d-b.d;}).forEach(function(s){
       var stay=s.type==='camp'?'⛺ 露营':'🏠 山屋/酒店';
       var sb=s.type==='camp'?'#F5E6D5':'#E0EFE6', sc=s.type==='camp'?'#B8702A':'#2D5C3D';
-      rows+=row(s.d,(s.type==='camp'?'camp':''),dayColors[s.d],s.name,'D'+s.d+' · '+s.alt+' · '+(s.type==='camp'?'露营':(s.d===3?'公寓':(s.d===1?'山屋':'酒店'))),stay,sb,sc,'stop'+s.d);
+      var typ=s.type==='camp'?'露营':(s.d===3?'公寓':(s.d===1?'山屋':(s.d===4?'Airbnb':'酒店')));
+      rows+=row(s.d,(s.type==='camp'?'camp':''),dayColors[s.d],s.name,'D'+s.d+' · '+s.alt+' · '+typ,stay,sb,sc,'stop'+s.d);
     });
     // 垭口分组
     rows+='<div class="ms-item" style="background:#FAFCFC"><div class="ms-body"><div class="ms-name" style="color:#5F6E66;font-size:0.78rem">⚑ 沿途垭口（最高点）</div></div></div>';
