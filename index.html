@@ -1090,7 +1090,7 @@ footer a{color:var(--ice-l)}
 
 <footer>
   <div class="ft-title">⛰ 环勃朗峰 TMB 徒步手册</div>
-  <p>Author: yirenguo · v17 · 2026-06-26</p>
+  <p>Author: yirenguo · v18 · 2026-06-26</p>
   <p style="margin-top:6px; font-size:0.8rem; color:#8DA89B">数据源：腾讯文档路书 + AccuWeather 2026年7月预报 + 大教堂 Fast-Track 票务 · 价格/时刻查询于 2026-06，如有变动以官方为准</p>
 </footer>
 
@@ -1217,13 +1217,15 @@ footer a{color:var(--ice-l)}
         +(stay?'<span class="ms-stay" style="background:'+stayBg+';color:'+stayColor+'">'+stay+'</span>':'')
         +'</div></div>';
     }
-    if(sf){rows+=row('⛰','',dayColors[0],sf.name,'起点 / 终点 · 1224m','🏠 D1出发 / D7收官','#E0EFE6','#2D5C3D','stop0');}
+    if(sf){rows+=row('⛰','',dayColors[0],sf.name,'起点 / 终点 · 1224m','🏠 D1 出发 / D7 收官入住','#E0EFE6','#2D5C3D','stop0');}
     stops.filter(function(s){return s.type!=='startfinish';}).sort(function(a,b){return a.d-b.d;}).forEach(function(s){
       var stay=s.type==='camp'?'⛺ 露营':'🏠 山屋/酒店';
       var sb=s.type==='camp'?'#F5E6D5':'#E0EFE6', sc=s.type==='camp'?'#B8702A':'#2D5C3D';
       var typ=s.type==='camp'?'露营':(s.d===3?'公寓':(s.d===1?'山屋':(s.d===4?'Airbnb':'酒店')));
       rows+=row(s.d,(s.type==='camp'?'camp':''),dayColors[s.d],s.name,'D'+s.d+' · '+s.alt+' · '+typ,stay,sb,sc,'stop'+s.d);
     });
+    // D7 收官回库马约尔（与 D1 起点同址，单独列出以免误以为缺 D7）
+    rows+=row('7','',dayColors[7],'库马约尔 Courmayeur','D7 · 1224m · ih hotel（收官入住）','🏠 酒店','#E0EFE6','#2D5C3D','stop0');
     // 垭口分组
     rows+='<div class="ms-item" style="background:#FAFCFC"><div class="ms-body"><div class="ms-name" style="color:#5F6E66;font-size:0.78rem">⚑ 沿途垭口（最高点）</div></div></div>';
     passes.forEach(function(p,i){
