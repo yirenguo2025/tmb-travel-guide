@@ -227,6 +227,20 @@ footer a{color:var(--ice-l)}
 .gear-cat>summary .gc-arrow{transition:transform .2s; color:var(--ink2); font-size:0.82rem}
 .gear-cat[open]>summary .gc-arrow{transform:rotate(90deg)}
 .gear-cat[open]>summary{border-bottom:1px solid var(--line)}
+/* ===== 装备大类（一级，含小类嵌套）===== */
+.gear-group{border:1px solid var(--line); border-radius:14px; margin:16px 0; overflow:hidden; background:#fff}
+.gear-group>summary{list-style:none; cursor:pointer; padding:15px 18px; display:flex; align-items:center; gap:11px; font-weight:800; font-size:1.1rem; color:#fff; background:linear-gradient(135deg,#2D5C3D,#3C7350); transition:filter .15s}
+.gear-group>summary::-webkit-details-marker{display:none}
+.gear-group>summary:hover{filter:brightness(1.08)}
+.gear-group>summary .gg-ico{font-size:1.25rem}
+.gear-group>summary .gg-wt{margin-left:auto; font-size:0.92rem; color:#EAF6EE; font-weight:800; font-family:'Inter',sans-serif; background:rgba(255,255,255,.16); padding:2px 11px; border-radius:20px}
+.gear-group>summary .gg-arrow{transition:transform .2s; color:#EAF6EE; font-size:0.9rem}
+.gear-group[open]>summary .gg-arrow{transform:rotate(90deg)}
+.gear-group>.gg-body{padding:6px 14px 10px}
+.gear-group>.gg-body>.gear-cat{margin:10px 0}
+.gear-group>.gg-body>.gear-cat>summary{font-size:0.98rem}
+.gear-group>.gg-body>.gear-cat>summary .gc-ico{font-size:1.05rem}
+.gear-group>.gg-body>.gear-note{margin:4px 4px 6px; font-size:0.82rem}
 /* 存储位置标签 */
 .loc{display:inline-block; font-size:0.71rem; font-weight:600; padding:1px 7px; border-radius:9px; margin-left:6px; white-space:nowrap; vertical-align:middle}
 .loc-top{background:#E8F2F9; color:#1C5C86}
@@ -691,7 +705,7 @@ footer a{color:var(--ice-l)}
 
 <section id="gear">
   <h2><span class="num">04</span>装备清单</h2>
-  <div class="sec-summary">按身上/行进备用/夜间/换用分层 + 背包收纳/睡眠/炊具/杂项/食物与水 · 含逐项重量、背负估算与背包内存储位置 · 点击各模块展开细项</div>
+  <div class="sec-summary">6 大类分层：身上衣物 / 衣物 / 睡眠 / 炊具·食物·饮水 / 电器·盥洗·杂项 / 背包收纳 · 每个大类含总重，下设小类亦各自统计 · 点击大类与小类逐级展开到细项</div>
 
   <h3>⚖️ 重量速览</h3>
   <div class="wt-summary">
@@ -711,22 +725,27 @@ footer a{color:var(--ice-l)}
   </div>
   <p class="gear-note" style="margin-bottom:6px">重量标注 <b>*</b>=实测 / <b>~</b>=型号估值。打包遵循「重物贴背居中、轻软压底、急用置顶」的重装徒步标准装法。</p>
 
-  <h3>👕 衣物大类</h3>
-
-  <details class="gear-cat" open>
-    <summary><span class="gc-ico">🥾</span>身上衣物（出发即穿戴）<span class="gc-wt">≈ 1.57 kg</span><span class="gc-arrow">›</span></summary>
-    <ul class="gear-list">
-      <li>长袖速干上衣（Pata C1 Sun，连帽防晒）<span class="gw">150g ~</span></li>
-      <li>山与道五袋短裤 <span class="gw">150g ~</span></li>
-      <li>双护膝（保尔范羊毛，一对）<span class="gw">200g ~</span></li>
-      <li>羊毛徒步袜 ×1 <span class="gw">60g ~</span></li>
-      <li>Salomon Ultra X4 GTX Mid 登山鞋 <span class="gw">850g *</span></li>
-      <li>墨镜 / 防晒帽 / 头巾 Buff / 防晒手套 <span class="gw">155g ~</span></li>
-      <li>Black Diamond Distance 登山杖（一对）<span class="loc loc-side">手持</span><span class="gw">368g *</span></li>
-    </ul>
-    <p class="gear-note">穿在身上 / 握在手上，<b>不计入背包负重</b>（含杖共约 1.93 kg）。⚠️ D1 Mont Chétif 从 Courmayeur 侧攀登有岩石地形（坡度 ~24%、需手脚并用），中帮 GTX 鞋 + 双杖正好应对；遇手脚并用路段收杖挂包。装备无需额外增减。</p>
+  <!-- ① 身上衣物大类（独立，不计入背包负重） -->
+  <details class="gear-group" open>
+    <summary><span class="gg-ico">🥾</span>身上衣物（出发即穿戴）<span class="gg-wt">≈ 1.57 kg</span><span class="gg-arrow">›</span></summary>
+    <div class="gg-body">
+      <ul class="gear-list">
+        <li>长袖速干上衣（Pata C1 Sun，连帽防晒）<span class="gw">150g ~</span></li>
+        <li>山与道五袋短裤 <span class="gw">150g ~</span></li>
+        <li>双护膝（保尔范羊毛，一对）<span class="gw">200g ~</span></li>
+        <li>羊毛徒步袜 ×1 <span class="gw">60g ~</span></li>
+        <li>Salomon Ultra X4 GTX Mid 登山鞋 <span class="gw">850g *</span></li>
+        <li>墨镜 / 防晒帽 / 头巾 Buff / 防晒手套 <span class="gw">155g ~</span></li>
+        <li>Black Diamond Distance 登山杖（一对）<span class="loc loc-side">手持</span><span class="gw">368g *</span></li>
+      </ul>
+      <p class="gear-note">穿在身上 / 握在手上，<b>不计入背包负重</b>（含杖共约 1.93 kg）。⚠️ D1 Mont Chétif 从 Courmayeur 侧攀登有岩石地形（坡度 ~24%、需手脚并用），中帮 GTX 鞋 + 双杖正好应对；遇手脚并用路段收杖挂包。装备无需额外增减。</p>
+    </div>
   </details>
 
+  <!-- ② 衣物大类（行进备用 + 夜间 + 换用） -->
+  <details class="gear-group">
+    <summary><span class="gg-ico">👕</span>衣物大类<span class="gg-wt">≈ 2.49 kg</span><span class="gg-arrow">›</span></summary>
+    <div class="gg-body">
   <details class="gear-cat">
     <summary><span class="gc-ico">🧥</span>行进备用衣物<span class="gc-wt">≈ 1.20 kg</span><span class="gc-arrow">›</span></summary>
     <ul class="gear-list">
@@ -759,37 +778,29 @@ footer a{color:var(--ice-l)}
     </ul>
     <p class="gear-note"><span class="loc loc-mainBot">主仓底·防水层内</span>装进衣物压缩袋压底。速干上衣共 3 件（身上 1 + 换 2），袜共 3 双，美利奴内裤 ×3 全程穿（防臭可连穿少洗）。</p>
   </details>
-
-  <details class="gear-cat">
-    <summary><span class="gc-ico">🎒</span>背包与收纳<span class="gc-wt">≈ 1.48 kg</span><span class="gc-arrow">›</span></summary>
-    <ul class="gear-list">
-      <li>Osprey Exos Pro 55L 背包（本体）<span class="gw">980g *</span></li>
-      <li>大内衬防水袋（pack liner，主仓内衬）<span class="gw">90g ~</span></li>
-      <li>食物防水袋 8L <span class="loc loc-mid">中段贴背</span><span class="gw">70g *</span></li>
-      <li>炊具防水袋 5L <span class="loc loc-mid">中段贴背</span><span class="gw">55g *</span></li>
-      <li>衣物压缩袋 <span class="loc loc-mainBot">主仓底</span><span class="gw">50g ~</span></li>
-      <li>电器防水袋 3L <span class="loc loc-top">顶仓</span><span class="gw">40g *</span></li>
-      <li>垃圾袋 + 密封袋 ×3-4（PE 自封袋，装用过厕纸/垃圾）<span class="gw">40g ~</span></li>
-      <li>帆布手提袋（小，城镇/补给用）<span class="gw">150g ~</span></li>
-    </ul>
-    <p class="gear-note">大内衬防水袋当 pack liner（整个主仓内衬一层），比外置防雨罩更可靠，<b>不另带防雨罩</b>；各分装袋按上表对应位置归位。</p>
+    </div>
   </details>
 
-  <h3>🛏️ 睡眠 / 炊具 / 杂项</h3>
-
-  <details class="gear-cat">
-    <summary><span class="gc-ico">🛏️</span>睡眠系统（全带）<span class="gc-wt">≈ 2.83 kg</span><span class="gc-arrow">›</span></summary>
-    <ul class="gear-list">
-      <li>STS Telos TR2 Plus 帐篷（含原配地布）<span class="loc loc-mainTop">主仓靠上·防水层外</span><span class="gw">1531g *</span></li>
-      <li>STS Spark 睡袋（舒适 4°C）<span class="loc loc-mainBot">主仓底·防水层内</span><span class="gw">493g *</span></li>
-      <li>Ether Light XT 睡垫（R 值 3.2）<span class="loc loc-mainBot">主仓底·防水层内</span><span class="gw">490g *</span></li>
-      <li>STS 丝绸内胆（加温 +2-3°C）<span class="loc loc-mainBot">主仓底</span><span class="gw">140g *</span></li>
-      <li>特卫强 Tyvek 地布（额外底布保护）<span class="loc loc-mainBot">主仓底</span><span class="gw">106g *</span></li>
-      <li>STS 羽绒枕 <span class="loc loc-mainBot">主仓底</span><span class="gw">70g *</span></li>
-    </ul>
-    <p class="gear-note"><b>帐篷</b>放主仓靠上、<b>防水层外</b>——到营地最先取、淋湿也不影响层内干燥装备；睡袋/睡垫/内胆/枕等营地用品压在防水层内底部（与夜间衣物同区）。</p>
+  <!-- ③ 睡眠大类 -->
+  <details class="gear-group">
+    <summary><span class="gg-ico">🛏️</span>睡眠大类<span class="gg-wt">≈ 2.83 kg</span><span class="gg-arrow">›</span></summary>
+    <div class="gg-body">
+      <ul class="gear-list">
+        <li>STS Telos TR2 Plus 帐篷（含原配地布）<span class="loc loc-mainTop">主仓靠上·防水层外</span><span class="gw">1531g *</span></li>
+        <li>STS Spark 睡袋（舒适 4°C）<span class="loc loc-mainBot">主仓底·防水层内</span><span class="gw">493g *</span></li>
+        <li>Ether Light XT 睡垫（R 值 3.2）<span class="loc loc-mainBot">主仓底·防水层内</span><span class="gw">490g *</span></li>
+        <li>STS 丝绸内胆（加温 +2-3°C）<span class="loc loc-mainBot">主仓底</span><span class="gw">140g *</span></li>
+        <li>特卫强 Tyvek 地布（额外底布保护）<span class="loc loc-mainBot">主仓底</span><span class="gw">106g *</span></li>
+        <li>STS 羽绒枕 <span class="loc loc-mainBot">主仓底</span><span class="gw">70g *</span></li>
+      </ul>
+      <p class="gear-note"><b>帐篷</b>放主仓靠上、<b>防水层外</b>——到营地最先取、淋湿也不影响层内干燥装备；睡袋/睡垫/内胆/枕等营地用品压在防水层内底部（与夜间衣物同区）。</p>
+    </div>
   </details>
 
+  <!-- ④ 炊具/食物/饮水大类 -->
+  <details class="gear-group">
+    <summary><span class="gg-ico">🍳</span>炊具 / 食物 / 饮水大类<span class="gg-wt">≈ 5.48 kg</span><span class="gg-arrow">›</span></summary>
+    <div class="gg-body">
   <details class="gear-cat">
     <summary><span class="gc-ico">🍳</span>炊具（气罐/点火当地买）<span class="gc-wt">≈ 0.38 kg</span><span class="gc-arrow">›</span></summary>
     <ul class="gear-list">
@@ -802,6 +813,32 @@ footer a{color:var(--ice-l)}
     <p class="gear-note"><span class="loc loc-mid">中段贴背</span>炊具防水袋放中段（重物靠背稳重心）；滤水器+软水袋卷起放<span class="loc loc-top">顶仓</span>，沿途山泉/溪流随时取水即用。炉头自带；气罐/点火器/打火机不能上飞机，到库马约尔/霞慕尼买，团队可共享。</p>
   </details>
 
+  <details class="gear-cat">
+    <summary><span class="gc-ico">🍫</span>食物与水（消耗品，随吃喝递减）<span class="gc-wt">≈ 5.1 kg</span><span class="gc-arrow">›</span></summary>
+    <ul class="gear-list">
+      <li style="font-weight:600;color:#5F6E66;border:none;padding-top:6px">— 国内带 · 白天路餐（约 2.3 kg）—</li>
+      <li>能量棒 ×21 <span class="gw">1155g ~</span></li>
+      <li>坚果棒 ×8 <span class="gw">360g ~</span></li>
+      <li>蛋白棒 ×3 <span class="gw">150g ~</span></li>
+      <li>含咖啡因能量胶 ×6 <span class="gw">210g ~</span></li>
+      <li>电解质泡腾片（1 管）<span class="gw">100g ~</span></li>
+      <li>即食麦片/燕麦（早餐应急）<span class="gw">300g ~</span></li>
+      <li style="font-weight:600;color:#5F6E66;border:none;padding-top:6px">— 当地买 · 餐食 + 气罐 —</li>
+      <li>露营晚餐 ×3（冻干/即食）<span class="gtag gtag-buy">当地买</span><span class="gw">450g ~</span></li>
+      <li>肉干 / 咸饼干 <span class="gtag gtag-buy">当地买</span><span class="gw">200g ~</span></li>
+      <li>气罐 EN417 ×1（亦见炊具）<span class="gtag gtag-buy">当地买</span><span class="gw">220g ~</span></li>
+      <li style="font-weight:600;color:#5F6E66;border:none;padding-top:6px">— 饮水 —</li>
+      <li>2 × 1L 矿泉水（满载）<span class="loc loc-side">侧袋</span><span class="gw">2000g ~</span></li>
+    </ul>
+    <p class="gear-note"><span class="loc loc-mid">食物中段贴背 · 水放侧袋</span>食物与水是<b>消耗品</b>，出发/补给后最重（≈5.1kg），随吃喝逐日递减——这正是「满载 14.2kg」与「典型每日 ~12.1kg」的差额来源。每日路餐配比与冲顶用胶见「路餐与补给」章；正餐尽量当地买（肉类入境受限），白天路餐从国内带。</p>
+  </details>
+    </div>
+  </details>
+
+  <!-- ⑤ 电器/盥洗/杂项大类 -->
+  <details class="gear-group">
+    <summary><span class="gg-ico">🔌</span>电器 / 盥洗 / 杂项大类<span class="gg-wt">≈ 1.83 kg</span><span class="gg-arrow">›</span></summary>
+    <div class="gg-body">
   <details class="gear-cat">
     <summary><span class="gc-ico">🔌</span>个人杂项 · 电器<span class="gc-wt">≈ 0.98 kg</span><span class="gc-arrow">›</span></summary>
     <ul class="gear-list">
@@ -837,25 +874,25 @@ footer a{color:var(--ice-l)}
     </ul>
     <p class="gear-note"><span class="loc loc-mainBot">主仓</span>盥洗袋归主仓（营地/休息时用）；防晒霜、唇膏这类高频小件可放<b>腰带袋/侧袋</b>随手补。水泡贴、防晒唇膏需采购。</p>
   </details>
+    </div>
+  </details>
 
-  <details class="gear-cat">
-    <summary><span class="gc-ico">🍫</span>食物与水（消耗品，随吃喝递减）<span class="gc-wt">≈ 5.1 kg</span><span class="gc-arrow">›</span></summary>
-    <ul class="gear-list">
-      <li style="font-weight:600;color:#5F6E66;border:none;padding-top:6px">— 国内带 · 白天路餐（约 2.3 kg）—</li>
-      <li>能量棒 ×21 <span class="gw">1155g ~</span></li>
-      <li>坚果棒 ×8 <span class="gw">360g ~</span></li>
-      <li>蛋白棒 ×3 <span class="gw">150g ~</span></li>
-      <li>含咖啡因能量胶 ×6 <span class="gw">210g ~</span></li>
-      <li>电解质泡腾片（1 管）<span class="gw">100g ~</span></li>
-      <li>即食麦片/燕麦（早餐应急）<span class="gw">300g ~</span></li>
-      <li style="font-weight:600;color:#5F6E66;border:none;padding-top:6px">— 当地买 · 餐食 + 气罐 —</li>
-      <li>露营晚餐 ×3（冻干/即食）<span class="gtag gtag-buy">当地买</span><span class="gw">450g ~</span></li>
-      <li>肉干 / 咸饼干 <span class="gtag gtag-buy">当地买</span><span class="gw">200g ~</span></li>
-      <li>气罐 EN417 ×1（亦见炊具）<span class="gtag gtag-buy">当地买</span><span class="gw">220g ~</span></li>
-      <li style="font-weight:600;color:#5F6E66;border:none;padding-top:6px">— 饮水 —</li>
-      <li>2 × 1L 矿泉水（满载）<span class="loc loc-side">侧袋</span><span class="gw">2000g ~</span></li>
-    </ul>
-    <p class="gear-note"><span class="loc loc-mid">食物中段贴背 · 水放侧袋</span>食物与水是<b>消耗品</b>，出发/补给后最重（≈5.1kg），随吃喝逐日递减——这正是「满载 14.2kg」与「典型每日 ~12.1kg」的差额来源。每日路餐配比与冲顶用胶见「路餐与补给」章；正餐尽量当地买（肉类入境受限），白天路餐从国内带。</p>
+  <!-- ⑥ 背包和收纳大类 -->
+  <details class="gear-group">
+    <summary><span class="gg-ico">🎒</span>背包和收纳大类<span class="gg-wt">≈ 1.48 kg</span><span class="gg-arrow">›</span></summary>
+    <div class="gg-body">
+      <ul class="gear-list">
+        <li>Osprey Exos Pro 55L 背包（本体）<span class="gw">980g *</span></li>
+        <li>大内衬防水袋（pack liner，主仓内衬）<span class="gw">90g ~</span></li>
+        <li>食物防水袋 8L <span class="loc loc-mid">中段贴背</span><span class="gw">70g *</span></li>
+        <li>炊具防水袋 5L <span class="loc loc-mid">中段贴背</span><span class="gw">55g *</span></li>
+        <li>衣物压缩袋 <span class="loc loc-mainBot">主仓底</span><span class="gw">50g ~</span></li>
+        <li>电器防水袋 3L <span class="loc loc-top">顶仓</span><span class="gw">40g *</span></li>
+        <li>垃圾袋 + 密封袋 ×3-4（PE 自封袋，装用过厕纸/垃圾）<span class="gw">40g ~</span></li>
+        <li>帆布手提袋（小，城镇/补给用）<span class="gw">150g ~</span></li>
+      </ul>
+      <p class="gear-note">大内衬防水袋当 pack liner（整个主仓内衬一层），比外置防雨罩更可靠，<b>不另带防雨罩</b>；各分装袋按上表对应位置归位。</p>
+    </div>
   </details>
 
   <h3>🛒 当地采购清单</h3>
@@ -1110,7 +1147,7 @@ footer a{color:var(--ice-l)}
 
 <footer>
   <div class="ft-title">⛰ 环勃朗峰 TMB 徒步手册</div>
-  <p>v22 · 2026-06-30</p>
+  <p>v23 · 2026-06-30</p>
   <p style="margin-top:6px; font-size:0.8rem; color:#8DA89B">数据源：GPX 轨迹（距离/爬升/下降）+ 各日接驳班次表 + AccuWeather 2026年7月预报 + 大教堂 Fast-Track 票务 · 价格/时刻查询于 2026-06，如有变动以官方为准</p>
 </footer>
 
